@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FungiFinder.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -17,6 +19,18 @@ namespace FungiFinder
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddIdentity<MyIdentityUser, IdentityRole>(o =>
+            {
+                o.Password.RequiredLength = 6;
+                o.Password.RequireNonAlphanumeric = false;
+            })
+                .AddEntityFrameworkStores<MyIdentityContext>()
+                .AddDefaultTokenProviders();
+            services.AddTransient<AccountService>();
+
+
+            services.ConfigureApplicationCookie(o => o.LoginPath = "/login");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -26,9 +40,9 @@ namespace FungiFinder
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseAuthentication();
             app.UseRouting();
-
+            app.UseAuthorization();
             app.UseEndpoints(endpoints => endpoints.MapControllers());
            
         }
