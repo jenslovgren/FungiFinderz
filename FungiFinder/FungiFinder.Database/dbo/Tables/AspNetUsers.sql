@@ -16,7 +16,7 @@
     [AccessFailedCount]    INT                NOT NULL,
     [FavoriteMushroom]     NVARCHAR (MAX)     NULL,
     [ProfileImageUrl]      NVARCHAR (MAX)     NULL,
-    [MushroomId]           INT                NOT NULL,
+    [MushroomId]           INT                NULL,
     CONSTRAINT [PK_AspNetUsers] PRIMARY KEY CLUSTERED ([Id] ASC),
     FOREIGN KEY ([MushroomId]) REFERENCES [dbo].[Mushrooms] ([Id])
 );
