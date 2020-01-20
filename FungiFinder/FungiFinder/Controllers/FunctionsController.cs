@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using FungiFinder.Models;
 using FungiFinder.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -14,10 +15,12 @@ namespace FungiFinder.Controllers
     public class FunctionsController : Controller
     {
         private readonly IWebHostEnvironment hostEnvironment;
+        private readonly FunctionsService service;
 
-        public FunctionsController(IWebHostEnvironment hostEnvironment)
+        public FunctionsController(IWebHostEnvironment hostEnvironment, FunctionsService service)
         {
             this.hostEnvironment = hostEnvironment;
+            this.service = service;
         }
         [HttpGet]
         [Route("main")]
@@ -39,6 +42,7 @@ namespace FungiFinder.Controllers
                 } 
             }
 
+            var result = service.PredictImage(vm.ImgToSearch.FileName);
             
 
             return View();
