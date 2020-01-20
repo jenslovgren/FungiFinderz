@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,7 +10,6 @@ namespace FungiFinder.Models.ViewModels
 {
     public class FunctionMainVM
     {
-        
-        public string Search { get; set; }
+        public IFormFile ImgToSearch { get; set; }
     }
 }

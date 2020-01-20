@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FungiFinder.Models;
+using FungiFinder.Models.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -28,6 +29,7 @@ namespace FungiFinder
         {
             var constring = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<MyIdentityContext>(o => o.UseSqlServer(constring));
+            services.AddDbContext<FungiFinderContext>(o => o.UseSqlServer(constring));
             services.AddTransient<AccountService>();
             //PasswordHasher
             services.AddIdentity<MyIdentityUser, IdentityRole>(o =>
