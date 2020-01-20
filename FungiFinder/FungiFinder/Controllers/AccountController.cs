@@ -84,22 +84,7 @@ namespace FungiFinder.Controllers
             return RedirectToAction(nameof(Login));
         }
 
-        [AllowAnonymous]
-        [HttpGet]
-        [Route("/Main")]
-        public IActionResult Main()
-        {
-            return View();
-        }
-
-
-        [AllowAnonymous]
-        [HttpPost]
-        [Route("/Main")]
-        public IActionResult Main(MainVM vm)
-        {
-            return RedirectToAction(nameof(Main));
-        }
+        
 
     }
 }
