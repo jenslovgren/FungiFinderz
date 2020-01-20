@@ -36,5 +36,10 @@ namespace FungiFinder.Models
             }, vm.Password);
             return result;
         }
+
+        internal async Task TryLogOutUserAsync()
+        {
+            await signInManager.SignOutAsync();
+        }
     }
 }

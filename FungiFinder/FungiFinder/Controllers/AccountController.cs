@@ -52,8 +52,7 @@ namespace FungiFinder.Controllers
                 ModelState.AddModelError(string.Empty, "Användarnamn och/eller lösenord är felaktigt");
                 return View(vm);
             }
-            //ska ändras till "Main"senare
-            return RedirectToAction(nameof(Login));
+            return RedirectToAction("Main", "Functions");
         }
 
         [AllowAnonymous]
@@ -82,6 +81,15 @@ namespace FungiFinder.Controllers
             }
 
             return RedirectToAction(nameof(Login));
+        }
+
+        [HttpGet]
+        [Route("logout")]
+        public async Task<IActionResult> LogOut()
+        {
+            await service.TryLogOutUserAsync();
+
+            return RedirectToAction(nameof(Index));
         }
 
         
