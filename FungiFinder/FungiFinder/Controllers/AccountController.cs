@@ -49,7 +49,7 @@ namespace FungiFinder.Controllers
             var result = await service.TryLoginUser(vm);
             if (!result.Succeeded)
             {
-                ModelState.AddModelError(string.Empty, "Couldn't sign in.");
+                ModelState.AddModelError(string.Empty, "Användarnamn och/eller lösenord är felaktigt");
                 return View(vm);
             }
             //ska ändras till "Main"senare
