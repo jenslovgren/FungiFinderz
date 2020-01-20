@@ -34,7 +34,7 @@ namespace FungiFinder.Models
         {
             MLContext mlContext = new MLContext();
             ITransformer model = GenerateModel(mlContext);
-            _predictSingleImage = Path.Combine(_uploadedImages, "kantarell1.jpg");
+            _predictSingleImage = Path.Combine(_uploadedImages, urlINput);
             return ClassifySingleImage(mlContext, model);
             //return 100;
         }
