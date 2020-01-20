@@ -40,7 +40,7 @@ namespace FungiFinder.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("/login")]
-        public async Task<IActionResult> Login(LoginVM vm)
+        public async Task<IActionResult> Login(AccountLoginVM vm)
         {
             if (!ModelState.IsValid)
                 return View(vm);
@@ -68,7 +68,7 @@ namespace FungiFinder.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("/Register")]
-        public async Task<IActionResult> Register(RegisterVM vm)
+        public async Task<IActionResult> Register(AccountRegisterVM vm)
         {
             if (!ModelState.IsValid)
                 return View(vm);
@@ -84,22 +84,7 @@ namespace FungiFinder.Controllers
             return RedirectToAction(nameof(Login));
         }
 
-        [AllowAnonymous]
-        [HttpGet]
-        [Route("/Main")]
-        public IActionResult Main()
-        {
-            return View();
-        }
-
-
-        [AllowAnonymous]
-        [HttpPost]
-        [Route("/Main")]
-        public IActionResult Main(MainVM vm)
-        {
-            return RedirectToAction(nameof(Main));
-        }
+        
 
     }
 }

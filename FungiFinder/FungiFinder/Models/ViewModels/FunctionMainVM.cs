@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace FungiFinder.Models.ViewModels
 {
     public class FunctionMainVM
     {
-        public int ProcentResult { get; set; }
-        public string EdibleOrPosinous { get; set; }
-        public string Info { get; set; }
-        public string UrlMatchedMushroom { get; set; }
-
-
+        
+        public string Search { get; set; }
     }
 }
