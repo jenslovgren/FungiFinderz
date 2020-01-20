@@ -17,9 +17,11 @@ namespace FungiFinder.Models.ViewModels
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [Required]
+        [DataType(DataType.Password)]
         [Display(Name = "Lösenord")]
         public string Password { get; set; }
         [Required]
+        [DataType(DataType.Password)]
         [Display(Name = "Lösenordsvalidering")]
         [Compare("Password", ErrorMessage = "Lösenorden matchar inte")]
         public string ConfirmPassword { get; set; }
