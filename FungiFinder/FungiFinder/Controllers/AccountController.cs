@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FungiFinder.Controllers
 {
+
     public class AccountController : Controller
     {
         [Route("")]
