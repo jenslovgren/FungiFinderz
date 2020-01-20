@@ -8,6 +8,8 @@ namespace FungiFinder.Controllers
 {
     public class AccountController : Controller
     {
+        [Route("")]
+        [Route("/index")]
         public IActionResult Index()
         {
             return View();
