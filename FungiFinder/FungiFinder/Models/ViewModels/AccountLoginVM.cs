@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FungiFinder.Models.ViewModels
 {
-    public class LoginVM
+    public class AccountLoginVM
     {
         [Required(ErrorMessage = "Vänligen skriv in användarnamn")]
         [Display(Name = "Användarnamn")]
