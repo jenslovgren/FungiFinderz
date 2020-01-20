@@ -14,7 +14,7 @@ namespace FungiFinder.Models.ViewModels
         public string Username { get; set; }
 
         [Required(ErrorMessage = "Vänligen skriv in lösenord (A-z/0-9)")]
-        [Display(Name = "Användarnamn")]
+        [Display(Name = "Lösenord")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
