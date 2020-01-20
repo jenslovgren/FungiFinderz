@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FungiFinder", "FungiFinder\FungiFinder.csproj", "{A073978A-202D-4D48-970D-0537C51B8EBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FungiFinder", "FungiFinder\FungiFinder.csproj", "{A073978A-202D-4D48-970D-0537C51B8EBC}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "FungiFinder.Database", "FungiFinder.Database\FungiFinder.Database.sqlproj", "{4E731634-4351-4EB3-9E97-435EE19F088B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,12 @@ Global
 		{A073978A-202D-4D48-970D-0537C51B8EBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A073978A-202D-4D48-970D-0537C51B8EBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A073978A-202D-4D48-970D-0537C51B8EBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E731634-4351-4EB3-9E97-435EE19F088B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E731634-4351-4EB3-9E97-435EE19F088B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E731634-4351-4EB3-9E97-435EE19F088B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4E731634-4351-4EB3-9E97-435EE19F088B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E731634-4351-4EB3-9E97-435EE19F088B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E731634-4351-4EB3-9E97-435EE19F088B}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
