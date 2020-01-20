@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using FungiFinder.Models.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,12 @@ namespace FungiFinder.Models
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+        }
+
+        internal async Task<SignInResult> TryLoginUser(LoginVM vm)
+        {
+            var result = await signInManager.PasswordSignInAsync(vm.Username, vm.Password, false, false);
+            return result;
         }
     }
 }
