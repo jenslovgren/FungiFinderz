@@ -40,7 +40,7 @@ namespace FungiFinder
 
             services.AddControllersWithViews();
 
-            services.ConfigureApplicationCookie(o => o.LoginPath = "/login");
+            services.ConfigureApplicationCookie(o => o.LoginPath = "/index");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
