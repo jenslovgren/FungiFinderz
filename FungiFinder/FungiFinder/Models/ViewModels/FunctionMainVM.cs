@@ -9,8 +9,9 @@ namespace FungiFinder.Models.ViewModels
     {
         public int ProcentResult { get; set; }
         public string EdibleOrPosinous { get; set; }
-        public string info { get; set; }
+        public string Info { get; set; }
         public string UrlMatchedMushroom { get; set; }
+
 
     }
 }
