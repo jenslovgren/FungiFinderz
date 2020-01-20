@@ -49,9 +49,15 @@ namespace FungiFinder
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
+            else
+                app.UseExceptionHandler("/error/exception");
+
+            app.UseStatusCodePagesWithRedirects("/error/http/{0}");
+            
+
+            
+
             app.UseAuthentication();
             app.UseRouting();
             app.UseAuthorization();
