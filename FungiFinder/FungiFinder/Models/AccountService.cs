@@ -30,7 +30,9 @@ namespace FungiFinder.Models
             var result = await userManager.CreateAsync(new MyIdentityUser
             {
                 UserName = vm.UserName,
-                Email = vm.Email
+                Email = vm.Email,
+                
+                
             }, vm.Password);
             return result;
         }

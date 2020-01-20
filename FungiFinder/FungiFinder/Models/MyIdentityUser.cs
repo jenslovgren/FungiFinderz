@@ -11,7 +11,7 @@ namespace FungiFinder.Models
     {
         public string FavoriteMushroom { get; set; }
         public string ProfileImageUrl { get; set; }
-        public int MushroomId { get; set; }
+        public int? MushroomId { get; set; }
 
 
     }
