@@ -21,7 +21,7 @@ namespace FungiFinder.Controllers
             this.service = service;
         }
 
-
+        [AllowAnonymous]
         [Route("")]
         [Route("/index")]
         public IActionResult Index()
