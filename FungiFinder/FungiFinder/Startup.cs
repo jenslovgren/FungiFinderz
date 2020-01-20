@@ -26,8 +26,10 @@ namespace FungiFinder
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-
+            var constring = configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<MyIdentityContext>(o => o.UseSqlServer(constring));
+            services.AddTransient<AccountService>();
+            //PasswordHasher
             services.AddIdentity<MyIdentityUser, IdentityRole>(o =>
             {
                 o.Password.RequiredLength = 6;
@@ -35,11 +37,8 @@ namespace FungiFinder
             })
                 .AddEntityFrameworkStores<MyIdentityContext>()
                 .AddDefaultTokenProviders();
-            services.AddTransient<AccountService>();
 
-            var constring = configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<MyIdentityContext>(o => o.UseSqlServer(constring));
-
+            services.AddControllersWithViews();
 
             services.ConfigureApplicationCookie(o => o.LoginPath = "/login");
         }
