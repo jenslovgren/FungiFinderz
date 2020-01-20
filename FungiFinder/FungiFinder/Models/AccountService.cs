@@ -19,13 +19,13 @@ namespace FungiFinder.Models
             this.signInManager = signInManager;
         }
 
-        internal async Task<SignInResult> TryLoginUser(LoginVM vm)
+        internal async Task<SignInResult> TryLoginUser(AccountLoginVM vm)
         {
             var result = await signInManager.PasswordSignInAsync(vm.Username, vm.Password, false, false);
             return result;
         }
 
-        public async Task<IdentityResult> TryCreateUser(RegisterVM vm)
+        public async Task<IdentityResult> TryCreateUser(AccountRegisterVM vm)
         {
             var result = await userManager.CreateAsync(new MyIdentityUser
             {
