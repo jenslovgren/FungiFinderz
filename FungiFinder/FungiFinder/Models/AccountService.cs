@@ -25,9 +25,15 @@ namespace FungiFinder.Models
             return result;
         }
 
-        public Task TryCreateUser(RegisterVM vm)
+        public async Task<IdentityResult> TryCreateUser(RegisterVM vm)
         {
-            throw new NotImplementedException();
+            var result = await userManager.CreateAsync(new MyIdentityUser
+            {
+                UserName = vm.UserName,
+                Email = vm.Email
+            }, vm.Password);
+            return result;
+
         }
     }
 }
