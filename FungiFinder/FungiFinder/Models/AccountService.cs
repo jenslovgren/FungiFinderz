@@ -33,7 +33,6 @@ namespace FungiFinder.Models
                 Email = vm.Email
             }, vm.Password);
             return result;
-
         }
     }
 }
