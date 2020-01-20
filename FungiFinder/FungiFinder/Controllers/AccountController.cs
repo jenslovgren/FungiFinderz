@@ -56,5 +56,33 @@ namespace FungiFinder.Controllers
             return RedirectToAction(nameof(Login));
         }
 
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("/Register")]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("/Register")]
+        public async Task<IActionResult> Register(RegisterVM vm)
+        {
+            if (!ModelState.IsValid)
+                return View(vm);
+
+
+            var result = await service.TryCreateUser(vm);
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError(string.Empty, result.Errors.First().Description);
+                return View(vm);
+            }
+
+            return RedirectToAction(nameof(Login));
+        }
+
     }
 }

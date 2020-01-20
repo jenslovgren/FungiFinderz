@@ -24,5 +24,10 @@ namespace FungiFinder.Models
             var result = await signInManager.PasswordSignInAsync(vm.Username, vm.Password, false, false);
             return result;
         }
+
+        public Task TryCreateUser(RegisterVM vm)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
