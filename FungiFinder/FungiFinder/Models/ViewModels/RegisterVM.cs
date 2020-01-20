@@ -9,18 +9,18 @@ namespace FungiFinder.Models.ViewModels
 {
     public class RegisterVM
     {
-        [Required]
+        [Required(ErrorMessage = "Vänligen ange användarnamn")]
         [Display(Name = "Användarnamn")]
         public string UserName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Vänligen ange e-mail")]
         [Display(Name = "E-Mail")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Vänligen ange lösenord")]
         [DataType(DataType.Password)]
         [Display(Name = "Lösenord")]
         public string Password { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Vänligen ange lösenord")]
         [DataType(DataType.Password)]
         [Display(Name = "Lösenordsvalidering")]
         [Compare("Password", ErrorMessage = "Lösenorden matchar inte")]
