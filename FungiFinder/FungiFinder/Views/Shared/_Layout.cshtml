@@ -9,9 +9,9 @@
 <body>
     @if (User.Identity.IsAuthenticated)
     {
-        <input type="button" value="Home" />
-        <input type="button" value="Bib" />
-        <input type="button" value="Profile" />
+        <a asp-controller="Functions" asp-action="Main"><input type="button" value="Hem" /></a>
+        <a asp-controller="Functions" asp-action="Library"><input type="button" value="Bibliotek" /></a>
+        <a asp-controller="Functions" asp-action="Profile"><input type="button" value="Profil" /></a>
     }
 
     <div>
