@@ -24,18 +24,19 @@ namespace FungiFinder.Models
 
         static readonly string _assetsPath = Path.Combine(Environment.CurrentDirectory, "wwwroot");
         static readonly string _imagesFolder = Path.Combine(_assetsPath, "Images");
+        static readonly string _uploadedImages = Path.Combine(_assetsPath, "Images/Uploads");
         static readonly string _trainTagsTsv = Path.Combine(_imagesFolder, "tags.tsv");
         static readonly string _testTagsTsv = Path.Combine(_imagesFolder, "test-tags.tsv");
         static string _predictSingleImage = Path.Combine(_imagesFolder, "flugsvamp7.jpg");
         static readonly string _inceptionTensorFlowModel = Path.Combine(_assetsPath, "inception", "tensorflow_inception_graph.pb");
 
-        public decimal PredictImage(string urlINput)
+        public FunctionMainResultPartialVM PredictImage(string urlINput)
         {
             MLContext mlContext = new MLContext();
             ITransformer model = GenerateModel(mlContext);
-            _predictSingleImage = Path.Combine(_imagesFolder, "1337.jpg");
-            ClassifySingleImage(mlContext, model);
-            return 100;
+            _predictSingleImage = Path.Combine(_uploadedImages, "kantarell1.jpg");
+            return ClassifySingleImage(mlContext, model);
+            //return 100;
         }
 
         private struct InceptionSettings
@@ -80,7 +81,7 @@ namespace FungiFinder.Models
 
             return model;
         }
-        void ClassifySingleImage(MLContext mlContext, ITransformer model)
+        FunctionMainResultPartialVM ClassifySingleImage(MLContext mlContext, ITransformer model)
         {
             var imageData = new ImageData()
             {
@@ -91,7 +92,8 @@ namespace FungiFinder.Models
             var prediction = predictor.Predict(imageData);
             var result = context.Mushrooms.Where(m => m.Name == prediction.PredictedLabelValue).FirstOrDefault();
 
-            Console.WriteLine($"Image: {Path.GetFileName(imageData.ImagePath)}                  predicted as: {prediction.PredictedLabelValue}                  with score: {prediction.Score.Max()} ");
+            return new FunctionMainResultPartialVM { Name = prediction.PredictedLabelValue, ProcentResult = prediction.Score.Max() };
+            //Console.WriteLine($"Image: {Path.GetFileName(imageData.ImagePath)}                  predicted as: {prediction.PredictedLabelValue}                  with score: {prediction.Score.Max()} ");
         }
 
         private void DisplayResults(IEnumerable<ImagePrediction> imagePredictionData)

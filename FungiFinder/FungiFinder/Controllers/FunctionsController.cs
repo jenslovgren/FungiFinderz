@@ -34,7 +34,7 @@ namespace FungiFinder.Controllers
         {
             if(vm.ImgToSearch?.Length > 0)
             {
-                var filePath = Path.Combine(hostEnvironment.WebRootPath, "Images/Searches", vm.ImgToSearch.FileName);
+                var filePath = Path.Combine(hostEnvironment.WebRootPath, "Images/Uploads", vm.ImgToSearch.FileName);
 
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
@@ -43,9 +43,9 @@ namespace FungiFinder.Controllers
             }
 
             var result = service.PredictImage(vm.ImgToSearch.FileName);
-            
 
-            return View();
+
+            return PartialView("_MainResultPartial", result);
         }
 
         [Route("library")]

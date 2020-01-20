@@ -7,7 +7,7 @@ namespace FungiFinder.Models.ViewModels
 {
     public class FunctionMainResultPartialVM
     {
-        public int ProcentResult { get; set; }
+        public float ProcentResult { get; set; }
         public string EdibleOrPosinous { get; set; }
         public string Info { get; set; }
         public string UrlMatchedMushroom { get; set; }
