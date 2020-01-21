@@ -11,6 +11,7 @@ namespace FungiFinder.Models.ViewModels
     {
         public IFormFile ProfilePicture { get; set; }
         public string Username { get; set; }
+        public string Name { get; set; }
         public string Email { get; set; }
         public string MushroomLookAlike { get; set; }
         public string FavouriteMushroom { get; set; }

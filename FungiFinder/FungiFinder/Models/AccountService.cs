@@ -1,4 +1,5 @@
 ﻿using FungiFinder.Models.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,13 @@ namespace FungiFinder.Models
     {
         private readonly UserManager<MyIdentityUser> userManager;
         private readonly SignInManager<MyIdentityUser> signInManager;
+        private readonly IHttpContextAccessor accessor;
 
-        public AccountService(UserManager<MyIdentityUser> userManager, SignInManager<MyIdentityUser> signInManager)
+        public AccountService(UserManager<MyIdentityUser> userManager, SignInManager<MyIdentityUser> signInManager, IHttpContextAccessor accessor)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.accessor = accessor;
         }
 
         internal async Task<SignInResult> TryLoginUser(AccountLoginVM vm)
@@ -40,6 +43,11 @@ namespace FungiFinder.Models
         internal async Task TryLogOutUserAsync()
         {
             await signInManager.SignOutAsync();
+        }
+
+        internal void GetCurrentUser()
+        {
+            
         }
     }
 }

@@ -95,6 +95,10 @@ namespace FungiFinder.Controllers
         [Route("profile")]
         public IActionResult Profile()
         {
+            service.GetCurrentUser();
+            //string username = User.Identity.Name;
+            
+
             return View();
         }
 
