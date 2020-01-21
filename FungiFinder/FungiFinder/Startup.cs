@@ -32,6 +32,7 @@ namespace FungiFinder
             services.AddDbContext<FungiFinderContext>(o => o.UseSqlServer(constring));
             services.AddTransient<AccountService>();
             services.AddTransient<FunctionsService>();
+            services.AddHttpContextAccessor();
             //PasswordHasher
             services.AddIdentity<MyIdentityUser, IdentityRole>(o =>
             {
