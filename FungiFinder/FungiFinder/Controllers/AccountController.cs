@@ -40,7 +40,7 @@ namespace FungiFinder.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("/login")]
-        public async Task<IActionResult> Login(LoginVM vm)
+        public async Task<IActionResult> Login(AccountLoginVM vm)
         {
             if (!ModelState.IsValid)
                 return View(vm);
@@ -52,8 +52,7 @@ namespace FungiFinder.Controllers
                 ModelState.AddModelError(string.Empty, "Användarnamn och/eller lösenord är felaktigt");
                 return View(vm);
             }
-            //ska ändras till "Main"senare
-            return RedirectToAction(nameof(Login));
+            return RedirectToAction("Main", "Functions");
         }
 
         [AllowAnonymous]
@@ -68,7 +67,7 @@ namespace FungiFinder.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("/Register")]
-        public async Task<IActionResult> Register(RegisterVM vm)
+        public async Task<IActionResult> Register(AccountRegisterVM vm)
         {
             if (!ModelState.IsValid)
                 return View(vm);
@@ -84,22 +83,16 @@ namespace FungiFinder.Controllers
             return RedirectToAction(nameof(Login));
         }
 
-        [AllowAnonymous]
         [HttpGet]
-        [Route("/Main")]
-        public IActionResult Main()
+        [Route("logout")]
+        public async Task<IActionResult> LogOut()
         {
-            return View();
+            await service.TryLogOutUserAsync();
+
+            return RedirectToAction(nameof(Index));
         }
 
-
-        [AllowAnonymous]
-        [HttpPost]
-        [Route("/Main")]
-        public IActionResult Main(MainVM vm)
-        {
-            return RedirectToAction(nameof(Main));
-        }
+        
 
     }
 }

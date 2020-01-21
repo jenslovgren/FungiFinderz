@@ -8,6 +8,7 @@ namespace FungiFinder.Models.ViewModels
 {
     public class FunctionLibraryVM
     {
-        
+        public string SearchQuery { get; set; }
+
     }
 }

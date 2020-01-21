@@ -1,0 +1,30 @@
+﻿@model FunctionMainVM
+
+@{
+    ViewData["Title"] = "Main";
+}
+
+<h1>Main</h1>
+
+<h4>FunctionMainVM</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Main" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger" ></div>
+                <input asp-for="ImgToSearch" type="file" />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div id="resultHere"></div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<script>
+    document.getElementById("resultHere")
+</script>
+

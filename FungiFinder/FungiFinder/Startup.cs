@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FungiFinder.Models;
+using FungiFinder.Models.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -28,7 +29,9 @@ namespace FungiFinder
         {
             var constring = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<MyIdentityContext>(o => o.UseSqlServer(constring));
+            services.AddDbContext<FungiFinderContext>(o => o.UseSqlServer(constring));
             services.AddTransient<AccountService>();
+            services.AddTransient<FunctionsService>();
             //PasswordHasher
             services.AddIdentity<MyIdentityUser, IdentityRole>(o =>
             {
@@ -47,9 +50,15 @@ namespace FungiFinder
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
+            else
+                app.UseExceptionHandler("/error/exception");
+
+            app.UseStatusCodePagesWithRedirects("/error/http/{0}");
+
+
+            app.UseStaticFiles();
+
             app.UseAuthentication();
             app.UseRouting();
             app.UseAuthorization();
