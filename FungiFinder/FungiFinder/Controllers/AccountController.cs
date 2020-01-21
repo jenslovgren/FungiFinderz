@@ -20,7 +20,7 @@ namespace FungiFinder.Controllers
         {
             this.service = service;
         }
-
+        [HttpGet]
         [AllowAnonymous]
         [Route("")]
         [Route("/index")]
