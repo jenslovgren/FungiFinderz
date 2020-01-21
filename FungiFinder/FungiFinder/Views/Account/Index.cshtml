@@ -1,23 +1,18 @@
-﻿<!DOCTYPE html>
+﻿
 
-<html>
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-</head>
-<body>
-    @{
-        Layout = "";
-    }
 
-    <h1>Fungi Finderz</h1>
 
+
+
+<h1>Fungi Finderz</h1>
+@if (!User.Identity.IsAuthenticated)
+{
     <form>
-        <button asp-controller="Account" asp-action="Login">LOGIN</button>
+        <button asp-controller="Account" asp-action="Login" class="btn btn-dark">Logga in</button>
         <br />
-        <button asp-controller="Account" asp-action="Register">REGISTER</button>
+        <button asp-controller="Account" asp-action="Register" class="btn btn-dark">Registrera</button>
     </form>
+}
 
-</body>
-</html>
+
+

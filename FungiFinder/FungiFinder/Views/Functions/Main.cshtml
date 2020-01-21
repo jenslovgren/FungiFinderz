@@ -10,14 +10,14 @@
 
 <h4>Fungi Finder</h4>
 <hr />
-<div id="resultHere"></div>
+<div class="card"id="resultHere"></div>
 <div id="result"></div>
-<div class="row">
+<div class="card">
     <div class="col-md-4">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input id="picture" asp-for="ImgToSearch" type="file" onchange="uploadFile('picture')"/>
+            <input id="picture" asp-for="ImgToSearch" type="file" onchange="uploadFile('picture')" class="btn btn-outline-dark"/>
             <div class="form-group">
-                <input type="button" onclick="getResult()" value="Sök" class="btn btn-primary" />
+                <input type="button" onclick="getResult()" value="Sök" class="btn btn-outline-dark" />
             </div>
     </div>
 </div>

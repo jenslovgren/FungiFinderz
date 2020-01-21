@@ -20,7 +20,7 @@ namespace FungiFinder.Controllers
         {
             this.service = service;
         }
-
+        [HttpGet]
         [AllowAnonymous]
         [Route("")]
         [Route("/index")]
@@ -92,21 +92,21 @@ namespace FungiFinder.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [Route("profile")]
+        [Route("/profile")]
         [HttpGet]
-        public IActionResult Profile()
+        public async Task<IActionResult> Profile()
         {
-            return View();
+            var model = await service.GetProfileData();
+            return View(model);
         }
 
 
-        [Route("profile")]
+        [Route("/profile")]
         [HttpPost]
         public async Task<IActionResult> Profile(AccountProfileVM VM)
         {
             if (!ModelState.IsValid)
                 return View(VM);
-
 
             var result = await service.TryEditProfile(VM);
             if (!result.Succeeded)
@@ -114,12 +114,30 @@ namespace FungiFinder.Controllers
                 ModelState.AddModelError(string.Empty, result.Errors.First().Description);
                 return View(VM);
             }
+            //return RedirectToAction(nameof(Index));
 
 
-            
-            
 
-            return RedirectToAction(nameof(Index));
+
+
+
+            return PartialView("_ProfileEditPartial", VM);
+
+        }
+
+        [Route("profile/edit/email")]
+        [HttpGet]
+        public IActionResult EditEmail()
+        {
+            return PartialView("_EditProfilEmail");
+        }
+        [Route("profile/edit/email")]
+        [HttpPost]
+        public async Task <IActionResult> EditEmail(string email)
+        {
+            await service.EditEmail(email);
+
+            return RedirectToAction(nameof(Profile));
         }
 
 
