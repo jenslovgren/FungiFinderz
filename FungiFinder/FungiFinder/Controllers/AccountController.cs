@@ -105,16 +105,15 @@ namespace FungiFinder.Controllers
         [HttpPost]
         public async Task<IActionResult> Profile(AccountProfileVM VM)
         {
-            //if (!ModelState.IsValid)
-            //    return View(VM);
+            if (!ModelState.IsValid)
+                return View(VM);
 
-            /*var result = */
-            //await service.TryEditProfile(VM);
-            //if (!result.Succeeded)
-            //{
-            //    ModelState.AddModelError(string.Empty, result.Errors.First().Description);
-            //    return View(VM);
-            //}
+            var result = await service.TryEditProfile(VM);
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError(string.Empty, result.Errors.First().Description);
+                return View(VM);
+            }
             //return RedirectToAction(nameof(Index));
 
 
@@ -122,8 +121,23 @@ namespace FungiFinder.Controllers
 
 
 
-            return PartialView("_EditProfilePartial", VM);
+            return PartialView("_ProfileEditPartial", VM);
 
+        }
+
+        [Route("profile/edit/email")]
+        [HttpGet]
+        public IActionResult EditEmail()
+        {
+            return PartialView("_EditProfilEmail");
+        }
+        [Route("profile/edit/email")]
+        [HttpPost]
+        public async Task <IActionResult> EditEmail(string email)
+        {
+            await service.EditEmail(email);
+
+            return RedirectToAction(nameof(Profile));
         }
 
 
