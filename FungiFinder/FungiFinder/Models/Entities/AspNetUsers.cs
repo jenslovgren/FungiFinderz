@@ -31,7 +31,7 @@ namespace FungiFinder.Models.Entities
         public int AccessFailedCount { get; set; }
         public string FavoriteMushroom { get; set; }
         public string ProfileImageUrl { get; set; }
-        public int MushroomId { get; set; }
+        public int? MushroomId { get; set; }
 
         public virtual Mushrooms Mushroom { get; set; }
         public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }

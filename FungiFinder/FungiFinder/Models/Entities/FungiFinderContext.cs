@@ -128,16 +128,14 @@ namespace FungiFinder.Models.Entities
                 entity.HasOne(d => d.Mushroom)
                     .WithMany(p => p.AspNetUsers)
                     .HasForeignKey(d => d.MushroomId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__AspNetUse__Mushr__398D8EEE");
+                    .HasConstraintName("FK__AspNetUse__Mushr__3A81B327");
             });
 
             modelBuilder.Entity<LatestSearches>(entity =>
             {
                 entity.Property(e => e.Mushroom)
                     .IsRequired()
-                    .HasMaxLength(64)
-                    .IsFixedLength();
+                    .HasMaxLength(64);
 
                 entity.Property(e => e.SearchDate).HasColumnType("datetime");
 

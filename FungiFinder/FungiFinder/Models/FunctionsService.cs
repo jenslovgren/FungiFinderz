@@ -36,7 +36,7 @@ namespace FungiFinder.Models
             ITransformer model = GenerateModel(mlContext);
             _predictSingleImage = Path.Combine(_uploadedImages, urlINput);
             return ClassifySingleImage(mlContext, model);
-            //return 100;
+            
         }
 
         private struct InceptionSettings
