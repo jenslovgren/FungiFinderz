@@ -7,5 +7,7 @@ namespace FungiFinder.Models.TensorFlow
 {
     public class Core
     {
+
+
     }
 }
