@@ -47,6 +47,25 @@ namespace FungiFinder.Models
             public const float Scale = 1;
             public const bool ChannelsLast = true;
         }
+
+        public FunctionLibraryResultPartialVM[] GetMushroomsFromSearch(string searchQuery)
+        {
+            var resultList = new List<FunctionLibraryResultPartialVM>();
+            var matchedMushrooms = context.Mushrooms.Where(o => o.Name.Contains(searchQuery) /*|| o.LatinName.Contains(searchQuery)*/);
+            foreach (var mushroom in matchedMushrooms)
+            {
+                resultList.Add(new FunctionLibraryResultPartialVM
+                {
+                    Name = mushroom.Name,
+                    LatinName = mushroom.LatinName,
+                    Info = mushroom.Info,
+                    Edible = mushroom.Edible,
+                    ImgUrl = mushroom.ImageUrl
+                });
+            }
+            return resultList.ToArray();
+        }
+
         private ITransformer GenerateModel(MLContext mlContext)
         {
             IEstimator<ITransformer> pipeline = mlContext.Transforms.LoadImages(outputColumnName: "input", imageFolder: _imagesFolder, inputColumnName: nameof(ImageData.ImagePath))
