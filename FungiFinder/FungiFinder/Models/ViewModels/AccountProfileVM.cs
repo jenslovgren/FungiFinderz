@@ -11,20 +11,19 @@ namespace FungiFinder.Models.ViewModels
     {
         public IFormFile ProfilePicture { get; set; }
         public string Username { get; set; }
-        public string Name { get; set; }
         public string Email { get; set; }
         public string MushroomLookAlike { get; set; }
         public string FavouriteMushroom { get; set; }
         public string PreviousSearches { get; set; }
 
-        //[Required(ErrorMessage = "Vänligen ange gammalt lösenord")]
-        //[DataType(DataType.Password)]
-        //[Display(Name = "Lösenord")]
+        [Required(ErrorMessage = "Vänligen ange gammalt lösenord")]
+        [DataType(DataType.Password)]
+        [Display(Name = "Nuvarande lösenord")]
         public string Password { get; set; }
 
-        //[Required(ErrorMessage = "Vänligen ange nytt lösenord")]
-        //[DataType(DataType.Password)]
-        //[Display(Name = "Lösenord")]
+        [Required(ErrorMessage = "Vänligen ange nytt lösenord")]
+        [DataType(DataType.Password)]
+        [Display(Name = "Ange nytt lösenord")]
         public string NewPassword { get; set; }
 
     }

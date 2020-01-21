@@ -102,12 +102,21 @@ namespace FungiFinder.Controllers
 
         [Route("profile")]
         [HttpPost]
-        public async Task<IActionResult> Profile(AccountProfileVM profileVM)
+        public async Task<IActionResult> Profile(AccountProfileVM VM)
         {
-         
+            if (!ModelState.IsValid)
+                return View(VM);
 
-            await service.EditProfile(profileVM);
-        
+
+            var result = await service.TryEditProfile(VM);
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError(string.Empty, result.Errors.First().Description);
+                return View(VM);
+            }
+
+
+            
             
 
             return RedirectToAction(nameof(Index));

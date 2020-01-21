@@ -16,31 +16,31 @@
         color: white;
     }
 </style>
-<p>@Model.Name</p>
-<p>@Model.ProcentResult</p>
 
-<body>
 
-    <h1>JavaScript Progress Bar</h1>
+    <p>@Model.Name</p>
+    <p>@Model.ProcentResult</p>
+
+   
 
     <div id="myProgress">
-        <div onload="move(100)" id="myBar">10%</div>
+        <div onshow="" id="myBar">10%</div>
     </div>
 
     <br>
-    
+
 
     <script>
-        bar.addEventListener("load", move)
         var i = 0;
         function move(number) {
+            console.log(number);
             if (i == 0) {
                 i = 1;
                 var elem = document.getElementById("myBar");
                 var width = 10;
                 var id = setInterval(frame, 10);
                 function frame() {
-                    if (width >= number) {
+                    if (width >= 100) {
                         clearInterval(id);
                         i = 0;
                     } else {
@@ -53,4 +53,3 @@
         }
     </script>
 
-</body>
