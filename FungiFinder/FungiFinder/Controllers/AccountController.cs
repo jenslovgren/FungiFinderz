@@ -92,7 +92,13 @@ namespace FungiFinder.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        
+        [Route("profile")]
+        public IActionResult Profile()
+        {
+            return View();
+        }
+
+
 
     }
 }
