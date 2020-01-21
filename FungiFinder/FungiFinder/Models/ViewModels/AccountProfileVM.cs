@@ -9,7 +9,7 @@ namespace FungiFinder.Models.ViewModels
 {
     public class AccountProfileVM
     {
-        public IFormFile ProfilePicture { get; set; }
+        public string UrlProfilePicture { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
         public string MushroomLookAlike { get; set; }

@@ -92,34 +92,38 @@ namespace FungiFinder.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [Route("profile")]
+        [Route("/profile")]
         [HttpGet]
-        public IActionResult Profile()
+        public async Task<IActionResult> Profile()
         {
-            return View();
+            var model = await service.GetProfileData();
+            return View(model);
         }
 
 
-        [Route("profile")]
+        [Route("/profile")]
         [HttpPost]
         public async Task<IActionResult> Profile(AccountProfileVM VM)
         {
-            if (!ModelState.IsValid)
-                return View(VM);
+            //if (!ModelState.IsValid)
+            //    return View(VM);
+
+            /*var result = */
+            //await service.TryEditProfile(VM);
+            //if (!result.Succeeded)
+            //{
+            //    ModelState.AddModelError(string.Empty, result.Errors.First().Description);
+            //    return View(VM);
+            //}
+            //return RedirectToAction(nameof(Index));
 
 
-            var result = await service.TryEditProfile(VM);
-            if (!result.Succeeded)
-            {
-                ModelState.AddModelError(string.Empty, result.Errors.First().Description);
-                return View(VM);
-            }
 
 
-            
-            
 
-            return RedirectToAction(nameof(Index));
+
+            return PartialView("_EditProfilePartial", VM);
+
         }
 
 

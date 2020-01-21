@@ -1,0 +1,59 @@
+﻿@model FungiFinder.Models.ViewModels.AccountProfileVM
+
+<h4>AccountProfileVM</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="_ProfileEditPartial">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UrlProfilePicture" class="control-label"></label>
+                <input asp-for="UrlProfilePicture" class="form-control" />
+                <span asp-validation-for="UrlProfilePicture" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MushroomLookAlike" class="control-label"></label>
+                <input asp-for="MushroomLookAlike" class="form-control" />
+                <span asp-validation-for="MushroomLookAlike" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FavouriteMushroom" class="control-label"></label>
+                <input asp-for="FavouriteMushroom" class="form-control" />
+                <span asp-validation-for="FavouriteMushroom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PreviousSearches" class="control-label"></label>
+                <input asp-for="PreviousSearches" class="form-control" />
+                <span asp-validation-for="PreviousSearches" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewPassword" class="control-label"></label>
+                <input asp-for="NewPassword" class="form-control" />
+                <span asp-validation-for="NewPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
