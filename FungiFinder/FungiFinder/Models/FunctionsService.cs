@@ -48,9 +48,22 @@ namespace FungiFinder.Models
             public const bool ChannelsLast = true;
         }
 
-        internal FunctionLibraryResultPartialVM[] GetMushroomsFromSearch(string searchQuery)
+        public FunctionLibraryResultPartialVM[] GetMushroomsFromSearch(string searchQuery)
         {
-            throw new NotImplementedException();
+            var resultList = new List<FunctionLibraryResultPartialVM>();
+            var matchedMushrooms = context.Mushrooms.Where(o => o.Name.Contains(searchQuery) /*|| o.LatinName.Contains(searchQuery)*/);
+            foreach (var mushroom in matchedMushrooms)
+            {
+                resultList.Add(new FunctionLibraryResultPartialVM
+                {
+                    Name = mushroom.Name,
+                    LatinName = mushroom.LatinName,
+                    Info = mushroom.Info,
+                    Edible = mushroom.Edible,
+                    ImgUrl = mushroom.ImageUrl
+                });
+            }
+            return resultList.ToArray();
         }
 
         private ITransformer GenerateModel(MLContext mlContext)
