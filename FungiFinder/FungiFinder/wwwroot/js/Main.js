@@ -16,3 +16,19 @@
     })
 
 }
+
+function getResult() {
+
+    let value = $("#picture").val().toString();
+    let temp = value.split("\\");
+    let url = temp[temp.length - 1];
+  
+    
+    $.ajax({
+        url: "Image/GetPartial/" + url,
+        type: 'GET',
+        success: function (result) {
+            $("#resultHere").html(result)
+        }
+    })
+}

@@ -29,25 +29,22 @@ namespace FungiFinder.Controllers
         {
             return View();
         }
-        [HttpPost]
-        [Route("main")]
-        public IActionResult Main(FunctionMainVM vm)
-        {
-            if(vm.ImgToSearch?.Length > 0)
-            {
-                var filePath = Path.Combine(hostEnvironment.WebRootPath, "Images/Uploads", vm.ImgToSearch.FileName);
+        //[HttpPost]
+        //[Route("main")]
+        //public IActionResult Main(FunctionMainVM vm)
+        //{
+        //    if(vm.ImgToSearch?.Length > 0)
+        //    {
+        //        var filePath = Path.Combine(hostEnvironment.WebRootPath, "Images/Uploads", vm.ImgToSearch.FileName);
 
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    vm.ImgToSearch.CopyTo(fileStream);
-                } 
-            }
+               
+        //    }
 
-            var result = service.PredictImage(vm.ImgToSearch.FileName);
+        //    var result = service.PredictImage(vm.ImgToSearch.FileName);
 
 
-            return PartialView("_MainResultPartial", result);
-        }
+        //    return PartialView("_MainResultPartial", result);
+        //}
 
         [HttpGet]
         [Route("library")]
@@ -82,13 +79,15 @@ namespace FungiFinder.Controllers
             return PartialView("_MainImagePartial", file.FileName);
         }
 
-        //[Route("Image/GetPartial")]
-        //[HttpGet]
-        //public IActionResult GetPartial()
-        //{
+        [Route("Image/GetPartial/{shroomToFind}")]
+        [HttpGet]
+        public IActionResult GetResultPartial(string shroomToFind)
+        {
+            var result = service.PredictImage(shroomToFind);
 
-        //}
+            return PartialView("_MainResultPartial", result);
+        }
 
-        
+
     }
 }

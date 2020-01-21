@@ -27,14 +27,14 @@ namespace FungiFinder.Models
         static readonly string _uploadedImages = Path.Combine(_assetsPath, "Images/Uploads");
         static readonly string _trainTagsTsv = Path.Combine(_imagesFolder, "tags.tsv");
         static readonly string _testTagsTsv = Path.Combine(_imagesFolder, "test-tags.tsv");
-        static string _predictSingleImage = Path.Combine(_imagesFolder, "flugsvamp7.jpg");
+        static string _predictSingleImage = Path.Combine(_imagesFolder, "startup.jpg");
         static readonly string _inceptionTensorFlowModel = Path.Combine(_assetsPath, "inception", "tensorflow_inception_graph.pb");
 
-        public FunctionMainResultPartialVM PredictImage(string urlINput)
+        public FunctionMainResultPartialVM PredictImage(string urlInput)
         {
             MLContext mlContext = new MLContext();
             ITransformer model = GenerateModel(mlContext);
-            _predictSingleImage = Path.Combine(_uploadedImages, urlINput);
+            _predictSingleImage = Path.Combine(_uploadedImages, urlInput);
             return ClassifySingleImage(mlContext, model);
             
         }
@@ -51,10 +51,7 @@ namespace FungiFinder.Models
         public FunctionLibraryResultPartialVM[] GetMushroomsFromSearch(string searchQuery)
         {
             IQueryable<Mushrooms> matchedMushrooms = null;
-            var resultList = new List<FunctionLibraryResultPartialVM>
-            {
-                new FunctionLibraryResultPartialVM {Name = "Flugis", Edible = true, ImgUrl = "images/test.jpg", Info = "Shhhooooom", LatinName = "Fungialis traungis"}
-            };
+            var resultList = new List<FunctionLibraryResultPartialVM>();
             if (searchQuery == "emptySearchQuery")
                 matchedMushrooms = context.Mushrooms;
             else
