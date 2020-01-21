@@ -1,0 +1,13 @@
+﻿@model  string
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+    <form asp-action="EditEmail" method="post">
+
+        <label>Input email:</label>
+        <input type="text" value="" />
+        @*<input asp-for="Email" class="form-control" />*@
+        <input type="submit" name="Change Email" value="Submit" />
+
+    </form>
