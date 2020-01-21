@@ -2,22 +2,29 @@
 
 <html>
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">*@
+    <link href="~/bootstrap-4.4.1-dist/css/bootstrap.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
 </head>
 <body>
     @if (User.Identity.IsAuthenticated)
-    {
-        <a asp-controller="Functions" asp-action="Main"><input type="button" value="Hem" /></a>
-        <a asp-controller="Functions" asp-action="Library"><input type="button" value="Bibliotek" /></a>
-        <a asp-controller="Account" asp-action="Profile"><input type="button" value="Profil" /></a>
-        <a asp-controller="Account" asp-action="Logout"><input type="submit"  value="Logga ut"/></a>
+    {<div class="clearfix">
+        <a asp-controller="Functions" asp-action="Main"><input type="button" value="Hem" class="btn btn-outline-dark col-2"/></a>
+        <a asp-controller="Functions" asp-action="Library"><input type="button" value="Bibliotek" class="btn btn-outline-dark col-3"/></a>
+        <a asp-controller="Account" asp-action="Profile"><input type="button" value="Profil" class="btn btn-outline-dark col-3"/></a>
+        <a asp-controller="Account" asp-action="Logout"><input type="submit" value="Logga ut" class="btn btn-outline-dark col-1 pull-right"/></a>
+    </div>
     }
 
     <div>
         @RenderBody()
     </div>
     @RenderSection("scripts", false)
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>

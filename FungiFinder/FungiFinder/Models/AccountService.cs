@@ -57,8 +57,11 @@ namespace FungiFinder.Models
             //user.MushroomId = vm.MushroomLookAlike;
             //user.PasswordHash = vm.NewPassword;
             await userManager.UpdateAsync(user);
+
             
 
         }
+
+       
     }
 }
