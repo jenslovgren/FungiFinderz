@@ -128,7 +128,8 @@ namespace FungiFinder.Models.Entities
                 entity.HasOne(d => d.Mushroom)
                     .WithMany(p => p.AspNetUsers)
                     .HasForeignKey(d => d.MushroomId)
-                    .HasConstraintName("FK__AspNetUse__Mushr__3A81B327");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__AspNetUse__Mushr__398D8EEE");
             });
 
             modelBuilder.Entity<LatestSearches>(entity =>
