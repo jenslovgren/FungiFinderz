@@ -3,16 +3,21 @@
 @{
     ViewData["Title"] = "Main";
 }
+@section scripts{
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script src="~/js/Main.js"></script>
+}
 
 <h1>Main</h1>
 
 <h4>FunctionMainVM</h4>
 <hr />
+<partial name="/Views/Shared/_MainImagePartial.cshtml" />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Main" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger" ></div>
-                <input asp-for="ImgToSearch" type="file" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input id="picture" asp-for="ImgToSearch" type="file" onchange="uploadFile('picture')"/>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -24,7 +29,5 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-<script>
-    document.getElementById("resultHere")
-</script>
+
 

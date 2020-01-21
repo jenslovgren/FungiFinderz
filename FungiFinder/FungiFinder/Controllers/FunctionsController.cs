@@ -7,6 +7,7 @@ using FungiFinder.Models;
 using FungiFinder.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FungiFinder.Controllers
@@ -59,6 +60,30 @@ namespace FungiFinder.Controllers
         {
             return View();
         }
+
+        [Route("Image/File")]
+        [HttpPost]
+        public async Task<IActionResult> FileUpload(IFormFile file)
+        {
+            if(file?.Length > 0)
+            {
+                var filePath = Path.Combine(hostEnvironment.WebRootPath, "Images/Uploads", file.FileName);
+
+                using(var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(fileStream);
+                }
+            }
+
+            return null;
+        }
+
+        //[Route("Image/GetPartial")]
+        //[HttpGet]
+        //public IActionResult GetPartial()
+        //{
+
+        //}
 
         
     }
