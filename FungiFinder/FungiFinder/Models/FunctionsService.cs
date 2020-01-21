@@ -47,6 +47,12 @@ namespace FungiFinder.Models
             public const float Scale = 1;
             public const bool ChannelsLast = true;
         }
+
+        internal FunctionLibraryResultPartialVM[] GetMushroomsFromSearch(string searchQuery)
+        {
+            throw new NotImplementedException();
+        }
+
         private ITransformer GenerateModel(MLContext mlContext)
         {
             IEstimator<ITransformer> pipeline = mlContext.Transforms.LoadImages(outputColumnName: "input", imageFolder: _imagesFolder, inputColumnName: nameof(ImageData.ImagePath))

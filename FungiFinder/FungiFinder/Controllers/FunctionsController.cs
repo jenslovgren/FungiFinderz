@@ -48,10 +48,20 @@ namespace FungiFinder.Controllers
             return PartialView("_MainResultPartial", result);
         }
 
+        [HttpGet]
         [Route("library")]
         public IActionResult Library()
         {
             return View();
+        }
+
+        [HttpPost]
+        [Route("library/{searchQuery}")]
+        public IActionResult Library(string searchQuery)
+        {
+            FunctionLibraryResultPartialVM[] viewModels = service.GetMushroomsFromSearch(searchQuery);
+
+            return PartialView("_LibraryResultPartial", viewModels);
         }
 
         [Route("profile")]
