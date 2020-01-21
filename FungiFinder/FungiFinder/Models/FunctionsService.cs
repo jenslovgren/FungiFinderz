@@ -50,8 +50,16 @@ namespace FungiFinder.Models
 
         public FunctionLibraryResultPartialVM[] GetMushroomsFromSearch(string searchQuery)
         {
-            var resultList = new List<FunctionLibraryResultPartialVM>();
-            var matchedMushrooms = context.Mushrooms.Where(o => o.Name.Contains(searchQuery) /*|| o.LatinName.Contains(searchQuery)*/);
+            IQueryable<Mushrooms> matchedMushrooms = null;
+            var resultList = new List<FunctionLibraryResultPartialVM>
+            {
+                new FunctionLibraryResultPartialVM {Name = "Flugis", Edible = true, ImgUrl = "images/test.jpg", Info = "Shhhooooom", LatinName = "Fungialis traungis"}
+            };
+            if (searchQuery == "emptySearchQuery")
+                matchedMushrooms = context.Mushrooms;
+            else
+                matchedMushrooms = context.Mushrooms.Where(o => o.Name.Contains(searchQuery) /*|| o.LatinName.Contains(searchQuery)*/);
+
             foreach (var mushroom in matchedMushrooms)
             {
                 resultList.Add(new FunctionLibraryResultPartialVM

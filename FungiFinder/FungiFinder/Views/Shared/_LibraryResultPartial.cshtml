@@ -1,4 +1,6 @@
-﻿@{
+﻿@model FunctionLibraryResultPartialVM[];
+
+@{
     Layout = null;
 }
 
@@ -7,5 +9,16 @@
     <title></title>
 </head>
 <body>
+    <ul>
+        @foreach (var shroom in @Model)
+        {
+            <li>
+                <p>@shroom.Name  -  @shroom.LatinName</p>
+                <p>@shroom.Info</p>
+                <p>@shroom.Edible</p>
+                <p>@shroom.ImgUrl</p>
+            </li>
+        }
+    </ul>
 </body>
 </html>
