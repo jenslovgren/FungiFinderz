@@ -1,13 +1,12 @@
-﻿let testBtn = document.getElementById("editEmail");
+﻿
 
-
-function changeInfo(id) {
-
+function editInfo(id) {
+    console.log('hej');
     $.ajax({
-        url: "profile/edit/" + id,
-        type: "GET",
+        url: '/profile/edit/' + id,
+        type: 'GET',
         success: function (result) {
-            $("#emailPartial").html(result);
+            $("#emailPartial").html(result)
         }
     });
 
