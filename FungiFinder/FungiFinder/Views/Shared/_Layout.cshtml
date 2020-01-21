@@ -10,12 +10,21 @@
 </head>
 <body>
     @if (User.Identity.IsAuthenticated)
-    {<div class="clearfix">
-        <a asp-controller="Functions" asp-action="Main"><input type="button" value="Hem" class="btn btn-outline-dark col-2"/></a>
-        <a asp-controller="Functions" asp-action="Library"><input type="button" value="Bibliotek" class="btn btn-outline-dark col-3"/></a>
-        <a asp-controller="Account" asp-action="Profile"><input type="button" value="Profil" class="btn btn-outline-dark col-3"/></a>
-        <a asp-controller="Account" asp-action="Logout"><input type="submit" value="Logga ut" class="btn btn-outline-dark col-1 pull-right"/></a>
-    </div>
+
+    {<nav class="navbar navbar-expand-lg navbar-dark bg-info">
+            <a asp-controller="Functions" asp-action="Main" class="navbar-brand">Home</a>
+            <button type="button" value="Hem" class="navbar-toggler" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+
+                    <a asp-controller="Functions" asp-action="Library" class="nav-item nav-link">Biblotek</a>
+                    <a asp-controller="Account" asp-action="Profile" class="nav-item nav-link ">Profil</a>
+                    <a asp-controller="Account" asp-action="Logout" class="nav-item nav-link ">Logga Ut</a>
+                </div>
+            </div>
+        </nav>
     }
     <div>
         @RenderBody()
