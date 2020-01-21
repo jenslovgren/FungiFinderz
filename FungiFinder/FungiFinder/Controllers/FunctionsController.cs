@@ -56,8 +56,8 @@ namespace FungiFinder.Controllers
             return View();
         }
 
-        [HttpPost]
-        [Route("library/{searchQuery}")]
+        [HttpGet]
+        [Route("librarySearch/{searchQuery}")]
         public IActionResult Library(string searchQuery)
         {
             FunctionLibraryResultPartialVM[] viewModels = service.GetMushroomsFromSearch(searchQuery);
@@ -79,7 +79,7 @@ namespace FungiFinder.Controllers
                 }
             }
 
-            return null;
+            return PartialView("_MainImagePartial", file.FileName);
         }
 
         //[Route("Image/GetPartial")]

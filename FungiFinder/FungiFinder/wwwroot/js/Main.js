@@ -11,7 +11,7 @@
         processData: false,
         contentType: false,
         success: function (result) {
-
+            $("#result").html(result)
         }
     })
 
