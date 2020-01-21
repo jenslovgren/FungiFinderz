@@ -8,25 +8,22 @@
     <script src="~/js/Main.js"></script>
 }
 
-<h1>Main</h1>
-
-<h4>FunctionMainVM</h4>
+<h4>Fungi Finder</h4>
 <hr />
-<partial name="/Views/Shared/_MainImagePartial.cshtml" />
+<div id="result"></div>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Main" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input id="picture" asp-for="ImgToSearch" type="file" onchange="uploadFile('picture')"/>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Upload" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 <div id="resultHere"></div>
 <div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 
