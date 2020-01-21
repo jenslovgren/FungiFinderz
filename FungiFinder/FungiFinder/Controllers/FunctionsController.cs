@@ -64,11 +64,7 @@ namespace FungiFinder.Controllers
             return PartialView("_LibraryResultPartial", viewModels);
         }
 
-        [Route("profile")]
-        public IActionResult Profile()
-        {
-            return View();
-        }
+
 
         
     }
