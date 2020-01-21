@@ -11,14 +11,56 @@
         <form asp-action="Library">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="SearchQuery" class="control-label"></label>
-                <input asp-for="SearchQuery" class="form-control" />
+                <label asp-for="SearchQuery" class="control-label" ></label>
+                <input id="searchTextbox" value=""  asp-for="SearchQuery" class="form-control" />
                 <span asp-validation-for="SearchQuery" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Search" class="btn btn-primary" />
+                <input type="submit" onclick="getHtml()" value="Search" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
+
+<body>
+
+    @*<input type="text" id="searchTextbox" value="" />
+    <input type="button" onclick="getHtml()" value="Search" />*@
+    @*<input type="button" onclick="getJson()" value="Get Json" />*@
+    <div id="divResult">
+    </div>
+
+    <script>
+
+        function getHtml() {
+            var searchQuery = $("#searchTextbox").val();
+            console.log(searchQuery);
+            var url = `/library/${searchQuery}`
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function (result) {
+                    $("#divResult").html(result);
+                }
+            });
+        }
+
+        // function getJson() {
+        //    var id = $("#movieTextbox").val();
+        //    console.log(id);
+        //    var url = `/MovieBox/data/${id}`
+        //    $.ajax({
+        //        url: url,
+        //        type: "GET",
+        //        success: function (result) {
+        //            var html = "<h3>" + result.title + "</h3>";
+        //            html += "<p>" + result.description + "</p>";
+        //            $("#divResult").html(html);
+        //        }
+        //    });
+        //}
+
+    </script>
+</body>
+
 
