@@ -79,7 +79,7 @@ namespace FungiFinder.Controllers
                 }
             }
 
-            return null;
+            return PartialView("_MainImagePartial", file.FileName);
         }
 
         //[Route("Image/GetPartial")]
