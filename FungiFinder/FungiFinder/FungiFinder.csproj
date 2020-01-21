@@ -302,16 +302,19 @@
     <Content Update="wwwroot\Images\champinjon6.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\citron-Slemskivling1.jpg">
+    <Content Update="wwwroot\Images\citronSlemskivling1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\citron-Slemskivling2.jpg">
+    <Content Update="wwwroot\Images\citronSlemskivling2.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\citron-Slemskivling3.jpg">
+    <Content Update="wwwroot\Images\citronSlemskivling3.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\citron-Slemskivling4.jpg">
+    <Content Update="wwwroot\Images\citronSlemskivling4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Images\desktop.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\djävulssopp1.jpg">
@@ -344,19 +347,19 @@
     <Content Update="wwwroot\Images\droppmusseron5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\Druv­fingersvamp1.jpg">
+    <Content Update="wwwroot\Images\druv­fingersvamp1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\Druv­fingersvamp2.jpg">
+    <Content Update="wwwroot\Images\druv­fingersvamp2.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\Druv­fingersvamp3.jpg">
+    <Content Update="wwwroot\Images\druv­fingersvamp3.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\Druv­fingersvamp4.jpg">
+    <Content Update="wwwroot\Images\druv­fingersvamp4.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\Druv­fingersvamp5.jpg">
+    <Content Update="wwwroot\Images\druv­fingersvamp5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\ekmusseron1.jpg">
@@ -374,19 +377,19 @@
     <Content Update="wwwroot\Images\ekmusseron5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\EksillKremla.jpg">
+    <Content Update="wwwroot\Images\eksillKremla.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\EksillKremla2.jpg">
+    <Content Update="wwwroot\Images\eksillKremla2.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\EksillKremla3.jpg">
+    <Content Update="wwwroot\Images\eksillKremla3.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\EksillKremla4.jpg">
+    <Content Update="wwwroot\Images\eksillKremla4.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\EksillKremla5.jpg">
+    <Content Update="wwwroot\Images\eksillKremla5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\eldspindling1.jpg">
@@ -2042,6 +2045,9 @@
     <Content Update="wwwroot\Images\såpmusseron5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Update="wwwroot\Tsv\tags.tsv">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\Images\tegelkremla1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2104,6 +2110,9 @@
     </Content>
     <Content Update="wwwroot\Images\tegelsopp9.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Tsv\test-tags.tsv">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\toppigGiftspindling1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -2289,6 +2298,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\vinkremla2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Images\vinkremla3.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\vinkremla4.jpg">
