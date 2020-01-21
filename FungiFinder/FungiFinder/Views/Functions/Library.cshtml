@@ -5,7 +5,7 @@
 }
 
 <h4>Bibliotek</h4>
-<hr />
+@*<hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Library">
@@ -20,5 +20,47 @@
             </div>
         </form>
     </div>
-</div>
+</div>*@
+
+<body>
+
+    <input type="text" id="searchTextbox" value="1" />
+    <input type="button" onclick="getHtml()" value="Search" />
+    @*<input type="button" onclick="getJson()" value="Get Json" />*@
+    <div id="divResult">
+    </div>
+
+    <script>
+
+        function getHtml() {
+            var searchQuery = $("#searchTextbox").val();
+            console.log(searchQuery);
+            var url = `/library/${searchQuery}`
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function (result) {
+                    $("#divResult").html(result);
+                }
+            });
+        }
+
+        // function getJson() {
+        //    var id = $("#movieTextbox").val();
+        //    console.log(id);
+        //    var url = `/MovieBox/data/${id}`
+        //    $.ajax({
+        //        url: url,
+        //        type: "GET",
+        //        success: function (result) {
+        //            var html = "<h3>" + result.title + "</h3>";
+        //            html += "<p>" + result.description + "</p>";
+        //            $("#divResult").html(html);
+        //        }
+        //    });
+        //}
+
+    </script>
+</body>
+
 
