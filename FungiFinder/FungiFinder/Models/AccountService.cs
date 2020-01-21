@@ -45,9 +45,20 @@ namespace FungiFinder.Models
             await signInManager.SignOutAsync();
         }
 
-        internal void GetCurrentUser()
+        internal async Task EditProfile(AccountProfileVM vm)
         {
             
+            var user = await userManager.GetUserAsync(accessor.HttpContext.User);
+
+            user.Email = vm.Email;
+
+
+            //user.FavoriteMushroom = vm.FavouriteMushroom;
+            //user.MushroomId = vm.MushroomLookAlike;
+            //user.PasswordHash = vm.NewPassword;
+            await userManager.UpdateAsync(user);
+            
+
         }
     }
 }
