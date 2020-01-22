@@ -1,17 +1,40 @@
 ﻿
 
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
 
 
 
-
-<h1>Fungi Finderz</h1>
 @if (!User.Identity.IsAuthenticated)
 {
-    <form>
-        <button asp-controller="Account" asp-action="Login" class="btn btn-dark">Logga in</button>
-        <br />
-        <button asp-controller="Account" asp-action="Register" class="btn btn-dark">Registrera</button>
-    </form>
+    <div class="container-fluid align-self-center">
+        <div class="row justify-content-center align-self-center">
+            <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3 h-100">
+                <form action="">
+                   
+                    <div class="form-group">
+                        <button asp-controller="Account" asp-action="Login" class="btn btn-info btn-lg btn-block">Logga In</button>
+                    </div>
+                    <div class="form-group">
+                        <button asp-controller="Account" asp-action="Register" class="btn btn-info btn-lg btn-block">Registrera</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @*<form class="col-lg-6 offset-lg-3">
+        <div class="col-lg-6 offset-lg-3">
+            <button asp-controller="Account" asp-action="Login" class="btn btn-dark">Logga in</button>
+
+            <button asp-controller="Account" asp-action="Register" class="btn btn-dark">Registrera</button>
+        </div>
+    </form>*@
+
+
 }
 
 
