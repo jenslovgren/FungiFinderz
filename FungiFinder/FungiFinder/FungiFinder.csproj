@@ -2636,7 +2636,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\Images\Uploads\" />
   </ItemGroup>
 

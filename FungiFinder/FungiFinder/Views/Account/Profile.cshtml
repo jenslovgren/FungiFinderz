@@ -11,38 +11,59 @@
 @section scripts{
     <script src="~/js/profile.js"></script>
 
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+}
+@section styles{
+    <link href="~/css/Profile.css" rel="stylesheet" />
 }
 
 <h4>@User.Identity.Name's profil</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        @*<form asp-action="Profile">*@
-        <div class="form-group">
-            <label asp-for="Username" class="control-label"></label>
-            <p>@Model.Username</p>
-            @*<span asp-validation-for="FavouriteMushroom" class="text-danger"></span>*@
+<i class="fas fa-cog"></i>
+
+<div class="container emp-profile">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="profile-img">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt="" />
+                <div class="file btn btn-lg btn-primary">
+                    Change Photo
+                    <input type="file" name="file" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="profile-head">
+                    <h5>
+                        @Model.Username
+                    </h5>
+                    <h6>
+                        @Model.Email
+                    </h6>
+                    @*<form asp-action="Profile">*@
+                    <div class="form-group">
+                        <label asp-for="Username" class="control-label"></label>
+                        <p>@Model.Username</p>
+                        @*<span asp-validation-for="FavouriteMushroom" class="text-danger"></span>*@
+                    </div>
+                    @*<div class="form-group">*@
+                    <label asp-for="Email" class="control-label"></label>
+                    <p>@Model.Email</p>
+                    <button id="editEmail" onclick="editInfo('email', 'emailPartial')">Ändra E-post</button><div id="emailPartial"></div>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+
+                    @*<div class="form-group">*@
+                    @*<label asp-for="Password" class="control-label"></label>*@
+                    <button id="editPassword" onclick="editInfo('password', 'pwPartial')">Ändra lösenord</button><div id="pwPartial"></div>
+                    @*<span asp-validation-for="Password" class="text-danger"></span>*@
+                    @*</div>*@
+
+                    @*<div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>*@
+                    @*</form>*@
+                </div>
+            </div>
         </div>
-        @*<div class="form-group">*@
-        <label asp-for="Email" class="control-label"></label>
-        <p>@Model.Email</p>
-        <button id="editEmail" onclick="editInfo('email', 'emailPartial')">Ändra E-post</button><div id="emailPartial"></div>
-        <span asp-validation-for="Email" class="text-danger"></span>
-
-        @*<div class="form-group">*@
-        @*<label asp-for="Password" class="control-label"></label>*@
-        <button id="editPassword" onclick="editInfo('password', 'pwPartial')">Ändra lösenord</button><div id="pwPartial"></div>
-        @*<span asp-validation-for="Password" class="text-danger"></span>*@
-        @*</div>*@
-
-        @*<div class="form-group">
-            <input type="submit" value="Create" class="btn btn-primary" />
-        </div>*@
-        @*</form>*@
-    </div>
-    </div>
-
 <div>
     <a asp-action="Index">Back to start</a>
 </div>
