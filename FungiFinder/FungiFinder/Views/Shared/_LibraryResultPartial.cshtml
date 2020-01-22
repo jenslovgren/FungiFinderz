@@ -1,37 +1,22 @@
 ﻿@model FunctionLibraryResultPartialVM[];
 
-@{
-    Layout = null;
-}
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
-    <link href="~/bootstrap-4.4.1-dist/css/bootstrap.css" rel="stylesheet" />
-    <meta name="viewport" content="width=device-width" />
-</head>
-<body>
-
-            @foreach (var shroom in @Model)
-            {
-                <br />
-                <div class="card mb-3 container-fluid align-self-center " style="max-width: 1500px;">
-                    <div class="row no-gutters row justify-content-center">
-                        <div class="col-md-4">
-                            <img src="~/Images/@shroom.ImgUrl" class="card-img" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">@shroom.Name</h5>
-                                <h6 class="card-subtitle"> @shroom.LatinName</h6>
-                                <br />
-                                <p class="card-text">@shroom.Info</p>
-                                <p>Ätbar: @shroom.Edible</p>
-                            </div>
-                        </div>
-                    </div>
+@foreach (var shroom in @Model)
+{
+    <br />
+    <div class="card mb-3 container-fluid align-self-center" style="max-width: 1500px;">
+        <div class="row no-gutters row justify-content-center">
+            <div class="col-md-4">
+                <img src="~/Images/@shroom.ImgUrl" class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">@shroom.Name</h5>
+                    <h6 class="card-subtitle"> @shroom.LatinName</h6>
+                    <br />
+                    <p class="card-text">@shroom.Info</p>
+                    <p>Ätbar: @shroom.Edible</p>
                 </div>
-            }
-</body>
-</html>
+            </div>
+        </div>
+    </div>
+}
