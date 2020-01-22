@@ -56,7 +56,7 @@ namespace FungiFinder.Models
             if (searchQuery == "emptySearchQuery")
                 matchedMushrooms = context.Mushrooms;
             else
-                matchedMushrooms = context.Mushrooms.Where(o => o.Name.Contains(searchQuery) /*|| o.LatinName.Contains(searchQuery)*/);
+                matchedMushrooms = context.Mushrooms.Where(o => o.Name.Contains(searchQuery) || o.LatinName.Contains(searchQuery));
 
             foreach (var mushroom in matchedMushrooms)
             {
