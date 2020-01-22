@@ -181,9 +181,13 @@ namespace FungiFinder.Controllers
             var result = await service.ChangePassword(VM);
             if (!result.Succeeded)
             {
+                ModelState.AddModelError(string.Empty, "Det du måste mata in rätt lösenord");
                 ModelState.AddModelError(string.Empty, result.Errors.First().Description);
                 return PartialView("_EditProfilePassword", VM);
             }
+
+            
+               
 
 
             return RedirectToAction(nameof(Profile));
