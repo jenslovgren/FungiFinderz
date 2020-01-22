@@ -11,6 +11,7 @@ namespace FungiFinder.Models.ViewModels
     {
         public string UrlProfilePicture { get; set; }
         public string Username { get; set; }
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         public string MushroomLookAlike { get; set; }
         public string FavouriteMushroom { get; set; }
@@ -18,7 +19,7 @@ namespace FungiFinder.Models.ViewModels
 
         [Required(ErrorMessage = "Vänligen ange gammalt lösenord")]
         [DataType(DataType.Password)]
-        [Display(Name = "Nuvarande lösenord")]
+        [Display(Name = "Lösenord")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Vänligen ange nytt lösenord")]

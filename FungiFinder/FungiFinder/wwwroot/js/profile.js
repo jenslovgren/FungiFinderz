@@ -1,12 +1,12 @@
 ﻿
 
-function editInfo(id) {
+function editInfo(id, partial) {
     console.log('hej');
     $.ajax({
         url: '/profile/edit/' + id,
         type: 'GET',
         success: function (result) {
-            $("#emailPartial").html(result)
+            $("#" + partial).html(result)
         }
     });
 
