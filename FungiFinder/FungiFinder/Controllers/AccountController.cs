@@ -177,7 +177,7 @@ namespace FungiFinder.Controllers
         {
             if (!ModelState.IsValid)
                 return Ok(VM);
-
+             
             var result = await service.ChangePassword(VM);
             if (!result.Succeeded)
             {
