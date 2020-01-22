@@ -12,13 +12,22 @@
 <hr />
 <div class="card"id="resultHere"></div>
 <div id="result"></div>
-<div class="card">
+<div class="ce">
     <div class="col-md-4">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input id="picture" asp-for="ImgToSearch" type="file" onchange="uploadFile('picture')" class="btn btn-outline-dark"/>
-            <div class="form-group">
-                <input type="button" onclick="getResult()" value="Sök" class="btn btn-outline-dark" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="input-group mb-3">
+            <div class="custom-file">
+                <input asp-for="ImgToSearch" type="file" class="custom-file-input" onchange="uploadFile('picture')" id="picture">
+                <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
             </div>
+            @*<div class="input-group-append">
+                <button class="input-group-text" onclick="getResult()" id="">Sök</button>
+            </div>*@
+        </div>
+        @*<input id="picture" asp-for="ImgToSearch" type="file" onchange="uploadFile('picture')" class="btn btn-outline-dark" />*@
+        <div class="form-group">
+            <input type="button" onclick="getResult()" value="Sök" class="btn btn-outline-dark" />
+        </div>
     </div>
 </div>
 <div>

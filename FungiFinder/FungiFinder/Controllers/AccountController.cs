@@ -131,9 +131,10 @@ namespace FungiFinder.Controllers
         {
             return PartialView("_EditProfilEmail");
         }
+
         [Route("profile/edit/email")]
         [HttpPost]
-        public async Task <IActionResult> EditEmail(string email)
+        public async Task<IActionResult> EditEmail(string email)
         {
             await service.EditEmail(email);
 
