@@ -9,13 +9,11 @@ namespace FungiFinder.Models.ViewModels
 {
     public class AccountEditPasswordPartialVM
     {
-
         [Required(ErrorMessage = "Vänligen ange gammalt lösenord")]
         [DataType(DataType.Password)]
-        [Display(Name = "Nuvarande lösenord")]
+        [Display(Name = "Lösenord")]
         public string Password { get; set; }
 
-       
         [Required(ErrorMessage = "Vänligen ange nytt lösenord")]
         [DataType(DataType.Password)]
         [Display(Name = "Ange nytt lösenord")]
