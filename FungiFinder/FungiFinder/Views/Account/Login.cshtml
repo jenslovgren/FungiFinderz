@@ -1,29 +1,46 @@
 ﻿@model AccountLoginVM
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-</head>
-<body>
-    @{
-        
-        ViewData["Title"] = "Login";
-    }
-    @section scripts{
-        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
-        <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
-    }
 
-    <h1></h1>
 
-    <h4>Login</h4>
-    <hr />
-    <div class="row">
+@{
+    ViewBag.Title = "Login";
+    ViewData["Title"] = "Login";
+}
+@section scripts{
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<h1></h1>
+
+<h4>Login</h4>
+<hr />
+<div class="container-fluid align-self-center">
+    <div class="row justify-content-center align-self-center">
+        <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3 h-100">
+            <form asp-action="Login">
+                <div asp-validation-summary="ModelOnly" class="form-text text-muted"></div>
+                <div class="form-group">
+                    <label asp-for="Username" class="control-label"></label>
+                    <input asp-for="Username" class="form-control" />
+                    <span asp-validation-for="Username" class="form-text text-muted"></span>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="form-text text-muted"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Log in" class="btn btn-info btn-lg btn-block" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@*<div class="row">
         <div class="col-md-4">
             <form asp-action="Login">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -42,13 +59,10 @@
                 </div>
             </form>
         </div>
-    </div>
+    </div>*@
 
-    <div>
-        <a asp-action="Index">Back to Start</a>
+<div>
+    <a asp-action="Index">Back to Start</a>
 
-    </div>
-
-</body>
-</html>
+</div>
 
