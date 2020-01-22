@@ -4,46 +4,21 @@
     ViewData["Title"] = "Library";
 }
 
-<h4>Bibliotek</h4>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-
-    
-    <form class="form-inline">
-        <i class="fas fa-search" aria-hidden="true"></i>
-        <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
-               aria-label="Search">
-    </form>
-    <div class="input-group md-form form-sm form-1 pl-0">
-        <div class="input-group-prepend">
-            <span class="input-group-text gray lighten-3" id="basic-text1">
-                <i class="fas fa-search text-white"
-                   aria-hidden="true"></i>
-            </span>
+<script src="~/js/Library.js"></script>
+<br />
+<h3 class="text-center font-weight-bold">BIBLIOTEK</h3>
+<br />
+<div class="container-fluid align-self-center">
+    <div class="row justify-content-center align-self-center">
+        <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3 h-100">
+            <input class="form-control my-0 py-1 align-content-center" type="text" id="searchTextbox" onchange="getHtml()" placeholder="Search" aria-label="Search" />
         </div>
-        <input class="form-control my-0 py-1" type="text" id="searchTextbox" onchange="getHtml()" placeholder="Search" aria-label="Search" />
     </div>
-    @*<input type="button" onclick="getHtml()" value="Search" />*@
-    <div id="divResult">
-    </div>
-    <script>
-
-        function getHtml() {
-            var searchQuery = $("#searchTextbox").val();
-            console.log(searchQuery);
-            if (searchQuery == "") {
-                searchQuery = "emptySearchQuery"
-            }
-            console.log(searchQuery);
-            var url = `/librarySearch/${searchQuery}`
-            $.ajax({
-                url: url,
-                type: "GET",
-                success: function (result) {
-                    $("#divResult").html(result);
-                }
-            });
-        }
-    </script>
+</div>
+<br />
+<div id="divResult">
+</div>
 
 
 
