@@ -23,12 +23,26 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="button" id="btnToClick" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
+<script>
+    let btnToClick = document.getElementById("btnToClick")
 
+    btnToClick.addEventListener("click", postJson);
+
+    function postJson() {
+        $.ajax({
+            url: "/profile/edit/email",
+            type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify({ email: $("#newEmail").val()}),
+            success: function (result) {}
+        })
+    }
+</script>
 
 

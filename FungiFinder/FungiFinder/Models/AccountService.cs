@@ -74,7 +74,7 @@ namespace FungiFinder.Models
             return vm;
         }
 
-        internal async Task EditEmail(AccountProfileVM VM)
+        internal async Task EditEmail(AccountEditEmailPartial VM)
         {
             var user = await userManager.GetUserAsync(accessor.HttpContext.User);
             user.Email = VM.Email;
