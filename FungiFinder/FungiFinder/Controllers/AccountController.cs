@@ -176,21 +176,20 @@ namespace FungiFinder.Controllers
         public async Task<IActionResult> EditPassword([FromBody] AccountEditPasswordPartialVM VM)
         {
             if (!ModelState.IsValid)
-                return Ok(VM);
-             
+                return BadRequest(ModelState.First().Value.Errors.First().ErrorMessage);
+
             var result = await service.ChangePassword(VM);
             if (!result.Succeeded)
             {
-                ModelState.AddModelError(string.Empty, "Det du måste mata in rätt lösenord");
-                ModelState.AddModelError(string.Empty, result.Errors.First().Description);
-                return PartialView("_EditProfilePassword", VM);
+                return BadRequest(result.Errors.First().Description);
+            
             }
 
-            
-               
 
 
-            return RedirectToAction(nameof(Profile));
+
+
+            return Ok();
         }
 
 
