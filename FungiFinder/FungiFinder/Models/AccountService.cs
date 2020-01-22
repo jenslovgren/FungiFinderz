@@ -67,21 +67,49 @@ namespace FungiFinder.Models
                 UrlProfilePicture = user.ProfileImageUrl,
                 Username = user.UserName,
                 Email = user.Email,
-                Password = user.PasswordHash,
+                //Password = user.PasswordHash,
 
             };
 
             return vm;
         }
 
-        internal async Task EditEmail(string email)
+        internal async Task EditEmail(AccountProfileVM VM)
         {
             var user = await userManager.GetUserAsync(accessor.HttpContext.User);
-            user.Email = email;
+            user.Email = VM.Email;
 
-            //user.FavoriteMushroom = vm.FavouriteMushroom;
             await userManager.UpdateAsync(user);
 
         }
+
+        //internal async Task<IdentityResult> changePassword(string password, string newPassword)
+        //{
+
+        //    var user = await userManager.GetUserAsync(accessor.HttpContext.User);
+        //    //var newPass = await userManager.ChangePasswordAsync(user, vm.Password, vm.NewPassword);
+        //    var newPass = await userManager.ChangePasswordAsync(user, password, newPassword);
+
+
+        //    await userManager.UpdateAsync(user);
+
+        //    return newPass;
+
+        //}
+
+        internal async Task<IdentityResult> changePassword(AccountProfileVM vm)
+        {
+
+            var user = await userManager.GetUserAsync(accessor.HttpContext.User);
+            //var newPass = await userManager.ChangePasswordAsync(user, vm.Password, vm.NewPassword);
+            var newPass = await userManager.ChangePasswordAsync(user, vm.Password, vm.NewPassword);
+
+
+            await userManager.UpdateAsync(user);
+
+            return newPass;
+
+        }
+
     }
 }
