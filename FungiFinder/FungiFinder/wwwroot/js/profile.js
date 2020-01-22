@@ -11,3 +11,4 @@ function editInfo(id, partial) {
     });
 
 }
+
