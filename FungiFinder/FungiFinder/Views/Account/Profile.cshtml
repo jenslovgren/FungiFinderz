@@ -32,14 +32,11 @@
             </div>
     <div class="form-group">
         <label asp-for="Password" class="control-label"></label>
+        <p>@Model.Password</p>
         <button id="editPassword" onclick="editInfo('password', 'pwPartial')">Ändra lösenord</button><div id="pwPartial"></div>
         <span asp-validation-for="Password" class="text-danger"></span>
     </div>
 
-            @*<div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>*@
-        @*</form>*@
    
 </div>
 

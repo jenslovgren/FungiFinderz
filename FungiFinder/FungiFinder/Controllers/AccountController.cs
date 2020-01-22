@@ -101,23 +101,23 @@ namespace FungiFinder.Controllers
         }
 
 
-        [Route("/profile")]
-        [HttpPost]
-        public async Task<IActionResult> Profile(AccountProfileVM VM)
-        {
-            if (!ModelState.IsValid)
-                return View(VM);
+        //[Route("/profile")]
+        //[HttpPost]
+        //public async Task<IActionResult> Profile(AccountProfileVM VM)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return View(VM);
 
-            var result = await service.TryEditProfile(VM);
-            if (!result.Succeeded)
-            {
-                ModelState.AddModelError(string.Empty, result.Errors.First().Description);
-                return View(VM);
-            }
+        //    var result = await service.TryEditProfile(VM);
+        //    if (!result.Succeeded)
+        //    {
+        //        ModelState.AddModelError(string.Empty, result.Errors.First().Description);
+        //        return View(VM);
+        //    }
 
-            return PartialView("_ProfileEditPartial", VM);
+        //    return PartialView("_ProfileEditPartial", VM);
 
-        }
+        //}
 
         [Route("profile/edit/email")]
         [HttpGet]
@@ -173,7 +173,7 @@ namespace FungiFinder.Controllers
 
         [Route("profile/edit/password")]
         [HttpPost]
-        public async Task<IActionResult> EditPassword(AccountProfileVM VM)
+        public async Task<IActionResult> EditPassword(AccountEditPasswordPartialVM VM)
         {
             if (!ModelState.IsValid)
                 return View(VM);
@@ -182,7 +182,7 @@ namespace FungiFinder.Controllers
             if (!result.Succeeded)
             {
                 ModelState.AddModelError(string.Empty, result.Errors.First().Description);
-                PartialView("_EditProfilePassword", VM);
+                PartialView("EditPassword", VM);
             }
 
 
