@@ -1,5 +1,5 @@
 ﻿body {
-    /* For width smaller than 400px: */
+    /* For width smaller than 1441px: */
     height: 100%;
     width: 100%;
     background-image: url("../Images/BlurredIndexImg/fungimobileBackgroundBlurred.jpg");
@@ -7,8 +7,8 @@
     background-size: cover;
 }
 
-/* For width 400px and larger: */
-@media (min-width: 1440px) {
+/* For width 1441px and larger: */
+@media (min-width: 1441px) {
     body {
         height: 100%;
         width: 100%;
