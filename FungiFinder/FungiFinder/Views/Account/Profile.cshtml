@@ -12,25 +12,37 @@
     <script src="~/js/profile.js"></script>
 
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script>
+        $("settings").click(function (e) {
+            e.stopPropagation();
+        })
+    </script>
 }
 @section styles{
     <link href="~/css/Profile.css" rel="stylesheet" />
+    <style>
+        .dropdown-menu {
+            width: 100% !important;
+            /*height: 600px !important;*/
+        }
+    </style>
 }
 
 <h4>@User.Identity.Name's profil</h4>
 <hr />
 <div class="float-right" style="padding-right: 50px;">
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class="dropdown dropleft" name="settings">
+        <button class="btn btn-secondary dropdown-toggle" type="button"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             Inställningar
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <button type="button" class="dropdown-item" id="editPassword" onclick="editPassword()">Ändra lösenord</button>
-            <button type="button" class="dropdown-item dropdown-toggle" id="editEmail" onclick="editEmail()">Ändra E-post</button>
-            <div class="form-group">
-                <div class="dropdown-item" id="pwPartial"></div>
-            </div>
-            <div class="dropdown-item" id="emailPartial"></div>
+            <button type="button" class="dropdown-item" id="editEmail" onclick="editEmail()">Ändra E-post</button>
+            <div class="dropdown-header"></div>
+
+            <div class="dropdown-item-text" id="pwPartial"></div>
+
+            <div class="dropdown-item-text" id="emailPartial"></div>
         </div>
     </div>
 </div>
