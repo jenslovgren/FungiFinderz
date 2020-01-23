@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace FungiFinder.Models
 {
@@ -123,10 +124,14 @@ namespace FungiFinder.Models
             var predictor = mlContext.Model.CreatePredictionEngine<ImageData, ImagePrediction>(model);
             var prediction = predictor.Predict(imageData);
             //var result = context.Mushrooms.Where(m => m.Name == prediction.PredictedLabelValue).FirstOrDefault();
-            context.LatestSearches.Add(new LatestSearches { Mushroom = prediction.PredictedLabelValue, SearchDate = DateTime.Now, UserId = userManager.GetUserId(accessor.HttpContext.User) });
+            context.LatestSearches.Add(new LatestSearches { Mushroom = ConvertFirstLetterToUpper(prediction.PredictedLabelValue), SearchDate = DateTime.Now, UserId = userManager.GetUserId(accessor.HttpContext.User) });
             context.SaveChanges();
-            return new FunctionMainResultPartialVM { Name = prediction.PredictedLabelValue, ProcentResult = prediction.Score.Max() };
+            return new FunctionMainResultPartialVM { Name = ConvertFirstLetterToUpper(prediction.PredictedLabelValue), ProcentResult = prediction.Score.Max() };
             //Console.WriteLine($"Image: {Path.GetFileName(imageData.ImagePath)}                  predicted as: {prediction.PredictedLabelValue}                  with score: {prediction.Score.Max()} ");
+        }
+        private string ConvertFirstLetterToUpper(string stringToConvert)
+        {
+            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(stringToConvert);
         }
 
         private void DisplayResults(IEnumerable<ImagePrediction> imagePredictionData)
