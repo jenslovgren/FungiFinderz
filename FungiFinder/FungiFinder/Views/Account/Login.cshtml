@@ -1,8 +1,6 @@
 ﻿@model AccountLoginVM
 
 
-
-
 @{
     ViewBag.Title = "Login";
     ViewData["Title"] = "Login";
@@ -13,25 +11,35 @@
     <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
 }
 
-<h1></h1>
+@section styles{
+    <link href="~/css/PicStyles.css" rel="stylesheet" />
+}
 
-<h4>Login</h4>
-<hr />
+<br />
+<br />
+<br />
+<div class="logo">
+    <img src="~/Images/Logos/TranspIconTxt.png" class="logo-pic" alt="FungiFinderLogo" onclick="document.location='index';return false;" />
+</div>
+<br />
+<br />
+<br />
+
 <div class="container-fluid align-self-center">
     <div class="row justify-content-center align-self-center">
         <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3 h-100">
             <form asp-action="Login">
-                <div asp-validation-summary="ModelOnly" class="form-text text-muted"></div>
-                <div class="form-group">
+                <div asp-validation-summary="ModelOnly" class="form-text text-danger"></div>
+                <div class="form-group" style="color: white;">
                     <label asp-for="Username" class="control-label"></label>
                     <input asp-for="Username" class="form-control" />
-                    <span asp-validation-for="Username" class="form-text text-muted"></span>
+                    <span asp-validation-for="Username" class="form-text text-danger"></span>
 
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="color: white;">
                     <label asp-for="Password" class="control-label"></label>
                     <input asp-for="Password" class="form-control" />
-                    <span asp-validation-for="Password" class="form-text text-muted"></span>
+                    <span asp-validation-for="Password" class="form-text text-danger"></span>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Log in" class="btn btn-info btn-lg btn-block" />
@@ -61,8 +69,8 @@
         </div>
     </div>*@
 
-<div>
-    <a asp-action="Index">Back to Start</a>
-
-</div>
-
+@*<div class="container-fluid align-self-center">
+    <div class="row justify-content-center align-self-center">
+        <a asp-action="Index">Return to Index</a>
+    </div>
+</div>*@
