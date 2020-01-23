@@ -13,9 +13,10 @@
 
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
     <script>
-        $("settings").click(function (e) {
+        $('.dropdown-menu').on("click.bs.dropdown", function (e) {
             e.stopPropagation();
-        })
+            e.preventDefault();
+        });
     </script>
 }
 @section styles{
@@ -30,9 +31,9 @@
 
 <h4>@User.Identity.Name's profil</h4>
 <hr />
-<div class="float-right" style="padding-right: 50px;">
-    <div class="dropdown dropleft" name="settings">
-        <button class="btn btn-secondary dropdown-toggle" type="button"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+<div class="float-right" style="padding-right: 50px;" name="settings">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             Inställningar
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

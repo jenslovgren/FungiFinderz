@@ -20,10 +20,10 @@
 </div>
 
 <script>
-    let btnToClickPass = document.getElementById("btnToClickPass")
+    //let btnToClickPass = document.getElementById("btnToClickPass")
 
-    btnToClickPass.addEventListener("click", postJson);
-    function postJson() {
+    //btnToClickPass.addEventListener("click", postJson);
+    $("#btnToClickPass").click(function postJson() {
         let newEmail = $("#newEmail").val();
         console.log(newEmail);
         $.ajax({
@@ -33,7 +33,7 @@
             data: JSON.stringify({ email: newEmail }),
             success: function (result) { }
         })
-    }
+    })
 </script>
 
 

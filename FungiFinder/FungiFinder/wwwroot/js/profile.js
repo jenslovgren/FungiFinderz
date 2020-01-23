@@ -11,9 +11,11 @@ function editEmail() {
             }
         });
         isActiveMail = !isActiveMail;
+        $("#editEmail").css("background-color", "#17a2b8");
     }
     else {
-        $("#emailPartial").html("");
+        $("#emailPartial").empty();
+        $("#editEmail").css("background-color", "white");
         isActiveMail = !isActiveMail;
     }
 
@@ -29,9 +31,11 @@ function editPassword() {
             }
         })
         isActivePass = !isActivePass;
+        $("#editPassword").css("background-color", "#17a2b8");
     }
     else {
-        $("#pwPartial").html("");
+        $("#pwPartial").empty();
+        $("#editPassword").css("background-color", "white");
         isActivePass = !isActivePass;
     }
 }
