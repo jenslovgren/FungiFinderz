@@ -7,6 +7,11 @@
     background-size: cover;
 }
 
+.logo-pic {
+    width: 350px;
+    height: 250px;
+}
+
 /* For width 1441px and larger: */
 @media (min-width: 1441px) {
     body {
@@ -15,8 +20,17 @@
         background-image: url('../images/blurredindeximg/fungibackground9.jpg');
         background-repeat: no-repeat;
         background-size: cover;
+
+
+    }
+
+    .logo-pic {
+        width: 350px;
+        height: 250px;
     }
 }
 
 
-}
+
+
+
