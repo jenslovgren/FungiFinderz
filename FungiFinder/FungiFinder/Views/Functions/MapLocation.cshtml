@@ -132,35 +132,35 @@
 
 
     @*<title>Removing Markers</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <style>
-        /* Always set the map height explicitly to define the size of the div
-        * element that contains the map. */
-        #map {
-            height: 100%;
-        }
-        /* Optional: Makes the sample page fill the window. */
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+        <style>
+            /* Always set the map height explicitly to define the size of the div
+            * element that contains the map. */
+            #map {
+                height: 100%;
+            }
+            /* Optional: Makes the sample page fill the window. */
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
 
-        #floating-panel {
-            position: absolute;
-            top: 10px;
-            left: 25%;
-            z-index: 5;
-            background-color: #fff;
-            padding: 5px;
-            border: 1px solid #999;
-            text-align: center;
-            font-family: 'Roboto','sans-serif';
-            line-height: 30px;
-            padding-left: 10px;
-        }
-    </style>*@
+            #floating-panel {
+                position: absolute;
+                top: 10px;
+                left: 25%;
+                z-index: 5;
+                background-color: #fff;
+                padding: 5px;
+                border: 1px solid #999;
+                text-align: center;
+                font-family: 'Roboto','sans-serif';
+                line-height: 30px;
+                padding-left: 10px;
+            }
+        </style>*@
 
 
     <div id="floating-panel">
@@ -227,16 +227,16 @@
         function getGoordinates() {
             var kos = pos.toString();
 
-                console.log(pos);
-                var url = `/Map/${kos}`
-                $.ajax({
-                    url: url,
-                    type: "GET",
-                    success: function (result) {
-                        $("#divResult").html(result);
-                    }
-                });
-            }
+            console.log(pos);
+            var url = `/Map/${kos}`
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function (result) {
+                    $("#divResult").html(result);
+                }
+            });
+        }
 
 
         // Adds a marker to the map and push to the array.
@@ -277,4 +277,6 @@
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb6PsUEvawrKCwb3qG6myykc9ORaMX83c&callback=initMap">
 
     </script>
+</body>
+</html>
 }
