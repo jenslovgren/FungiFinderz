@@ -37,7 +37,7 @@ namespace FungiFinder.Controllers
         //    {
         //        var filePath = Path.Combine(hostEnvironment.WebRootPath, "Images/Uploads", vm.ImgToSearch.FileName);
 
-               
+
         //    }
 
         //    var result = service.PredictImage(vm.ImgToSearch.FileName);
@@ -66,11 +66,11 @@ namespace FungiFinder.Controllers
         [HttpPost]
         public async Task<IActionResult> FileUpload(IFormFile file)
         {
-            if(file?.Length > 0)
+            if (file?.Length > 0)
             {
                 var filePath = Path.Combine(hostEnvironment.WebRootPath, "Images/Uploads", file.FileName);
 
-                using(var fileStream = new FileStream(filePath, FileMode.Create))
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
                     await file.CopyToAsync(fileStream);
                 }
@@ -87,6 +87,32 @@ namespace FungiFinder.Controllers
 
             return PartialView("_MainResultPartial", result);
         }
+
+
+
+
+
+
+
+
+
+        [Route("Maplocation")]
+        [HttpGet]
+        public IActionResult MapLocation()
+        {
+
+            return View();
+        }
+
+        [Route("Maplocation/{longlat}")]
+        [HttpPost]
+        public IActionResult MapLocation(FunctionMapVM vm)
+        {
+
+            return View();
+        }
+
+
 
 
     }
