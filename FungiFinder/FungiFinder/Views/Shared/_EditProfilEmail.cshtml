@@ -1,14 +1,4 @@
-﻿@model AccountProfileVM
-
-@*<form asp-controller="Account" asp-action="EditEmail">
-
-
-    <input type="text" name="email" />
-    <input type="submit" value="Spara email" />
-    <div>
-        <a asp-action="Profil">Ångra</a>
-    </div>
-</form>*@
+﻿@model AccountEditEmailPartial
 
 
 <hr />
@@ -29,7 +19,7 @@
     </div>
 </div>
 
-<script>
+@*<script>
     let btnToClick = document.getElementById("btnToClick")
 
     btnToClick.addEventListener("click", postJson);
@@ -43,6 +33,6 @@
             success: function (result) {}
         })
     }
-</script>
+</script>*@
 
 
