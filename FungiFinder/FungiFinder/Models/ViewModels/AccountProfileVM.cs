@@ -15,9 +15,10 @@ namespace FungiFinder.Models.ViewModels
         public string Email { get; set; }
         public string MushroomLookAlike { get; set; }
         public string FavouriteMushroom { get; set; }
-        public string PreviousSearches { get; set; }
+        //public string PreviousSearches { get; set; }
+        public LatestSearchesDetailsVM[] LatestSearches { get; set; }
 
-       
+
 
     }
 }
