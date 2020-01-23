@@ -1,14 +1,38 @@
-﻿
+﻿let isActiveMail = true;
 
-function editInfo(id, partial) {
+function editEmail() {
     console.log('hej');
-    $.ajax({
-        url: '/profile/edit/' + id,
-        type: 'GET',
-        success: function (result) {
-            $("#" + partial).html(result)
-        }
-    });
+    if (isActiveMail) {
+        $.ajax({
+            url: '/profile/edit/email',
+            type: 'GET',
+            success: function (result) {
+                $("#emailPartial").html(result)
+            }
+        });
+        isActiveMail = !isActiveMail;
+    }
+    else {
+        $("#emailPartial").html("");
+        isActiveMail = !isActiveMail;
+    }
 
+}
+let isActivePass = true;
+
+function editPassword() {
+    if (isActivePass) {
+        $.ajax({
+            url: '/profile/edit/password',
+            success: function (result) {
+                $("#pwPartial").html(result)
+            }
+        })
+        isActivePass = !isActivePass;
+    }
+    else {
+        $("#pwPartial").html("");
+        isActivePass = !isActivePass;
+    }
 }
 
