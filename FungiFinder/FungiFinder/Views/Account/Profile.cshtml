@@ -13,7 +13,7 @@
 
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
     <script>
-        $('.dropdown-menu').on("click.bs.dropdown", function (e) {
+        $('#profileMenu').on("click.bs.dropdown", function (e) {
             e.stopPropagation();
             e.preventDefault();
         });
@@ -22,7 +22,7 @@
 @section styles{
     <link href="~/css/Profile.css" rel="stylesheet" />
     <style>
-        .dropdown-menu {
+        #profileMenu {
             width: 100% !important;
             /*height: 600px !important;*/
         }
@@ -36,7 +36,7 @@
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             Inställningar
         </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-menu" id="profileMenu" aria-labelledby="dropdownMenuButton">
             <button type="button" class="dropdown-item" id="editPassword" onclick="editPassword()">Ändra lösenord</button>
             <button type="button" class="dropdown-item" id="editEmail" onclick="editEmail()">Ändra E-post</button>
             <div class="dropdown-header"></div>
