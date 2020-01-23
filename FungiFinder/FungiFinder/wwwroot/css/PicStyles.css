@@ -10,6 +10,14 @@
 .logo-pic {
     width: 350px;
     height: 250px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logo {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
 }
 
 /* For width 1441px and larger: */
@@ -24,9 +32,17 @@
 
     }
 
+    .logo {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+    }
+
     .logo-pic {
         width: 350px;
         height: 250px;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
