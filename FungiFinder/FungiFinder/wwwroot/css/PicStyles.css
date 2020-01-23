@@ -1,18 +1,18 @@
 ﻿body {
-    /* For width smaller than 400px: */
+    /* For width smaller than 1440px: */
     height: 100%;
     width: auto;
-    background-image: url('images/blurredindeximg/fungimobilebackgroundblurred.jpg');
+    background-image: url('../images/BlurredIndexImg/FungiMobileBackgroundBlurred.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-/* For width 400px and larger: */
+/* For width 1440px and larger: */
 @media (min-width: 1440px) {
     body {
         height: auto;
         width: 100%;
-        background-image: url('images/blurredindeximg/fungibackground5.jpg');
+        background-image: url('../images/BlurredIndexImg/FungiBackground5.jpg');
         background-repeat: no-repeat;
         background-size: cover;
     }
