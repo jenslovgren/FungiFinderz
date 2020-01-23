@@ -6,6 +6,7 @@
     <div>
         <form asp-action="EditEmail">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div id="emailErrorHere"></div>
 
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
@@ -31,7 +32,12 @@
             type: 'POST',
             contentType: "application/json",
             data: JSON.stringify({ email: newEmail }),
-            success: function (result) { }
+            success: function (result) {
+                $("#emailHere").text(newEmail);
+            },
+            error: function (result) {
+                $("#emailErrorHere").text(result.statusText)
+            }
         })
     })
 </script>

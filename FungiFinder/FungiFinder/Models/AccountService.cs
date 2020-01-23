@@ -1,4 +1,5 @@
-﻿using FungiFinder.Models.ViewModels;
+﻿using FungiFinder.Models.Entities;
+using FungiFinder.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -14,12 +15,14 @@ namespace FungiFinder.Models
         private readonly UserManager<MyIdentityUser> userManager;
         private readonly SignInManager<MyIdentityUser> signInManager;
         private readonly IHttpContextAccessor accessor;
+        private readonly FungiFinderContext context;
 
-        public AccountService(UserManager<MyIdentityUser> userManager, SignInManager<MyIdentityUser> signInManager, IHttpContextAccessor accessor)
+        public AccountService(UserManager<MyIdentityUser> userManager, SignInManager<MyIdentityUser> signInManager, IHttpContextAccessor accessor, FungiFinderContext context)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.accessor = accessor;
+            this.context = context;
         }
 
         internal async Task<SignInResult> TryLoginUser(AccountLoginVM vm)
@@ -66,10 +69,19 @@ namespace FungiFinder.Models
             {
                 UrlProfilePicture = user.ProfileImageUrl,
                 Username = user.UserName,
-                Email = user.Email,
+                Email = user.Email
+               
                 //Password = user.PasswordHash,
 
             };
+
+            vm.LatestSearches = context.LatestSearches
+                .Where(o => o.UserId == userManager
+                .GetUserId(accessor.HttpContext.User))
+                .Select(o => new LatestSearchesDetailsVM { Mushroom = o.Mushroom, SearchDate = o.SearchDate })
+                .OrderBy(o => o.SearchDate)
+                .Take(5)
+                .ToArray();
 
             return vm;
         }
