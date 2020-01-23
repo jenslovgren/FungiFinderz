@@ -1,16 +1,10 @@
 ﻿@model FungiFinder.Models.ViewModels.FunctionMapVM
-@{
-    Layout = null;
-}
+@*@{
+        Layout = null;
+    }*@
 
-
-<!DOCTYPE html>
-<html>
-<head>
-
+@section styles{
     <title>Removing Markers</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
     <style>
         /* Always set the map height explicitly to define the size of the div
         * element that contains the map. */
@@ -38,17 +32,17 @@
             padding-left: 10px;
         }
     </style>
-</head>
-<body>
-    <div id="floating-panel">
-        <input onclick="clearMarkers();" type=button value="Hide Markers">
-        <input onclick="showMarkers();" type=button value="Show All Markers">
-        <input onclick="deleteMarkers();" type=button value="Delete Markers">
-        <input onclick="getGoordinates();" type=button value="Save current loacation">
-    </div>
-    <div id="map"></div>
+}
 
 
+<div id="floating-panel">
+    <input onclick="clearMarkers();" type=button value="Hide Markers">
+    <input onclick="showMarkers();" type=button value="Show All Markers">
+    <input onclick="deleteMarkers();" type=button value="Delete Markers">
+    <input onclick="getGoordinates();" type=button value="Save current loacation">
+</div>
+<div id="map"></div>
+@section scripts{
 
     <script>
         var map, infoWindow;
@@ -96,17 +90,7 @@
             }
 
 
-            function getGoordinates() {
-                console.log(pos);
-                var url = `/Map/${pos}`
-                $.ajax({
-                    url: url,
-                    type: "POST",
-                    success: function (result) {
-                        $("#divResult").html(result);
-                    }
-                });
-            }
+
 
 
 
@@ -122,6 +106,17 @@
 
             // Adds a marker at the center of the map.
             addMarker(haightAshbury);
+        }
+        function getGoordinates() {
+            console.log(pos);
+            var url = `/Map/${pos}`
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function (result) {
+                    $("#divResult").html(result);
+                }
+            });
         }
 
         // Adds a marker to the map and push to the array.
@@ -156,17 +151,10 @@
             markers = [];
         }
 
-
-
-
-
-
-
     </script>
 
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb6PsUEvawrKCwb3qG6myykc9ORaMX83c&callback=initMap">
 
     </script>
-</body>
-</html>
+}
