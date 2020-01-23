@@ -6,6 +6,14 @@
     @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">*@
     <link href="~/bootstrap-4.4.1-dist/css/bootstrap.css" rel="stylesheet" />
     <link href="~/bootstrap-4.4.1-dist/css/bootstrap-grid.css" rel="stylesheet" />
+  
+   
+        @*<link href="~/css/PicStyles.css" rel="stylesheet" />*@
+
+    
+
+   
+
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     @RenderSection("styles", false)
@@ -24,7 +32,7 @@
                     <li class="nav-item active">
                         <a asp-controller="Functions" asp-action="Library" class="nav-item nav-link">Bibliotek</a>
                     </li>
-                    </ul>
+                </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profil</a>
@@ -42,9 +50,9 @@
     { 
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #17a2b8">
             <a href="" class="navbar-brand" style="pointer-events: none; cursor: default">Fungi Finder</a>
-               <button type="button" value="Hem" class="navbar-toggler" data-toggle="collapse" data-target="#navBarMarkup" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle Navigation">
-                   <span class="navbar-toggler-icon"></span>
-               </button>
+            <button type="button" value="Hem" class="navbar-toggler" data-toggle="collapse" data-target="#navBarMarkup" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle Navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navBarMarkup">
             </div>
         </nav>

@@ -2,37 +2,38 @@
 
 
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div>
+    <div>
         <form asp-action="EditEmail">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+                <input asp-for="Email" class="form-control" id="newEmail" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="button" id="btnToClick" value="Save" class="btn btn-primary" />
+                <input type="button" id="btnToClickPass" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-@*<script>
-    let btnToClick = document.getElementById("btnToClick")
+<script>
+    //let btnToClickPass = document.getElementById("btnToClickPass")
 
-    btnToClick.addEventListener("click", postJson);
-
-    function postJson() {
+    //btnToClickPass.addEventListener("click", postJson);
+    $("#btnToClickPass").click(function postJson() {
+        let newEmail = $("#newEmail").val();
+        console.log(newEmail);
         $.ajax({
             url: "/profile/edit/email",
             type: 'POST',
             contentType: "application/json",
-            data: JSON.stringify({ email: $("#newEmail").val()}),
-            success: function (result) {}
+            data: JSON.stringify({ email: newEmail }),
+            success: function (result) { }
         })
-    }
-</script>*@
+    })
+</script>
 
 
