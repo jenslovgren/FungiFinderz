@@ -96,7 +96,7 @@ namespace FungiFinder.Controllers
 
 
 
-        [Route("Maplocation")]
+        [Route("Map")]
         [HttpGet]
         public IActionResult MapLocation()
         {
@@ -104,7 +104,7 @@ namespace FungiFinder.Controllers
             return View();
         }
 
-        [Route("Maplocation/{longlat}")]
+        [Route("Map/{longlat}")]
         [HttpPost]
         public IActionResult MapLocation(FunctionMapVM vm)
         {

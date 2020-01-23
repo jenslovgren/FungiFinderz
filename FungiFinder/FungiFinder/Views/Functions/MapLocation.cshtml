@@ -54,28 +54,14 @@
         // prompted by your browser. If you see the error "The Geolocation service
         // failed.", it means you probably did not give permission for the browser to
         // locate you.
-        //var map, infoWindow;
-        //function initMap() {
-        //    map = new google.maps.Map(document.getElementById('map'), {
-        //        center: { lat: -34.397, lng: 150.644 },
-        //        zoom: 6
-        //    });
-        //    infoWindow = new google.maps.InfoWindow;
 
             // Try HTML5 geolocation.
-      
-
-
-
-
-
-
 
       var map, infoWindow;
-      var markers = [];
+        var markers = [];
+        var latLng;
 
       function initMap() {
-        //var haightAshbury = {lat: 37.769, lng: -122.446};
 
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 62.0236528, lng: 15.119680},
@@ -126,7 +112,8 @@
 
         // This event listener will call addMarker() when the map is clicked.
         map.addListener('click', function(event) {
-          addMarker(event.latLng);
+            addMarker(event.latLng);
+            latLng = event.latLng;
         });
 
         // Adds a marker at the center of the map.
