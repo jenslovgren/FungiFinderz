@@ -14,7 +14,7 @@
         width: 100%;
         background-image: url("../Images/BlurredIndexImg/fungiBackground9.jpg");
         background-repeat: no-repeat;
-        background-size:;
+        background-size: cover;
     }
 }
 
