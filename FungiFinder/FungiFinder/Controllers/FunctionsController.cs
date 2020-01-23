@@ -97,8 +97,8 @@ namespace FungiFinder.Controllers
         }
 
         [Route("Map/{longlat}")]
-        [HttpPost]
-        public IActionResult MapLocation(long longlat)
+        [HttpGet]
+        public IActionResult MapLocation(string longlat)
         {
             var input = longlat;
             return View();
