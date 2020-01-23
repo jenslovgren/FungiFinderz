@@ -2636,6 +2636,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\Images\Logos\" />
     <Folder Include="wwwroot\Images\Uploads\" />
     <Folder Include="wwwroot\Images\UserPics\" />
   </ItemGroup>

@@ -132,6 +132,10 @@ namespace FungiFinder.Controllers
         {
             await service.EditEmail(VM);
 
+            if (!ModelState.IsValid)
+                return View(VM);
+
+
             return RedirectToAction(nameof(Profile));
         }
 
@@ -185,9 +189,6 @@ namespace FungiFinder.Controllers
                 return BadRequest();
             
             }
-
-
-
 
 
             return Ok();
