@@ -1,6 +1,8 @@
 ﻿using FungiFinder.Models.Entities;
 using FungiFinder.Models.TensorFlow;
 using FungiFinder.Models.ViewModels;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.ML;
 using Microsoft.ML.Data;
 using System;
@@ -9,16 +11,21 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace FungiFinder.Models
 {
     public class FunctionsService
     {
         private readonly FungiFinderContext context;
+        private readonly UserManager<MyIdentityUser> userManager;
+        private readonly IHttpContextAccessor accessor;
 
-        public FunctionsService(FungiFinderContext context)
+        public FunctionsService(FungiFinderContext context, UserManager<MyIdentityUser> userManager, IHttpContextAccessor accessor)
         {
             this.context = context;
+            this.userManager = userManager;
+            this.accessor = accessor;
         }
 
         static IDataView trainingData;
@@ -36,6 +43,7 @@ namespace FungiFinder.Models
             MLContext mlContext = new MLContext();
             ITransformer model = GenerateModel(mlContext);
             _predictSingleImage = Path.Combine(_uploadedImages, urlInput);
+           
             return ClassifySingleImage(mlContext, model);
             
         }
@@ -115,10 +123,15 @@ namespace FungiFinder.Models
             // Make prediction function (input = ImageData, output = ImagePrediction)
             var predictor = mlContext.Model.CreatePredictionEngine<ImageData, ImagePrediction>(model);
             var prediction = predictor.Predict(imageData);
-            var result = context.Mushrooms.Where(m => m.Name == prediction.PredictedLabelValue).FirstOrDefault();
-
-            return new FunctionMainResultPartialVM { Name = prediction.PredictedLabelValue, ProcentResult = prediction.Score.Max() };
+            //var result = context.Mushrooms.Where(m => m.Name == prediction.PredictedLabelValue).FirstOrDefault();
+            context.LatestSearches.Add(new LatestSearches { Mushroom = ConvertFirstLetterToUpper(prediction.PredictedLabelValue), SearchDate = DateTime.Now, UserId = userManager.GetUserId(accessor.HttpContext.User) });
+            context.SaveChanges();
+            return new FunctionMainResultPartialVM { Name = ConvertFirstLetterToUpper(prediction.PredictedLabelValue), ProcentResult = prediction.Score.Max() };
             //Console.WriteLine($"Image: {Path.GetFileName(imageData.ImagePath)}                  predicted as: {prediction.PredictedLabelValue}                  with score: {prediction.Score.Max()} ");
+        }
+        private string ConvertFirstLetterToUpper(string stringToConvert)
+        {
+            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(stringToConvert);
         }
 
         private void DisplayResults(IEnumerable<ImagePrediction> imagePredictionData)

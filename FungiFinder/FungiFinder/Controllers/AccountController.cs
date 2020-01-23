@@ -133,38 +133,13 @@ namespace FungiFinder.Controllers
             await service.EditEmail(VM);
 
             if (!ModelState.IsValid)
-                return View(VM);
+                return BadRequest(ModelState.First().Value.Errors.First());
 
 
-            return RedirectToAction(nameof(Profile));
+            return Ok();
         }
 
-        //[Route("profile/edit/password")]
-        //[HttpGet]
-        //public IActionResult EditPassword()
-        //{
-        //    return PartialView("_EditProfilEmail");
-        //}
-
-
-
-        //[Route("profile/edit/password")]
-        //[HttpPost]
-        //public async Task<IActionResult> EditPassword(string password, string newPassword)
-        //{
-        //    //if (!ModelState.IsValid)
-        //    //    return View(VM);
-
-        //    var result = await service.changePassword(password, newPassword);
-        //    if (!result.Succeeded)
-        //    {
-        //        ModelState.AddModelError(string.Empty, result.Errors.First().Description);
-        //        return Content("Fel lösenord");
-        //    }
-
-
-        //    return RedirectToAction(nameof(Profile));
-        //}
+       
 
 
         [Route("profile/edit/password")]
