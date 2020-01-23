@@ -21,7 +21,7 @@ namespace FungiFinder.Models
             this.context = context;
         }
 
-
+        static IDataView trainingData;
         static readonly string _assetsPath = Path.Combine(Environment.CurrentDirectory, "wwwroot");
         static readonly string _imagesFolder = Path.Combine(_assetsPath, "Images");
         static readonly string _TsvFolder = Path.Combine(_assetsPath, "Tsv");
@@ -96,13 +96,13 @@ namespace FungiFinder.Models
             IEnumerable<ImagePrediction> imagePredictionData = mlContext.Data.CreateEnumerable<ImagePrediction>(predictions, true);
             DisplayResults(imagePredictionData);
 
-            MulticlassClassificationMetrics metrics =
-            mlContext.MulticlassClassification.Evaluate(predictions,
-            labelColumnName: "LabelKey",
-            predictedLabelColumnName: "PredictedLabel");
-            //Console.WriteLine("=============== Classification metrics ===============");
-            //Console.WriteLine($"LogLoss is: {metrics.LogLoss}");
-            //Console.WriteLine($"PerClassLogLoss is: {String.Join(" , ", metrics.PerClassLogLoss.Select(c => c.ToString()))}");
+            //MulticlassClassificationMetrics metrics =
+            //mlContext.MulticlassClassification.Evaluate(predictions,
+            //labelColumnName: "LabelKey",
+            //predictedLabelColumnName: "PredictedLabel");
+            ////Console.WriteLine("=============== Classification metrics ===============");
+            ////Console.WriteLine($"LogLoss is: {metrics.LogLoss}");
+            ////Console.WriteLine($"PerClassLogLoss is: {String.Join(" , ", metrics.PerClassLogLoss.Select(c => c.ToString()))}");
 
             return model;
         }
