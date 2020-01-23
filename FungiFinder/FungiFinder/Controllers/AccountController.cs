@@ -181,7 +181,8 @@ namespace FungiFinder.Controllers
             var result = await service.ChangePassword(VM);
             if (!result.Succeeded)
             {
-                return BadRequest(result.Errors.First().Description);
+                //return BadRequest(result.Errors.First().Description);
+                return BadRequest();
             
             }
 

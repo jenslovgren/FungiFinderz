@@ -1,74 +1,70 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
+﻿
 
-    @{
-        ViewBag.Title = "Home";
-    }
-
-    @section styles{ 
-        <link href="~/css/PicStyles.css" rel="stylesheet" />
-    }
-
-</head>
-
-<body>
-
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-
-</body>
-</html>
-
-
-@if (!User.Identity.IsAuthenticated)
-{
-    <div class="container-fluid align-self-center">
-        <div class="row justify-content-center align-self-center">
-            <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3 h-100">
-                <form action="">
-
-                    <div class="form-group">
-                        <button asp-controller="Account" asp-action="Login" class="btn btn-info btn-lg btn-block">Logga In</button>
-                    </div>
-                    <div class="form-group">
-                        <button asp-controller="Account" asp-action="Register" class="btn btn-info btn-lg btn-block">Registrera</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    @*<form class="col-lg-6 offset-lg-3">
-            <div class="col-lg-6 offset-lg-3">
-                <button asp-controller="Account" asp-action="Login" class="btn btn-dark">Logga in</button>
-
-                <button asp-controller="Account" asp-action="Register" class="btn btn-dark">Registrera</button>
-            </div>
-        </form>*@
-
-
+@{
+    ViewBag.Title = "Home";
 }
 
+@section styles{
+    <link href="~/css/PicStyles.css" rel="stylesheet" />
+}
+<div class="test" style="height: 100%">
 
+
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+
+
+
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <div class="container-fluid align-self-center">
+            <div class="row justify-content-center align-self-center">
+                <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3 h-100">
+                    <form action="">
+
+                        <div class="form-group">
+                            <button asp-controller="Account" asp-action="Login" class="btn btn-info btn-lg btn-block">Logga In</button>
+                        </div>
+                        <div class="form-group">
+                            <button asp-controller="Account" asp-action="Register" class="btn btn-info btn-lg btn-block">Registrera</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        @*<form class="col-lg-6 offset-lg-3">
+                <div class="col-lg-6 offset-lg-3">
+                    <button asp-controller="Account" asp-action="Login" class="btn btn-dark">Logga in</button>
+
+                    <button asp-controller="Account" asp-action="Register" class="btn btn-dark">Registrera</button>
+                </div>
+            </form>*@
+
+
+    }
+
+</div>
 
