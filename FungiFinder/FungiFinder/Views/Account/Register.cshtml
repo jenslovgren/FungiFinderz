@@ -10,29 +10,38 @@
     <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
 }
 
-<h4>Register new user</h4>
-<hr />
+@section styles{
+    <link href="~/css/PicStyles.css" rel="stylesheet" />
+}
+
+<br />
+<br />
+<br />
+<div class="logo">
+    <img src="~/Images/Logos/TranspIconTxt.png" class="logo-pic" alt="FungiFinderLogo" onclick="document.location='index';return false;" />
+</div>
+
 <div class="container-fluid align-self-center">
     <div class="row justify-content-center align-self-center">
         <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3 h-100">
             <form asp-action="Register">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
+                <div class="form-group" style="color: white;">
                     <label asp-for="UserName" class="control-label"></label>
                     <input asp-for="UserName" class="form-control" />
                     <span asp-validation-for="UserName" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="color: white;">
                     <label asp-for="Email" class="control-label"></label>
                     <input asp-for="Email" class="form-control" />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="color: white;">
                     <label asp-for="Password" class="control-label"></label>
                     <input asp-for="Password" class="form-control" />
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="color: white;">
                     <label asp-for="ConfirmPassword" class="control-label"></label>
                     <input asp-for="ConfirmPassword" class="form-control" />
                     <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
@@ -45,7 +54,9 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to start</a>
-</div>
+@*<div class="container-fluid align-self-center">
+    <div class="row justify-content-center align-self-center">
+        <a asp-action="Index">Return to Index</a>
+    </div>
+</div>*@
 
