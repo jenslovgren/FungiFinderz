@@ -88,14 +88,6 @@ namespace FungiFinder.Controllers
             return PartialView("_MainResultPartial", result);
         }
 
-
-
-
-
-
-
-
-
         [Route("Map")]
         [HttpGet]
         public IActionResult MapLocation()
@@ -106,14 +98,10 @@ namespace FungiFinder.Controllers
 
         [Route("Map/{longlat}")]
         [HttpPost]
-        public IActionResult MapLocation(FunctionMapVM vm)
+        public IActionResult MapLocation(long longlat)
         {
-
+            var input = longlat;
             return View();
         }
-
-
-
-
     }
 }
