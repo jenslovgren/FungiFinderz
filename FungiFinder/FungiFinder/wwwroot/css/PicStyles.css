@@ -1,0 +1,22 @@
+﻿body {
+    /* For width smaller than 1441px: */
+    height: 100%;
+    width: auto;
+    background-image: url('../images/BlurredIndexImg/FungiMobileBackgroundBlurred.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* For width 1441px and larger: */
+@media (min-width: 1441px) {
+    body {
+        height: auto;
+        width: 100%;
+        background-image: url('../images/blurredindeximg/fungibackground7.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+
+
+}

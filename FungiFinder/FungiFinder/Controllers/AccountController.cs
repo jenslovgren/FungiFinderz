@@ -101,23 +101,23 @@ namespace FungiFinder.Controllers
         }
 
 
-        [Route("/profile")]
-        [HttpPost]
-        public async Task<IActionResult> Profile(AccountProfileVM VM)
-        {
-            if (!ModelState.IsValid)
-                return View(VM);
+        //[Route("/profile")]
+        //[HttpPost]
+        //public async Task<IActionResult> Profile(AccountProfileVM VM)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return View(VM);
 
-            var result = await service.TryEditProfile(VM);
-            if (!result.Succeeded)
-            {
-                ModelState.AddModelError(string.Empty, result.Errors.First().Description);
-                return View(VM);
-            }
+        //    var result = await service.TryEditProfile(VM);
+        //    if (!result.Succeeded)
+        //    {
+        //        ModelState.AddModelError(string.Empty, result.Errors.First().Description);
+        //        return View(VM);
+        //    }
 
-            return PartialView("_ProfileEditPartial", VM);
+        //    return PartialView("_ProfileEditPartial", VM);
 
-        }
+        //}
 
         [Route("profile/edit/email")]
         [HttpGet]
@@ -128,7 +128,7 @@ namespace FungiFinder.Controllers
 
         [Route("profile/edit/email")]
         [HttpPost]
-        public async Task<IActionResult> EditEmail(AccountProfileVM VM)
+        public async Task<IActionResult> EditEmail([FromBody]AccountEditEmailPartial VM)
         {
             await service.EditEmail(VM);
 
@@ -173,21 +173,25 @@ namespace FungiFinder.Controllers
 
         [Route("profile/edit/password")]
         [HttpPost]
-        public async Task<IActionResult> EditPassword(AccountProfileVM VM)
+        public async Task<IActionResult> EditPassword([FromBody] AccountEditPasswordPartialVM VM)
         {
             if (!ModelState.IsValid)
-                return View(VM);
+                return BadRequest(ModelState.First().Value.Errors.First().ErrorMessage);
 
-            var result = await service.changePassword(VM);
+            var result = await service.ChangePassword(VM);
             if (!result.Succeeded)
             {
-                ModelState.AddModelError(string.Empty, result.Errors.First().Description);
-                PartialView("_EditProfilePassword", VM);
+                return BadRequest(result.Errors.First().Description);
+            
             }
 
 
-            return RedirectToAction(nameof(Profile));
+
+
+
+            return Ok();
         }
+
 
 
     }

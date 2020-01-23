@@ -10,7 +10,5 @@ function editInfo(id, partial) {
         }
     });
 
-
-
-
 }
+
