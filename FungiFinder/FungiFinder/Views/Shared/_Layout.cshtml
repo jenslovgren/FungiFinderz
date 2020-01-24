@@ -27,7 +27,8 @@
             <a asp-controller="Functions" asp-action="Main" class="navbar-brand">
                 <img src="~/Images/Logos/TranspIcon.png" style="height: 40px;" />
             </a>
-            <button type="button" value="Hem" class="navbar-toggler" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            @* Button below is only visible on mobile devices/when browser width is < 1000px*@
+            <button type="button" value="DropdownList" class="navbar-toggler" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse clearfix" id="navbarNavAltMarkup">
