@@ -9,30 +9,32 @@
 }
 
 <br />
-<h4>Fungi Finder</h4>
+<h4 class="text-center">Fungi Finder</h4>
 <br />
-<div id="resultHere"></div>
-<div class="border-0" id="result"></div>
-<div class="">
-    <div class="col-md-4">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="input-group mb-3">
-            <div class="custom-file">
-                <input asp-for="ImgToSearch" type="file" class="custom-file-input" onchange="uploadFile('picture')" id="picture">
-                <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+<div class="container-fluid align-self-center">
+    <div class="justify-content-center align-self-center">
+        <div id="resultHere"></div>
+        <div class="border-0" id="result"></div>
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="input-group mb-3">
+                    <div class="custom-file">
+                        <input asp-for="ImgToSearch" type="file" class="custom-file-input" onchange="uploadFile('picture')" id="picture">
+                        <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+                    </div>
+                    @*<div class="input-group-append">
+                            <button class="input-group-text" onclick="getResult()" id="">Sök</button>
+                        </div>*@
+                </div>
+                @*<input id="picture" asp-for="ImgToSearch" type="file" onchange="uploadFile('picture')" class="btn btn-outline-dark" />*@
+                <div class="form-group row justify-content-center">
+                    <input type="button" onclick="getResult()" value="Sök" class="btn btn-outline-dark" />
+                </div>
             </div>
-            @*<div class="input-group-append">
-                <button class="input-group-text" onclick="getResult()" id="">Sök</button>
-            </div>*@
         </div>
-        @*<input id="picture" asp-for="ImgToSearch" type="file" onchange="uploadFile('picture')" class="btn btn-outline-dark" />*@
-        <div class="form-group">
-            <input type="button" onclick="getResult()" value="Sök" class="btn btn-outline-dark" />
+        <div>
         </div>
     </div>
 </div>
-<div>
-</div>
-
-
 
