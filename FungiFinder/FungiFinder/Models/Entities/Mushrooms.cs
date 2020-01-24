@@ -16,6 +16,7 @@ namespace FungiFinder.Models.Entities
         public string ImageUrl { get; set; }
         public bool Edible { get; set; }
         public string Name { get; set; }
+        public int? Rating { get; set; }
 
         public virtual ICollection<AspNetUsers> AspNetUsers { get; set; }
     }

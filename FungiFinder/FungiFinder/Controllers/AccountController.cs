@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using FungiFinder.Models;
 using FungiFinder.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FungiFinder.Controllers
@@ -15,10 +18,12 @@ namespace FungiFinder.Controllers
     public class AccountController : Controller
     {
         private readonly AccountService service;
+        private readonly IWebHostEnvironment hostEnvironment;
 
-        public AccountController(AccountService service)
+        public AccountController(AccountService service, IWebHostEnvironment hostEnvironment)
         {
             this.service = service;
+            this.hostEnvironment = hostEnvironment;
         }
         [HttpGet]
         [AllowAnonymous]
@@ -167,6 +172,23 @@ namespace FungiFinder.Controllers
 
 
             return Ok();
+        }
+
+        [Route("profile/changepicture")]
+        [HttpPost]
+        public async Task<IActionResult> ChangeProfilePicture(IFormFile profilePic)
+        {
+            if(profilePic?.Length > 0)
+            {
+                var filePath = Path.Combine(hostEnvironment.WebRootPath, "Images/UserPics", profilePic.FileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await profilePic.CopyToAsync(fileStream);
+                }
+            }
+            await service.TryChangeProfilePic(profilePic.FileName);
+            return Ok(profilePic.FileName);
         }
 
 
