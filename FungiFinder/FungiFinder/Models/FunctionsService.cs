@@ -74,7 +74,8 @@ namespace FungiFinder.Models
                     LatinName = mushroom.LatinName,
                     Info = mushroom.Info,
                     Edible = mushroom.Edible,
-                    ImgUrl = mushroom.ImageUrl
+                    ImgUrl = mushroom.ImageUrl,
+                    Rating = mushroom.Rating
                 });
             }
             return resultList.ToArray();

@@ -14,7 +14,16 @@
                     <h6 class="card-subtitle"> @shroom.LatinName</h6>
                     <br />
                     <p class="card-text">@shroom.Info</p>
-                    <p>Ätbar: @shroom.Edible</p>
+                    <br />
+                    @if (@shroom.Edible)
+                    {
+                        <p>Svampen är ätbar och smakar @shroom.Rating/5</p>
+                    }
+                    @if (@shroom.Edible == false)
+                    {
+                        <p>Svempen är giftig!</p>
+                    }
+
                 </div>
             </div>
         </div>

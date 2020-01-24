@@ -123,5 +123,12 @@ namespace FungiFinder.Models
 
         }
 
+        internal async Task TryChangeProfilePic(string fileName)
+        {
+            string userId = userManager.GetUserId(accessor.HttpContext.User);
+            var user = await userManager.FindByIdAsync(userId);
+            user.ProfileImageUrl = fileName;
+            await userManager.UpdateAsync(user);
+        }
     }
 }
