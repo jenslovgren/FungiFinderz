@@ -25,7 +25,7 @@ namespace FungiFinder.Models
         {
             this.context = context;
             this.userManager = userManager;
-            this.accessor = accessor;
+            this.accessor = accessor; // hej
         }
         static readonly string _assetsPath = Path.Combine(Environment.CurrentDirectory, "wwwroot");
         static readonly string _imagesFolder = Path.Combine(_assetsPath, "Images");
