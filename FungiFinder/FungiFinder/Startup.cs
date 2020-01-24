@@ -33,6 +33,7 @@ namespace FungiFinder
             services.AddTransient<AccountService>();
             services.AddTransient<FunctionsService>();
             services.AddHttpContextAccessor();
+
             //PasswordHasher
             services.AddIdentity<MyIdentityUser, IdentityRole>(o =>
             {
