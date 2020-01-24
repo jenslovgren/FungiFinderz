@@ -23,6 +23,7 @@ namespace FungiFinder.Models
 
         public FunctionsService(FungiFinderContext context, UserManager<MyIdentityUser> userManager, IHttpContextAccessor accessor)
         {
+            //Hejsan från Jens
             this.context = context;
             this.userManager = userManager;
             this.accessor = accessor;
