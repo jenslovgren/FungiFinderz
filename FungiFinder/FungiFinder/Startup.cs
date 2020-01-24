@@ -27,7 +27,7 @@ namespace FungiFinder
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            var constring = configuration.GetConnectionString("DefaultConnection");
+            var constring = configuration.GetConnectionString("LiveConnection");
             services.AddDbContext<MyIdentityContext>(o => o.UseSqlServer(constring));
             services.AddDbContext<FungiFinderContext>(o => o.UseSqlServer(constring));
             services.AddTransient<AccountService>();
