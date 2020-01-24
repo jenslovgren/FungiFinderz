@@ -128,7 +128,7 @@ namespace FungiFinder.Models.Entities
                 entity.HasOne(d => d.Mushroom)
                     .WithMany(p => p.AspNetUsers)
                     .HasForeignKey(d => d.MushroomId)
-                    .HasConstraintName("FK__AspNetUse__Mushr__3A81B327");
+                    .HasConstraintName("FK__AspNetUse__Mushr__37A5467C");
             });
 
             modelBuilder.Entity<LatestSearches>(entity =>
@@ -147,7 +147,7 @@ namespace FungiFinder.Models.Entities
                     .WithMany(p => p.LatestSearches)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__LatestSea__UserI__38996AB5");
+                    .HasConstraintName("FK__LatestSea__UserI__398D8EEE");
             });
 
             modelBuilder.Entity<Mushrooms>(entity =>
@@ -156,9 +156,7 @@ namespace FungiFinder.Models.Entities
                     .IsRequired()
                     .HasMaxLength(450);
 
-                entity.Property(e => e.Info)
-                    .IsRequired()
-                    .HasMaxLength(450);
+                entity.Property(e => e.Info).IsRequired();
 
                 entity.Property(e => e.LatinName)
                     .IsRequired()

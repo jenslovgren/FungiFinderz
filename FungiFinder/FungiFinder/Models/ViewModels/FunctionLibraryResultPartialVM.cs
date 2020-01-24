@@ -12,7 +12,8 @@ namespace FungiFinder.Models.ViewModels
         public string LatinName { get; set; }
         public string Name { get; set; }
         public string Info { get; set; }
-        // public IFormFile ImgToSearch { get; set; }
+
+        public int? Rating { get; set; }
         public string ImgUrl { get; set; }
 
         public bool Edible { get; set; }
