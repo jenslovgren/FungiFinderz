@@ -82,6 +82,11 @@ namespace FungiFinder.Models
             return resultList.ToArray();
         }
 
+        public void SaveLocation(long lng, long lat)
+        {
+            throw new NotImplementedException();
+        }
+
         private ITransformer GenerateModel(MLContext mlContext)
         {
             IEstimator<ITransformer> pipeline = mlContext.Transforms.LoadImages(outputColumnName: "input", imageFolder: _imagesFolder, inputColumnName: nameof(ImageData.ImagePath))

@@ -116,17 +116,46 @@
         }
 
 
-        function getCoordinates(pos) {
-            console.log(pos);
-            var url = `/Map/${kos}`
-            $.ajax({
-                url: url,
-                type: "GET",
-                success: function (result) {
-                    $("#divResult").html(result);
-                }
-            });
-        }
+        //function getCoordinates(pos) {
+        //    console.log('hej');
+        //    lat = $("#lat").val();
+        //    lng = $("#lng").val();
+
+        //    $.ajax({
+
+        //        type: "POST",
+        //        url: "/Map/longlat",
+        //        data: '{ param: "value"}',
+        //        contentType: "application/json",
+        //        dataType: JSON.stringify({ lat: latitude, lng: longitude })
+        //            success: function (response) {
+        //            alert(response.responseText);
+        //        },
+        //        failure: function (response) {
+        //            alert(response.responseText);
+        //        },
+        //        error: function (response) {
+        //            alert(response.responseText);
+        //        }
+
+
+        //    });
+
+        //}
+
+
+        //console.log(pos);
+        //var url = `/Map/${kos}`
+        //$.ajax({
+        //    url: url,
+        //    type: "GET",
+        //    success: function (result) {
+        //        $("#divResult").html(result);
+        //    }
+        //});
+
+
+
 
 
         // Adds a marker to the map and push to the array.
