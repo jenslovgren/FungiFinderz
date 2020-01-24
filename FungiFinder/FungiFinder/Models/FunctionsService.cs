@@ -78,6 +78,7 @@ namespace FungiFinder.Models
                     Rating = mushroom.Rating
                 });
             }
+            
             return resultList.ToArray();
         }
 
@@ -151,9 +152,10 @@ namespace FungiFinder.Models
             var predictor = mlContext.Model.CreatePredictionEngine<ImageData, ImagePrediction>(model);
             var prediction = predictor.Predict(imageData);
             //var result = context.Mushrooms.Where(m => m.Name == prediction.PredictedLabelValue).FirstOrDefault();
+            var result = context.Mushrooms.SingleOrDefault(m => m.Name.Replace(" ", string.Empty).ToLower() == prediction.PredictedLabelValue.ToLower())/*.Select(m => new FunctionMainResultPartialVM { Name = m.Name, EdibleOrPosinous = m.Edible, ProcentResult = prediction.Score.Max() * 100, UrlMatchedMushroom = m.ImageUrl }*/;
             context.LatestSearches.Add(new LatestSearches { Mushroom = ConvertFirstLetterToUpper(prediction.PredictedLabelValue), SearchDate = DateTime.Now, UserId = userManager.GetUserId(accessor.HttpContext.User) });
             context.SaveChanges();
-            return new FunctionMainResultPartialVM { Name = ConvertFirstLetterToUpper(prediction.PredictedLabelValue), ProcentResult = prediction.Score.Max() };
+            return new FunctionMainResultPartialVM { Name = ConvertFirstLetterToUpper(result.Name), ProcentResult = prediction.Score.Max() * 100, EdibleOrPosinous = result.Edible, UrlMatchedMushroom = result.ImageUrl, Info = result.Info };
             //Console.WriteLine($"Image: {Path.GetFileName(imageData.ImagePath)}                  predicted as: {prediction.PredictedLabelValue}                  with score: {prediction.Score.Max()} ");
         }
         private string ConvertFirstLetterToUpper(string stringToConvert)

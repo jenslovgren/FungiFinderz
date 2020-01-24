@@ -28,8 +28,14 @@ function getResult() {
     $.ajax({
         url: "Image/GetPartial/" + url,
         type: 'GET',
+        beforeSend: function () {
+            $("#searcher").show();
+        },
         success: function (result) {
             $("#resultHere").html(result)
+        },
+        complete: function () {
+            $("#searcher").hide();
         }
     })
 }

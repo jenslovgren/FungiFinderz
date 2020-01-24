@@ -141,10 +141,10 @@
     <Content Update="wwwroot\Images\blekTaggsvamp5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\blod-Champion1.jpg">
+    <Content Update="wwwroot\Images\blodchampinjon1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\blod-Champion2.jpg">
+    <Content Update="wwwroot\Images\blodchampinjon2.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\blodriska1.jpg">
@@ -207,13 +207,13 @@
     <Content Update="wwwroot\Images\blomkålssvamp5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\blåMusseron1.jpg">
+    <Content Update="wwwroot\Images\blåmusseron1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\blåMusseron2.jpg">
+    <Content Update="wwwroot\Images\blåmusseron2.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\blåMusseron3.jpg">
+    <Content Update="wwwroot\Images\blåmusseron3.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\bolmörtsskivling1.jpg">
@@ -231,16 +231,16 @@
     <Content Update="wwwroot\Images\bolmörtsskivling5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\brokKremla1.jpg">
+    <Content Update="wwwroot\Images\brokkremla1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\brokKremla2.jpg">
+    <Content Update="wwwroot\Images\brokkremla2.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\brokKremla3.jpg">
+    <Content Update="wwwroot\Images\brokkremla3.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\brokKremla4.jpg">
+    <Content Update="wwwroot\Images\brokkremla4.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\brunFlugsvamp1.jpg">
@@ -303,16 +303,16 @@
     <Content Update="wwwroot\Images\champinjon6.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\citronSlemskivling1.jpg">
+    <Content Update="wwwroot\Images\citronslemskivling1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\citronSlemskivling2.jpg">
+    <Content Update="wwwroot\Images\citronslemskivling2.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\citronSlemskivling3.jpg">
+    <Content Update="wwwroot\Images\citronslemskivling3.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\citronSlemskivling4.jpg">
+    <Content Update="wwwroot\Images\citronslemskivling4.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\desktop.ini">
@@ -378,19 +378,19 @@
     <Content Update="wwwroot\Images\ekmusseron5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\eksillKremla.jpg">
+    <Content Update="wwwroot\Images\eksillkremla1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\eksillKremla2.jpg">
+    <Content Update="wwwroot\Images\eksillkremla2.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\eksillKremla3.jpg">
+    <Content Update="wwwroot\Images\eksillkremla3.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\eksillKremla4.jpg">
+    <Content Update="wwwroot\Images\eksillkremla4.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\eksillKremla5.jpg">
+    <Content Update="wwwroot\Images\eksillkremla5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\eldspindling1.jpg">
@@ -486,7 +486,7 @@
     <Content Update="wwwroot\Images\fjälligGallmusseron5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\fjälligTaggsvamp.jpg">
+    <Content Update="wwwroot\Images\fjälligTaggsvamp1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\fjälligTaggsvamp2.jpg">
@@ -519,19 +519,19 @@
     <Content Update="wwwroot\Images\flugsvamptest.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\fläckKantarell.jpg">
+    <Content Update="wwwroot\Images\fläckkantarell1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\fläckKantarell2.jpg">
+    <Content Update="wwwroot\Images\fläckkantarell2.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\fläckKantarell3.jpg">
+    <Content Update="wwwroot\Images\fläckkantarell3.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\fläckKantarell4.jpg">
+    <Content Update="wwwroot\Images\fläckkantarell4.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\frostvaxskivling.jpg">
+    <Content Update="wwwroot\Images\frostvaxskivling4.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\frostvaxskivling1.jpg">
@@ -543,19 +543,19 @@
     <Content Update="wwwroot\Images\frostvaxskivling3.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\fårticka.jpg">
+    <Content Update="wwwroot\Images\fårticka3.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\fårticka2.jpg">
+    <Content Update="wwwroot\Images\fårticka1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\fårticka3.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\fårticka4.jpg">
+    <Content Update="wwwroot\Images\fårticka2.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\föränderligTofsskivling.jpg">
+    <Content Update="wwwroot\Images\föränderligTofsskivling1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\föränderligTofsskivling2.jpg">
@@ -675,28 +675,28 @@
     <Content Update="wwwroot\Images\gifttråding5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\goliatMuseron.jpg">
+    <Content Update="wwwroot\Images\goliatmusseron1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\goliatMuseron2.jpg">
+    <Content Update="wwwroot\Images\goliatmusseron2.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\goliatMuseron3.jpg">
+    <Content Update="wwwroot\Images\goliatmusseron3.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\goliatMuseron4.jpg">
+    <Content Update="wwwroot\Images\goliatmusseron4.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\grynSopp.jpg">
+    <Content Update="wwwroot\Images\grynsopp1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\grynSopp2.jpg">
+    <Content Update="wwwroot\Images\grynsopp2.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\grynSopp3.jpg">
+    <Content Update="wwwroot\Images\grynsopp3.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\grynSopp4.jpg">
+    <Content Update="wwwroot\Images\grynsopp4.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\gråBläcksvamp1.jpg">
@@ -714,7 +714,7 @@
     <Content Update="wwwroot\Images\gråBläcksvamp5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\grönfläckigVinriska.jpg">
+    <Content Update="wwwroot\Images\grönfläckigVinriska1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\grönfläckigVinriska2.jpg">
@@ -726,7 +726,7 @@
     <Content Update="wwwroot\Images\grönfläckigVinriska4.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\grönkremla.jpg">
+    <Content Update="wwwroot\Images\grönkremla1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\grönkremla2.jpg">
@@ -756,40 +756,40 @@
     <Content Update="wwwroot\Images\gulbandadSpindling5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\guldKremla.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Update="wwwroot\Images\guldkremla1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\guldKremla2.jpg">
+    <Content Update="wwwroot\Images\guldkremla6.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Images\guldkremla2.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\guldKremla3.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\guldKremla4.jpg">
+    <Content Update="wwwroot\Images\guldkremla4.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\guldKremla5.jpg">
+    <Content Update="wwwroot\Images\guldkremla5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\gulKremla.jpg">
+    <Content Update="wwwroot\Images\gulkremla1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\gulKremla2.jpg">
+    <Content Update="wwwroot\Images\gulkremla2.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\gulKremla3.jpg">
+    <Content Update="wwwroot\Images\gulkremla3.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\gulKremla4.jpg">
+    <Content Update="wwwroot\Images\gulkremla4.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\gulKremla5.jpg">
+    <Content Update="wwwroot\Images\gulkremla5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\gulLammticka.jpg">
+    <Content Update="wwwroot\Images\gulLammticka1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\gulLammticka2.jpg">
@@ -1989,19 +1989,19 @@
     <Content Update="wwwroot\Images\svartTrumpetsvamp9.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\svavelgulslöjskivling1.jpg">
+    <Content Update="wwwroot\Images\svavelgulSlöjskivling1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\svavelgulslöjskivling2.jpg">
+    <Content Update="wwwroot\Images\svavelgulSlöjskivling2.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\svavelgulslöjskivling3.jpg">
+    <Content Update="wwwroot\Images\svavelgulSlöjskivling3.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\svavelgulslöjskivling4.jpg">
+    <Content Update="wwwroot\Images\svavelgulSlöjskivling4.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\svavelgulslöjskivling5.jpg">
+    <Content Update="wwwroot\Images\svavelgulSlöjskivling5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\svavelmusseron1.jpg">
@@ -2638,6 +2638,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Images\Logos\" />
+    <Folder Include="wwwroot\Images\Gifs\" />
     <Folder Include="wwwroot\Images\Uploads\" />
     <Folder Include="wwwroot\Images\UserPics\" />
   </ItemGroup>
