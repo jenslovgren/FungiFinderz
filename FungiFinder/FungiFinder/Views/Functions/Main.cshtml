@@ -9,8 +9,11 @@
 }
 
 <br />
-<h4 class="text-center">Fungi Finder</h4>
+<h4 class="row container-fluid align-self-center justify-content-center">Fungi Finder</h4>
 <br />
+<div class="searcher row container-fluid align-self-center justify-content-center" id="searcher" style="display: none;">
+    <img src="~/Images/Gifs/SearchGif.gif" alt="Searching..." style="margin-left: 30px;" />
+</div>
 <div class="container-fluid align-self-center">
     <div class="justify-content-center align-self-center">
         <div id="resultHere"></div>
@@ -29,7 +32,7 @@
                 </div>
                 @*<input id="picture" asp-for="ImgToSearch" type="file" onchange="uploadFile('picture')" class="btn btn-outline-dark" />*@
                 <div class="form-group row justify-content-center">
-                    <input type="button" onclick="getResult()" value="Sök" class="btn btn-outline-dark" />
+                    <input type="button" id="btn_search" onclick="getResult()" value="Sök" class="btn btn-outline-dark" />
                 </div>
             </div>
         </div>
