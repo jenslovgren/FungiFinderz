@@ -378,19 +378,19 @@
     <Content Update="wwwroot\Images\ekmusseron5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\eksillKremla1.jpg">
+    <Content Update="wwwroot\Images\eksillkremla1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\eksillKremla2.jpg">
+    <Content Update="wwwroot\Images\eksillkremla2.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\eksillKremla3.jpg">
+    <Content Update="wwwroot\Images\eksillkremla3.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\eksillKremla4.jpg">
+    <Content Update="wwwroot\Images\eksillkremla4.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\eksillKremla5.jpg">
+    <Content Update="wwwroot\Images\eksillkremla5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\eldspindling1.jpg">
