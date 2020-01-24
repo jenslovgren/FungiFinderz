@@ -543,16 +543,16 @@
     <Content Update="wwwroot\Images\frostvaxskivling3.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\fårticka1.jpg">
+    <Content Update="wwwroot\Images\fårticka3.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\fårticka2.jpg">
+    <Content Update="wwwroot\Images\fårticka1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\fårticka3.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Images\fårticka4.jpg">
+    <Content Update="wwwroot\Images\fårticka2.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\föränderligTofsskivling1.jpg">

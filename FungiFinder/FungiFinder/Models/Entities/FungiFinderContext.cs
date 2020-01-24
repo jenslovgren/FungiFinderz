@@ -25,6 +25,7 @@ namespace FungiFinder.Models.Entities
         public virtual DbSet<LatestSearches> LatestSearches { get; set; }
         public virtual DbSet<Mushrooms> Mushrooms { get; set; }
 
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

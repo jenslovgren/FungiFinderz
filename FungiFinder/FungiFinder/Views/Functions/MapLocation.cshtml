@@ -44,7 +44,7 @@
 <div class="container-fluid align-self-center">
     <div class="row justify-content-center align-self-center">
         <div class="form-group">
-            <button onclick="getGoordinates();" class="btn btn2-info btn-lg btn-block border">Spara Nuvaranda Position</button>
+            <button onclick="getCoordinates();" class="btn btn2-info btn-lg btn-block border">Spara Nuvaranda Position</button>
         </div>
         <div class="form-group">
             <button onclick="clearMarkers();" class="btn btn2-info btn-lg btn-block border">Göm Markeringar</button>
@@ -81,7 +81,7 @@
 
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
-                    var pos = {
+                    /*var*/ pos = {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
                     };
@@ -116,32 +116,35 @@
         }
 
 
-        //function getCoordinates(pos) {
-        //    console.log('hej');
-        //    lat = $("#lat").val();
-        //    lng = $("#lng").val();
+        function getCoordinates() {
+            console.log(pos.lat);
+             
+            let lat1 = $("#lat").val();
+            let lng1 = $("#lng").val();
+            console.log(lat1);
+            console.log(lng1);
 
-        //    $.ajax({
+            $.ajax({
 
-        //        type: "POST",
-        //        url: "/Map/longlat",
-        //        data: '{ param: "value"}',
-        //        contentType: "application/json",
-        //        dataType: JSON.stringify({ lat: latitude, lng: longitude })
-        //            success: function (response) {
-        //            alert(response.responseText);
-        //        },
-        //        failure: function (response) {
-        //            alert(response.responseText);
-        //        },
-        //        error: function (response) {
-        //            alert(response.responseText);
-        //        }
+                type: "POST",
+                url: "/Map/longlat",
+                data: '{ param: "value"}',
+                contentType: "application/json",
+                dataType: JSON.stringify({ latitude: pos.lat, longitude: pos.lng })
+                //dataType: JSON.stringify({ marker: mark})
 
+                    success: function (response) {
+                    alert(response.responseText);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
 
-        //    });
-
-        //}
+            });
+        }
 
 
         //console.log(pos);

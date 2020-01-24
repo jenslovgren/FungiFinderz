@@ -98,12 +98,10 @@ namespace FungiFinder.Controllers
 
         [Route("Map/longlat")]
         [HttpGet]
-        public IActionResult MapLocation(/*string name, */long lng, long lat)
+        public async Task<IActionResult> MapLocation([FromBody] FunctionMapVM vm)
         {
-            //Ska förmodligen in som parameter för action senare.
-            //[FromBody] FunctionMapVM marker
-
-            service.SaveLocation(lng, lat);
+       
+            await service.SaveLocation(vm);
 
             //if (!result.Succeeded)
             //{
@@ -113,15 +111,8 @@ namespace FungiFinder.Controllers
             //}
             return Ok();
 
-            FunctionMapVM marker = new FunctionMapVM
-            {
-                //LocationName = name,
-                Longitude = lng,
-                Latitude = lat,
-
-            };
-            //var input = longlat;
-            return Json(marker);
+      
+            //return Json();
         }
     }
 }

@@ -71,7 +71,6 @@ namespace FungiFinder.Models
                 Username = user.UserName,
                 Email = user.Email
                
-                //Password = user.PasswordHash,
 
             };
 
