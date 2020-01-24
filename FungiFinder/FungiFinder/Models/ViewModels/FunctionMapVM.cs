@@ -11,7 +11,7 @@ namespace FungiFinder.Models.ViewModels
     {
         //public int ID { get; set; }
         //[Display(Name = "Ange ett namn för ditt svampställe:")]
-        //public string LocationName { get; set; }
+        public string LocationName { get; set; }
         public long Latitude { get; set; }
         public long Longitude { get; set; }
 
