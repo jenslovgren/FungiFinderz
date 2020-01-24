@@ -5,8 +5,8 @@
         /* Always set the map height explicitly to define the size of the div
         * element that contains the map. */
         #map {
-            height: 600px;
-            width: 1000px;
+            height: 650px;
+            width: 840px;
         }
         /* Optional: Makes the sample page fill the window. */
         html, body {
@@ -31,136 +31,141 @@
     </style>
 }
 <br />
-<div class="container-fluid align-self-center">
-    <div class="row justify-content-center align-self-center">
-        <div class="form-group">
-            <button onclick="clearMarkers();" class="btn btn-info btn-lg btn-block border">Göm Markeringar</button>
-        </div>
-        <div class="form-group">
-            <button onclick="showMarkers();" class="btn btn-info btn-lg btn-block border">Visa Markeringar</button>
-        </div>
-        <div class="form-group">
-            <button onclick="deleteMarkers();" class="btn btn-info btn-lg btn-block border">Ta Bort Markeringar</button>
-        </div>
-        <div class="form-group">
-            <button onclick="getGoordinates();" class="btn btn-info btn-lg btn-block border">Spara Nuvaranda Position</button>
-        </div>
-    </div>
-</div>
 <br />
-<div class="container-fluid align-self-center shadow-sm">
+
+<div class="container-fluid align-self-center">
     <div class="row justify-content-center align-self-center">
         <div id="map" class="row justify-content-center align-self-center"></div>
     </div>
 </div>
 
+<br />
+
+<div class="container-fluid align-self-center">
+    <div class="row justify-content-center align-self-center">
+        <div class="form-group">
+            <button onclick="getGoordinates();" class="btn btn2-info btn-lg btn-block border">Spara Nuvaranda Position</button>
+        </div>
+        <div class="form-group">
+            <button onclick="clearMarkers();" class="btn btn2-info btn-lg btn-block border">Göm Markeringar</button>
+        </div>
+        <div class="form-group">
+            <button onclick="showMarkers();" class="btn btn2-info btn-lg btn-block border">Visa Markeringar</button>
+        </div>
+        <div class="form-group">
+            <button onclick="deleteMarkers();" class="btn btn2-info btn-lg btn-block border">Ta Bort Markeringar</button>
+        </div>
+    </div>
+</div>
+<br />
 
 
 
-        @section scripts{
-            <script>
-                var map, infoWindow;
-                var markers = [];
-                var pos;
+
+@section scripts{
+    <script>
+        var map, infoWindow;
+        var markers = [];
+        var pos;
 
 
-                function initMap() {
+        function initMap() {
 
-                    map = new google.maps.Map(document.getElementById('map'), {
-                        center: { lat: 62.0236528, lng: 15.119680 },
-                        zoom: 6,
-                    });
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 62.0236528, lng: 15.119680 },
+                zoom: 6,
+            });
 
-                    infoWindow = new google.maps.InfoWindow;
-
-
-                    if (navigator.geolocation) {
-                        navigator.geolocation.getCurrentPosition(function (position) {
-                            var pos = {
-                                lat: position.coords.latitude,
-                                lng: position.coords.longitude
-                            };
-                            infoWindow.setPosition(pos);
-                            infoWindow.setContent('Location found.');
-                            infoWindow.open(map);
-                            map.setCenter(pos);
-                            map.setZoom(15);
-                        }, function () {
-                            handleLocationError(true, infoWindow, map.getCenter());
-                        });
-                    } else {
-                        // Browser doesn't support Geolocation
-                        handleLocationError(false, infoWindow, map.getCenter());
-                    }
+            infoWindow = new google.maps.InfoWindow;
 
 
-                    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-                        infoWindow.setPosition(pos);
-                        infoWindow.setContent(browserHasGeolocation ?
-                            'Error: The Geolocation service failed.' :
-                            'Error: Your browser doesn\'t support geolocation.');
-                        infoWindow.open(map);
-                    }
-
-                    // This event listener will call addMarker() when the map is clicked.
-                    map.addListener('click', function (event) {
-                        addMarker(event.latLng);
-                    });
-
-                    // Adds a marker at the center of the map.
-                }
-
-
-                function getCoordinates(pos) {
-                    console.log(pos);
-                    var url = `/Map/${kos}`
-                    $.ajax({
-                        url: url,
-                        type: "GET",
-                        success: function (result) {
-                            $("#divResult").html(result);
-                        }
-                    });
-                }
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent('Location found.');
+                    infoWindow.open(map);
+                    map.setCenter(pos);
+                    map.setZoom(15);
+                }, function () {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
 
 
-                // Adds a marker to the map and push to the array.
-                function addMarker(location) {
-                    var marker = new google.maps.Marker({
-                        position: location,
-                        map: map
-                    });
-                    markers.push(marker);
-                }
+            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                infoWindow.setPosition(pos);
+                infoWindow.setContent(browserHasGeolocation ?
+                    'Error: The Geolocation service failed.' :
+                    'Error: Your browser doesn\'t support geolocation.');
+                infoWindow.open(map);
+            }
 
-                // Sets the map on all markers in the array.
-                function setMapOnAll(map) {
-                    for (var i = 0; i < markers.length; i++) {
-                        markers[i].setMap(map);
-                    }
-                }
+            // This event listener will call addMarker() when the map is clicked.
+            map.addListener('click', function (event) {
+                addMarker(event.latLng);
+            });
 
-                // Removes the markers from the map, but keeps them in the array.
-                function clearMarkers() {
-                    setMapOnAll(null);
-                }
-
-                // Shows any markers currently in the array.
-                function showMarkers() {
-                    setMapOnAll(map);
-                }
-
-                // Deletes all markers in the array by removing references to them.
-                function deleteMarkers() {
-                    clearMarkers();
-                    markers = [];
-                }
-
-            </script>
-
-            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb6PsUEvawrKCwb3qG6myykc9ORaMX83c&callback=initMap"></script>
-
-
-
+            // Adds a marker at the center of the map.
         }
+
+
+        function getCoordinates(pos) {
+            console.log(pos);
+            var url = `/Map/${kos}`
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function (result) {
+                    $("#divResult").html(result);
+                }
+            });
+        }
+
+
+        // Adds a marker to the map and push to the array.
+        function addMarker(location) {
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+            markers.push(marker);
+        }
+
+        // Sets the map on all markers in the array.
+        function setMapOnAll(map) {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(map);
+            }
+        }
+
+        // Removes the markers from the map, but keeps them in the array.
+        function clearMarkers() {
+            setMapOnAll(null);
+        }
+
+        // Shows any markers currently in the array.
+        function showMarkers() {
+            setMapOnAll(map);
+        }
+
+        // Deletes all markers in the array by removing references to them.
+        function deleteMarkers() {
+            clearMarkers();
+            markers = [];
+        }
+
+    </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb6PsUEvawrKCwb3qG6myykc9ORaMX83c&callback=initMap"></script>
+
+
+
+}
 
