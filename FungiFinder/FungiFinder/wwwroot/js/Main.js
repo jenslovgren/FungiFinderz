@@ -1,6 +1,7 @@
 ﻿function uploadFile(inputId) {
     let fileUpload = $("#" + inputId).get(0);
     let files = fileUpload.files;
+    console.log(files);
     let formData = new FormData();
     formData.append('file', files[0]);
 
@@ -22,7 +23,7 @@ function getResult() {
     let value = $("#picture").val().toString();
     let temp = value.split("\\");
     let url = temp[temp.length - 1];
-  
+    
     
     $.ajax({
         url: "Image/GetPartial/" + url,
@@ -32,4 +33,6 @@ function getResult() {
         }
     })
 }
+
+
 

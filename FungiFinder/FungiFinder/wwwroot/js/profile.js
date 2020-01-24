@@ -40,6 +40,54 @@ function editPassword() {
     }
 }
 
+function alternativePicture() {
+    document.getElementById("profilePic").src = '../Images/UserPics/happyShroom.png';
+
+
+}
+
+function changeProfilePic(inputId) {
+    let fileUpload = $("#" + inputId).get(0);
+    console.log(fileUpload);
+    let files = fileUpload.files;
+    console.log(files);
+    let formData = new FormData();
+    console.log(formData);
+   
+  
+    formData.append('file', files[0]);
+    console.log(formData);
+    $.ajax({
+        url: '/profile/changepicture',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (result) {
+            console.log('yes');
+            $("#profilePic").src("~/Images/UserPics/" + result);
+        }
+    })
+}
+
+function uploadFile(inputId) {
+    let fileUpload = $("#" + inputId).get(0);
+    let files = fileUpload.files;
+    let formData = new FormData();
+    formData.append('file', files[0]);
+
+    $.ajax({
+        url: "profile/changepicture",
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (result) {
+            $("#profilePic").src("~/Images/UserPics/" + result);
+        }
+    })
+
+}
 
 
 
