@@ -96,12 +96,32 @@ namespace FungiFinder.Controllers
             return View();
         }
 
-        [Route("Map/{longlat}")]
+        [Route("Map/longlat")]
         [HttpGet]
-        public IActionResult MapLocation(string longlat)
+        public IActionResult MapLocation(/*string name, */long lng, long lat)
         {
-            var input = longlat;
-            return View();
+            //Ska förmodligen in som parameter för action senare.
+            //[FromBody] FunctionMapVM marker
+
+            service.SaveLocation(lng, lat);
+
+            //if (!result.Succeeded)
+            //{
+            //    //return BadRequest(result.Errors.First().Description);
+            //    return BadRequest();
+
+            //}
+            return Ok();
+
+            FunctionMapVM marker = new FunctionMapVM
+            {
+                //LocationName = name,
+                Longitude = lng,
+                Latitude = lat,
+
+            };
+            //var input = longlat;
+            return Json(marker);
         }
     }
 }
