@@ -29,22 +29,7 @@ namespace FungiFinder.Controllers
         {
             return View();
         }
-        //[HttpPost]
-        //[Route("main")]
-        //public IActionResult Main(FunctionMainVM vm)
-        //{
-        //    if(vm.ImgToSearch?.Length > 0)
-        //    {
-        //        var filePath = Path.Combine(hostEnvironment.WebRootPath, "Images/Uploads", vm.ImgToSearch.FileName);
-
-
-        //    }
-
-        //    var result = service.PredictImage(vm.ImgToSearch.FileName);
-
-
-        //    return PartialView("_MainResultPartial", result);
-        //}
+       
 
         [HttpGet]
         [Route("library")]

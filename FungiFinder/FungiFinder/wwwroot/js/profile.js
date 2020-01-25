@@ -48,15 +48,15 @@ function alternativePicture() {
 
 function changeProfilePic(inputId) {
     let fileUpload = $("#" + inputId).get(0);
-    console.log(fileUpload);
+    //console.log(fileUpload);
     let files = fileUpload.files;
-    console.log(files);
+    //console.log(files);
     let formData = new FormData();
-    console.log(formData);
+    //console.log(formData);
    
   
-    formData.append('file', files[0]);
-    console.log(formData);
+    formData.append('profilePic', files[0]);
+    //console.log(formData);
     $.ajax({
         url: '/profile/changepicture',
         type: 'POST',
@@ -64,8 +64,8 @@ function changeProfilePic(inputId) {
         processData: false,
         contentType: false,
         success: function (result) {
-            console.log('yes');
-            $("#profilePic").src("~/Images/UserPics/" + result);
+            console.log(result);
+            $("#profilePic").attr("src", "/Images/UserPics/" + result);
         }
     })
 }
