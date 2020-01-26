@@ -17,7 +17,13 @@
                     <br />
                     @if (@shroom.Edible)
                     {
-                        <p>Svampen är ätbar och anses ha en smak på @shroom.Rating/5 poäng</p>
+                        <p>Svampen är ätbar och anses ha en smak på </p>
+                        <div style="background-color: teal">
+                            @for (int i = 0; i < shroom.Rating; i++)
+                            {
+                                <img src="~/Images/Logos/TranspIcon.png" style="height: 30px" />
+                            }
+                        </div>
                     }
                     @if (@shroom.Edible == false)
                     {
