@@ -52,8 +52,7 @@ namespace FungiFinder.Models
                
             _predictSingleImage = Path.Combine(_uploadedImages, urlInput);
 
-            var ret = ClassifySingleImage(mlContext, model);
-            return ret;
+            return ClassifySingleImage(mlContext, model);
         }
 
         private struct InceptionSettings
@@ -137,7 +136,7 @@ namespace FungiFinder.Models
             IDataView trainingData = mlContext.Data.LoadFromTextFile<ImageData>(path: _trainTagsTsv, hasHeader: false);
         
             ITransformer modelReturn = pipeline.Fit(trainingData);
-            mlContext.Model.Save(modelReturn, trainingData.Schema, "model.zip");
+            mlContext.Model.Save(modelReturn, trainingData.Schema, @"wwwroot\tensorflowModel\model.zip");
 
             //IDataView testData = mlContext.Data.LoadFromTextFile<ImageData>(path: _testTagsTsv, hasHeader: false);
             //IDataView predictions = model.Transform(testData);
