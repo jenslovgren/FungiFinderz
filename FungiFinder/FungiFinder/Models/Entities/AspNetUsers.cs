@@ -12,6 +12,7 @@ namespace FungiFinder.Models.Entities
             AspNetUserRoles = new HashSet<AspNetUserRoles>();
             AspNetUserTokens = new HashSet<AspNetUserTokens>();
             LatestSearches = new HashSet<LatestSearches>();
+            MapLocation = new HashSet<MapLocation>();
         }
 
         public string Id { get; set; }
@@ -39,5 +40,6 @@ namespace FungiFinder.Models.Entities
         public virtual ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual ICollection<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual ICollection<LatestSearches> LatestSearches { get; set; }
+        public virtual ICollection<MapLocation> MapLocation { get; set; }
     }
 }
