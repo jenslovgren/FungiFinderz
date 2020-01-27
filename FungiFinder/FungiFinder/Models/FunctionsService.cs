@@ -33,7 +33,7 @@ namespace FungiFinder.Models
         static readonly string _imagesFolder = Path.Combine(_assetsPath, "Images");
         static readonly string _TsvFolder = Path.Combine(_assetsPath, "Tsv");
         static readonly string _uploadedImages = Path.Combine(_assetsPath, "Images/Uploads");
-        static readonly string _trainTagsTsv = Path.Combine(_TsvFolder, "tags2.tsv");
+        static readonly string _trainTagsTsv = Path.Combine(_TsvFolder, "tags.tsv");
         static readonly string _testTagsTsv = Path.Combine(_TsvFolder, "test-tags.tsv");
         static string _predictSingleImage = Path.Combine(_imagesFolder, "startup.jpg");
         static readonly string _inceptionTensorFlowModel = Path.Combine(_assetsPath, "inception", "tensorflow_inception_graph.pb");
