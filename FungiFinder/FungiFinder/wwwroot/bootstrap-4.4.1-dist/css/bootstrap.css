@@ -478,6 +478,11 @@ mark,
   height: auto;
 }
 
+.img-fluidLogo {
+    max-width: 15%;
+    height: auto;
+}
+
 .img-thumbnail {
   padding: 0.25rem;
   background-color: #fff;
