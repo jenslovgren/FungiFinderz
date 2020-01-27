@@ -23,8 +23,8 @@ namespace FungiFinder.Models.Entities
         public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<LatestSearches> LatestSearches { get; set; }
+        public virtual DbSet<MapLocation> MapLocation { get; set; }
         public virtual DbSet<Mushrooms> Mushrooms { get; set; }
-
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -129,7 +129,7 @@ namespace FungiFinder.Models.Entities
                 entity.HasOne(d => d.Mushroom)
                     .WithMany(p => p.AspNetUsers)
                     .HasForeignKey(d => d.MushroomId)
-                    .HasConstraintName("FK__AspNetUse__Mushr__37A5467C");
+                    .HasConstraintName("FK__AspNetUse__Mushr__4BAC3F29");
             });
 
             modelBuilder.Entity<LatestSearches>(entity =>
@@ -149,6 +149,24 @@ namespace FungiFinder.Models.Entities
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__LatestSea__UserI__398D8EEE");
+            });
+
+            modelBuilder.Entity<MapLocation>(entity =>
+            {
+                entity.Property(e => e.Latitude).HasColumnType("decimal(9, 6)");
+
+                entity.Property(e => e.LocationName)
+                    .HasMaxLength(64)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Longitude).HasColumnType("decimal(9, 6)");
+
+                entity.Property(e => e.UserId).HasMaxLength(450);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.MapLocation)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK__MapLocati__UserI__4CA06362");
             });
 
             modelBuilder.Entity<Mushrooms>(entity =>
