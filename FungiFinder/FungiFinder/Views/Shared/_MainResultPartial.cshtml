@@ -23,7 +23,7 @@
         <div class="card-body">
             <h5 class="card-title">@Model.Name</h5>
             <h6 class="card-title">@Model.LatinName</h6>
-            <h7 class="card-text">@Model.ProcentResult %</h7>
+            <h7 class="card-text">@(@Model.ProcentResult.ToString().Remove(5)) %</h7>
             @if (@Model.EdibleOrPosinous)
             {
                 @for (int i = 0; i < 5; i++)
@@ -81,6 +81,5 @@
             width: resWidth
         })
     }
-
 </script>
 
