@@ -37,15 +37,20 @@ namespace FungiFinder.Models
         static readonly string _testTagsTsv = Path.Combine(_TsvFolder, "test-tags.tsv");
         static string _predictSingleImage = Path.Combine(_imagesFolder, "startup.jpg");
         static readonly string _inceptionTensorFlowModel = Path.Combine(_assetsPath, "inception", "tensorflow_inception_graph.pb");
-
+        static ITransformer model;
         public FunctionMainResultPartialVM PredictImage(string urlInput)
         {
             MLContext mlContext = new MLContext();
-            ITransformer model = GenerateModel(mlContext);
+            if (model == null)
+            {
+                DataViewSchema temp;
+                model = mlContext.Model.Load(@"wwwroot\tensorflowModel\model.zip", out temp);
+
+                //model = GenerateModel(mlContext);
+            }
             _predictSingleImage = Path.Combine(_uploadedImages, urlInput);
 
-            var ret = ClassifySingleImage(mlContext, model);
-            return ret;
+            return ClassifySingleImage(mlContext, model);
         }
 
         private struct InceptionSettings
@@ -78,7 +83,7 @@ namespace FungiFinder.Models
                     Rating = mushroom.Rating
                 });
             }
-            
+
             return resultList.ToArray();
         }
 
@@ -119,11 +124,13 @@ namespace FungiFinder.Models
 
             IDataView trainingData = mlContext.Data.LoadFromTextFile<ImageData>(path: _trainTagsTsv, hasHeader: false);
 
-            ITransformer model = pipeline.Fit(trainingData);
+            ITransformer modelReturn = pipeline.Fit(trainingData);
 
-            IDataView testData = mlContext.Data.LoadFromTextFile<ImageData>(path: _testTagsTsv, hasHeader: false);
-            IDataView predictions = model.Transform(testData);
-            
+            mlContext.Model.Save(modelReturn, trainingData.Schema, @"wwwroot\tensorflowModel\model.zip");
+
+            //IDataView testData = mlContext.Data.LoadFromTextFile<ImageData>(path: _testTagsTsv, hasHeader: false);
+            //IDataView predictions = model.Transform(testData);
+
 
             // Create an IEnumerable for the predictions for displaying results
             //IEnumerable<ImagePrediction> imagePredictionData = mlContext.Data.CreateEnumerable<ImagePrediction>(predictions, true);
@@ -137,7 +144,7 @@ namespace FungiFinder.Models
             ////Console.WriteLine($"LogLoss is: {metrics.LogLoss}");
             ////Console.WriteLine($"PerClassLogLoss is: {String.Join(" , ", metrics.PerClassLogLoss.Select(c => c.ToString()))}");
 
-            return model;
+            return modelReturn;
         }
         FunctionMainResultPartialVM ClassifySingleImage(MLContext mlContext, ITransformer model)
         {
