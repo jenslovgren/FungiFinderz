@@ -33,7 +33,7 @@ namespace FungiFinder.Models
         static readonly string _imagesFolder = Path.Combine(_assetsPath, "Images");
         static readonly string _TsvFolder = Path.Combine(_assetsPath, "Tsv");
         static readonly string _uploadedImages = Path.Combine(_assetsPath, "Images/Uploads");
-        static readonly string _trainTagsTsv = Path.Combine(_TsvFolder, "tags.tsv");
+        static readonly string _trainTagsTsv = Path.Combine(_TsvFolder, "tags2.tsv");
         static readonly string _testTagsTsv = Path.Combine(_TsvFolder, "test-tags.tsv");
         static string _predictSingleImage = Path.Combine(_imagesFolder, "startup.jpg");
         static readonly string _inceptionTensorFlowModel = Path.Combine(_assetsPath, "inception", "tensorflow_inception_graph.pb");
@@ -99,18 +99,9 @@ namespace FungiFinder.Models
 
         internal async Task SaveLocation(FunctionMapVM vm)
         {
-           
-
             var user = await userManager.GetUserAsync(accessor.HttpContext.User);
             context.MapLocation.Add(new MapLocation { UserId = user.Id, LocationName = vm.LocationName, Latitude = vm.Latitude, Longitude = vm.Longitude });
             context.SaveChanges();
-
-
-            
-
-
-
-
         }
 
         private ITransformer GenerateModel(MLContext mlContext)
@@ -135,8 +126,8 @@ namespace FungiFinder.Models
             
 
             // Create an IEnumerable for the predictions for displaying results
-            IEnumerable<ImagePrediction> imagePredictionData = mlContext.Data.CreateEnumerable<ImagePrediction>(predictions, true);
-            DisplayResults(imagePredictionData);
+            //IEnumerable<ImagePrediction> imagePredictionData = mlContext.Data.CreateEnumerable<ImagePrediction>(predictions, true);
+            //DisplayResults(imagePredictionData);
 
             //MulticlassClassificationMetrics metrics =
             //mlContext.MulticlassClassification.Evaluate(predictions,
