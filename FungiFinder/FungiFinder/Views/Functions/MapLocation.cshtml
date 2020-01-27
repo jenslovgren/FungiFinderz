@@ -1,5 +1,5 @@
 ﻿@model FungiFinder.Models.ViewModels.FunctionMapVM
-@*@model FunctionMapVM[]*@
+@*@model FunctionsMapLocationsVM[]*@
 
 @section styles{
     <style>
@@ -162,7 +162,15 @@
         // Adds a marker to the map and push to the array.
         function addMarker(location) {
 
-            
+            @*var myLatlng = new google.maps.LatLng(@Model.Latitude, @Model.Longitude);
+
+             var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map
+            });
+            markers.push(marker);*@
+
+            //orginal
             var marker = new google.maps.Marker({
                 position: location,
                 map: map

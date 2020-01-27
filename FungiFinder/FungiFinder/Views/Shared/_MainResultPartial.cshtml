@@ -18,33 +18,34 @@
 </style>
 
 <div class="justify-content-center align-self-center">
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 30rem;">
         <img class="card-img-top" src="~/Images/@Model.UrlMatchedMushroom" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">@Model.Name</h5>
             <h6 class="card-title">@Model.LatinName</h6>
-            <h7 class="card-text">@Model.ProcentResult %</h7>
-            @if (@Model.EdibleOrPosinous)
+            @*<h6 class="card-text">@Model.ProcentResult %</h6>*@
+            <br />
+            @if (@Model.Edible)
             {
-                @for (int i = 0; i < 5; i++)
-                {
-                    if (i < Model.Rating)
+                <div>
+                    @for (int i = 0; i < 5; i++)
                     {
-                        <img src="~/Images/Logos/TranspIconBlack.png" style="height: 30px" />
+                        if (i < Model.Rating)
+                        {
+                            <img src="~/Images/Logos/TranspIconBlack.png" style="height: 30px" />
+                        }
+                        else
+                        {
+                            <img src="~/Images/Logos/TranspIconGrey.png" style="height: 30px" />
+                        }
                     }
-                    else
-                    {
-                        <img src="~/Images/Logos/TranspIconGrey.png" style="height: 30px" />
-                    }
-                }
+                </div>
             }
             else
             {
                 <p><img src="~/Images/Logos/PoisionIcon.png" style="height: 35px" /> Svampen är giftig!  </p>
             }
-
-
-
+            <br />
             <p class="card-text">@Model.Info</p>
             <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>

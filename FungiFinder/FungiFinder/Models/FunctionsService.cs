@@ -33,7 +33,7 @@ namespace FungiFinder.Models
         static readonly string _imagesFolder = Path.Combine(_assetsPath, "Images");
         static readonly string _TsvFolder = Path.Combine(_assetsPath, "Tsv");
         static readonly string _uploadedImages = Path.Combine(_assetsPath, "Images/Uploads");
-        static readonly string _trainTagsTsv = Path.Combine(_TsvFolder, "tags2.tsv");
+        static readonly string _trainTagsTsv = Path.Combine(_TsvFolder, "tags.tsv");
         static readonly string _testTagsTsv = Path.Combine(_TsvFolder, "test-tags.tsv");
         static string _predictSingleImage = Path.Combine(_imagesFolder, "startup.jpg");
         static readonly string _inceptionTensorFlowModel = Path.Combine(_assetsPath, "inception", "tensorflow_inception_graph.pb");
@@ -82,22 +82,16 @@ namespace FungiFinder.Models
             return resultList.ToArray();
         }
 
-        internal async Task<AccountProfileVM> GetUserLocations()
+        internal async Task<FunctionsMapLocationsVM[]> GetUserLocations()
         {
             var user = await userManager.GetUserAsync(accessor.HttpContext.User);
+            var vm = context.MapLocation.Where(u => u.UserId == user.Id)
+                .Select(o => new FunctionsMapLocationsVM
+                {
+                    Longitude = o.Longitude,
+                    Latitude = o.Latitude,
 
-            AccountProfileVM vm = new AccountProfileVM();
-
-
-            
-
-            vm.MapLocation = context.MapLocation
-                .Where(o => o.UserId == userManager
-                .GetUserId(accessor.HttpContext.User))
-                .Select(o => new FunctionMapVM { LocationName = o.LocationName, Latitude = o.Latitude, Longitude = o.Longitude })
-                //.OrderBy(o => o.SearchDate)
-                .Take(5)
-                .ToArray();
+                }).ToArray();
 
             return vm;
 
@@ -105,18 +99,9 @@ namespace FungiFinder.Models
 
         internal async Task SaveLocation(FunctionMapVM vm)
         {
-           
-
             var user = await userManager.GetUserAsync(accessor.HttpContext.User);
             context.MapLocation.Add(new MapLocation { UserId = user.Id, LocationName = vm.LocationName, Latitude = vm.Latitude, Longitude = vm.Longitude });
             context.SaveChanges();
-
-
-            
-
-
-
-
         }
 
         private ITransformer GenerateModel(MLContext mlContext)
@@ -141,8 +126,8 @@ namespace FungiFinder.Models
             
 
             // Create an IEnumerable for the predictions for displaying results
-            IEnumerable<ImagePrediction> imagePredictionData = mlContext.Data.CreateEnumerable<ImagePrediction>(predictions, true);
-            DisplayResults(imagePredictionData);
+            //IEnumerable<ImagePrediction> imagePredictionData = mlContext.Data.CreateEnumerable<ImagePrediction>(predictions, true);
+            //DisplayResults(imagePredictionData);
 
             //MulticlassClassificationMetrics metrics =
             //mlContext.MulticlassClassification.Evaluate(predictions,
@@ -167,7 +152,7 @@ namespace FungiFinder.Models
             var result = context.Mushrooms.SingleOrDefault(m => m.Name.Replace(" ", string.Empty).ToLower() == prediction.PredictedLabelValue.ToLower())/*.Select(m => new FunctionMainResultPartialVM { Name = m.Name, EdibleOrPosinous = m.Edible, ProcentResult = prediction.Score.Max() * 100, UrlMatchedMushroom = m.ImageUrl }*/;
             context.LatestSearches.Add(new LatestSearches { Mushroom = ConvertFirstLetterToUpper(prediction.PredictedLabelValue), SearchDate = DateTime.Now, UserId = userManager.GetUserId(accessor.HttpContext.User) });
             context.SaveChanges();
-            return new FunctionMainResultPartialVM { Name = ConvertFirstLetterToUpper(result.Name), ProcentResult = prediction.Score.Max() * 100, EdibleOrPosinous = result.Edible, UrlMatchedMushroom = result.ImageUrl, Info = result.Info, LatinName = result.LatinName, Rating = (int)result.Rating };
+            return new FunctionMainResultPartialVM { Name = ConvertFirstLetterToUpper(result.Name), ProcentResult = prediction.Score.Max() * 100, Edible = result.Edible, UrlMatchedMushroom = result.ImageUrl, Info = result.Info, LatinName = result.LatinName, Rating = (int)result.Rating };
             //Console.WriteLine($"Image: {Path.GetFileName(imageData.ImagePath)}                  predicted as: {prediction.PredictedLabelValue}                  with score: {prediction.Score.Max()} ");
         }
         private string ConvertFirstLetterToUpper(string stringToConvert)
