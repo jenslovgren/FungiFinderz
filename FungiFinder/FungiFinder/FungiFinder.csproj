@@ -2049,7 +2049,7 @@
     <Content Update="wwwroot\Images\såpmusseron5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Tsv\tags.tsv">
+    <Content Update="wwwroot\Tsv\tagsTest.tsv">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\tegelkremla1.jpg">
