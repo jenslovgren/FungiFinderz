@@ -17,11 +17,26 @@
                     <br />
                     @if (@shroom.Edible)
                     {
-                        <p>Svampen är ätbar och smakar @shroom.Rating/5</p>
+                        <p>Svampen är ätbar och anses ha en smak på </p>
+                        <div>
+                            @for (int i = 0; i < 5; i++)
+                            {
+                                if (i < @shroom.Rating)
+                                {
+                                    <img src="~/Images/Logos/TranspIconBlack.png" style="height: 30px" />
+                                }
+                                else
+                                {
+                                    <img src="~/Images/Logos/TranspIconGrey.png" style="height: 30px" />
+                                }
+
+                            }
+                        </div>
                     }
                     @if (@shroom.Edible == false)
                     {
-                        <p>Svempen är giftig!</p>
+                        <p><img src="~/Images/Logos/PoisionIcon.png" style="height: 35px" />  Svampen är giftig!  </p>
+
                     }
 
                 </div>

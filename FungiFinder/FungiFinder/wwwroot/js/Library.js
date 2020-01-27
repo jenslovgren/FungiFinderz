@@ -1,7 +1,7 @@
 ﻿function getHtml() {
     var searchQuery = $("#searchTextbox").val();
     console.log(searchQuery);
-    if (searchQuery == "") {
+    if (searchQuery == "" || searchQuery == null) {
         searchQuery = "emptySearchQuery"
     }
     console.log(searchQuery);

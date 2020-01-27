@@ -21,20 +21,20 @@ namespace FungiFinder.Models
         private readonly UserManager<MyIdentityUser> userManager;
         private readonly IHttpContextAccessor accessor;
 
+
         public FunctionsService(FungiFinderContext context, UserManager<MyIdentityUser> userManager, IHttpContextAccessor accessor)
         {
             //Hejsan från Jens
             this.context = context;
             this.userManager = userManager;
-            this.accessor = accessor;
+            this.accessor = accessor; // hej
         }
 
-        static IDataView trainingData;
         static readonly string _assetsPath = Path.Combine(Environment.CurrentDirectory, "wwwroot");
         static readonly string _imagesFolder = Path.Combine(_assetsPath, "Images");
         static readonly string _TsvFolder = Path.Combine(_assetsPath, "Tsv");
         static readonly string _uploadedImages = Path.Combine(_assetsPath, "Images/Uploads");
-        static readonly string _trainTagsTsv = Path.Combine(_TsvFolder, "tags.tsv");
+        static readonly string _trainTagsTsv = Path.Combine(_TsvFolder, "tags2.tsv");
         static readonly string _testTagsTsv = Path.Combine(_TsvFolder, "test-tags.tsv");
         static string _predictSingleImage = Path.Combine(_imagesFolder, "startup.jpg");
         static readonly string _inceptionTensorFlowModel = Path.Combine(_assetsPath, "inception", "tensorflow_inception_graph.pb");
@@ -44,9 +44,9 @@ namespace FungiFinder.Models
             MLContext mlContext = new MLContext();
             ITransformer model = GenerateModel(mlContext);
             _predictSingleImage = Path.Combine(_uploadedImages, urlInput);
-           
+
             return ClassifySingleImage(mlContext, model);
-            
+
         }
 
         private struct InceptionSettings
@@ -79,7 +79,34 @@ namespace FungiFinder.Models
                     Rating = mushroom.Rating
                 });
             }
+            
             return resultList.ToArray();
+        }
+
+        internal async Task SaveLocation(FunctionMapVM vm)
+        {
+            var user = await userManager.GetUserAsync(accessor.HttpContext.User);
+            //context.Locations.Add( new Location{UserId = user.Id, Info = vm.Info, Latitude = vm.Latitude, })
+            context.SaveChanges();
+
+
+            //};
+            //profil.Locations = context.Locations
+            //     .Where(o => o.UserId == userManager
+            //     .GetUserId(accessor.HttpContext.User))
+            //     .Select(o => new FunctionMapVM { LocationName = o.LocationName, Latitude = o.Latitude, Longitude = o.Longitude })
+            //     .OrderBy(o => o.SearchDate)
+            //     .Take(5)
+            //     .ToArray();
+
+
+
+
+           
+
+
+
+
         }
 
         private ITransformer GenerateModel(MLContext mlContext)
@@ -126,9 +153,10 @@ namespace FungiFinder.Models
             var predictor = mlContext.Model.CreatePredictionEngine<ImageData, ImagePrediction>(model);
             var prediction = predictor.Predict(imageData);
             //var result = context.Mushrooms.Where(m => m.Name == prediction.PredictedLabelValue).FirstOrDefault();
+            var result = context.Mushrooms.SingleOrDefault(m => m.Name.Replace(" ", string.Empty).ToLower() == prediction.PredictedLabelValue.ToLower())/*.Select(m => new FunctionMainResultPartialVM { Name = m.Name, EdibleOrPosinous = m.Edible, ProcentResult = prediction.Score.Max() * 100, UrlMatchedMushroom = m.ImageUrl }*/;
             context.LatestSearches.Add(new LatestSearches { Mushroom = ConvertFirstLetterToUpper(prediction.PredictedLabelValue), SearchDate = DateTime.Now, UserId = userManager.GetUserId(accessor.HttpContext.User) });
             context.SaveChanges();
-            return new FunctionMainResultPartialVM { Name = ConvertFirstLetterToUpper(prediction.PredictedLabelValue), ProcentResult = prediction.Score.Max() };
+            return new FunctionMainResultPartialVM { Name = ConvertFirstLetterToUpper(result.Name), ProcentResult = prediction.Score.Max() * 100, EdibleOrPosinous = result.Edible, UrlMatchedMushroom = result.ImageUrl, Info = result.Info };
             //Console.WriteLine($"Image: {Path.GetFileName(imageData.ImagePath)}                  predicted as: {prediction.PredictedLabelValue}                  with score: {prediction.Score.Max()} ");
         }
         private string ConvertFirstLetterToUpper(string stringToConvert)

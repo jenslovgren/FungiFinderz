@@ -71,9 +71,10 @@ namespace FungiFinder.Models
                 Username = user.UserName,
                 Email = user.Email
                
-                //Password = user.PasswordHash,
 
             };
+
+            
 
             vm.LatestSearches = context.LatestSearches
                 .Where(o => o.UserId == userManager
@@ -83,7 +84,14 @@ namespace FungiFinder.Models
                 .Take(5)
                 .ToArray();
 
+
             return vm;
+        }
+
+        internal string FindMushroomUrl(string mushroom)
+        {
+            var result = context.Mushrooms.SingleOrDefault(m => m.Name == mushroom);
+            return result.ImageUrl;
         }
 
         internal async Task EditEmail(AccountEditEmailPartial VM)

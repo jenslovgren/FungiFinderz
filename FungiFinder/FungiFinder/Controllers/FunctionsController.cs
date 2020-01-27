@@ -29,22 +29,7 @@ namespace FungiFinder.Controllers
         {
             return View();
         }
-        //[HttpPost]
-        //[Route("main")]
-        //public IActionResult Main(FunctionMainVM vm)
-        //{
-        //    if(vm.ImgToSearch?.Length > 0)
-        //    {
-        //        var filePath = Path.Combine(hostEnvironment.WebRootPath, "Images/Uploads", vm.ImgToSearch.FileName);
-
-
-        //    }
-
-        //    var result = service.PredictImage(vm.ImgToSearch.FileName);
-
-
-        //    return PartialView("_MainResultPartial", result);
-        //}
+       
 
         [HttpGet]
         [Route("library")]
@@ -96,12 +81,23 @@ namespace FungiFinder.Controllers
             return View();
         }
 
-        [Route("Map/{longlat}")]
+        [Route("Map/longlat")]
         [HttpGet]
-        public IActionResult MapLocation(string longlat)
+        public async Task<IActionResult> MapLocation([FromBody] FunctionMapVM vm)
         {
-            var input = longlat;
-            return View();
+       
+            await service.SaveLocation(vm);
+
+            //if (!result.Succeeded)
+            //{
+            //    //return BadRequest(result.Errors.First().Description);
+            //    return BadRequest();
+
+            //}
+            return Ok();
+
+      
+            //return Json();
         }
     }
 }
