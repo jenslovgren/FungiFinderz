@@ -102,5 +102,14 @@ namespace FungiFinder.Controllers
       
             //return Json();
         }
+
+        [Route("Map/{MapLocation}")]
+        [HttpGet]
+        public async Task<IActionResult> MapLocations()
+        {
+            var model = await service.GetUserLocations();
+            return Json(model);
+        }
+
     }
 }

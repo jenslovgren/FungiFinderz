@@ -82,6 +82,27 @@ namespace FungiFinder.Models
             return resultList.ToArray();
         }
 
+        internal async Task<AccountProfileVM> GetUserLocations()
+        {
+            var user = await userManager.GetUserAsync(accessor.HttpContext.User);
+
+            AccountProfileVM vm = new AccountProfileVM();
+
+
+
+
+            vm.MapLocation = context.MapLocation
+                .Where(o => o.UserId == userManager
+                .GetUserId(accessor.HttpContext.User))
+                .Select(o => new FunctionMapVM { LocationName = o.LocationName, Latitude = o.Latitude, Longitude = o.Longitude })
+                //.OrderBy(o => o.SearchDate)
+                .Take(5)
+                .ToArray();
+
+            return vm;
+
+        }
+
         internal async Task SaveLocation(FunctionMapVM vm)
         {
            
@@ -91,14 +112,7 @@ namespace FungiFinder.Models
             context.SaveChanges();
 
 
-            //Skall nog flyttas... 
-            //profil.Locations = context.Locations
-            //      .Where(o => o.UserId == userManager
-            //      .GetUserId(accessor.HttpContext.User))
-            //      .Select(o => new FunctionMapVM { LocationName = o.LocationName, Latitude = o.Latitude, Longitude = o.Longitude })
-            //      .OrderBy(o => o.SearchDate)
-            //      .Take(5)
-            //      .ToArray();
+            
 
 
 
@@ -124,6 +138,7 @@ namespace FungiFinder.Models
 
             IDataView testData = mlContext.Data.LoadFromTextFile<ImageData>(path: _testTagsTsv, hasHeader: false);
             IDataView predictions = model.Transform(testData);
+            
 
             // Create an IEnumerable for the predictions for displaying results
             IEnumerable<ImagePrediction> imagePredictionData = mlContext.Data.CreateEnumerable<ImagePrediction>(predictions, true);

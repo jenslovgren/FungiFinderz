@@ -117,11 +117,15 @@ namespace FungiFinder.Controllers
         [HttpPost]
         public async Task<IActionResult> EditEmail([FromBody] AccountEditEmailPartial VM)
         {
-            await service.EditEmail(VM);
 
             if (!ModelState.IsValid)
-                return BadRequest(ModelState.First().Value.Errors.First());
+                return BadRequest(ModelState.First().Value.Errors.First().ErrorMessage);
 
+           var result = await service.EditEmail(VM);
+            if (!result.Succeeded)
+            {
+                return BadRequest(ModelState.First().Value.Errors.First().ErrorMessage);
+            }
 
             return Ok();
         }
@@ -147,9 +151,9 @@ namespace FungiFinder.Controllers
             var result = await service.ChangePassword(VM);
             if (!result.Succeeded)
             {
-                //return BadRequest(result.Errors.First().Description);
-                return BadRequest();
-            
+                return BadRequest(result.Errors.First().Description);
+                //return BadRequest();
+
             }
 
 
