@@ -156,6 +156,8 @@ namespace FungiFinder.Controllers
             return Ok();
         }
 
+        
+        [RequestSizeLimit(2097152)]
         [Route("profile/changepicture")]
         [HttpPost]
         public async Task<IActionResult> ChangeProfilePicture(IFormFile profilePic)
