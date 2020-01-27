@@ -1,4 +1,5 @@
 ﻿@model FungiFinder.Models.ViewModels.FunctionMapVM
+@*@model FunctionMapVM[]*@
 
 @section styles{
     <style>
@@ -55,6 +56,18 @@
         <div class="form-group">
             <button onclick="deleteMarkers();" class="btn btn2-info btn-lg btn-block border">Ta Bort Markeringar</button>
         </div>
+
+      
+        <div class="form-group" style="color: white;">
+            <span asp-validation-for="LocationName"></span>
+            <label>Svampställets namn:</label>
+            <input type="text" id="nameLocation" value="" />
+        </div>
+
+
+
+
+
     </div>
 </div>
 <br />
@@ -81,7 +94,7 @@
 
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
-                    /*var*/ pos = {
+                        /*var*/ pos = {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
                     };
@@ -112,29 +125,28 @@
                 addMarker(event.latLng);
             });
 
-            // Adds a marker at the center of the map.
         }
+            
 
+        //Tillagt
+        //let locationname = 'hej';
 
         function getCoordinates() {
+
             console.log(pos.lat);
-             
-            let lat1 = $("#lat").val();
-            let lng1 = $("#lng").val();
-            console.log(lat1);
-            console.log(lng1);
+            console.log(pos.lng);
+            nameLocation = $("#nameLocation").val();
 
             $.ajax({
 
                 type: "POST",
                 url: "/Map/longlat",
-                data: '{ param: "value"}',
                 contentType: "application/json",
-                dataType: JSON.stringify({ latitude: pos.lat, longitude: pos.lng })
-                //dataType: JSON.stringify({ marker: mark})
+                //dataType: 'json',
+                data: JSON.stringify({ locationName: nameLocation, latitude: pos.lat, longitude: pos.lng}),
 
-                    success: function (response) {
-                    alert(response.responseText);
+                success: function (response) {
+                    alert('Svampställe sparat');
                 },
                 failure: function (response) {
                     alert(response.responseText);
@@ -147,27 +159,16 @@
         }
 
 
-        //console.log(pos);
-        //var url = `/Map/${kos}`
-        //$.ajax({
-        //    url: url,
-        //    type: "GET",
-        //    success: function (result) {
-        //        $("#divResult").html(result);
-        //    }
-        //});
-
-
-
-
-
         // Adds a marker to the map and push to the array.
         function addMarker(location) {
+
+            
             var marker = new google.maps.Marker({
                 position: location,
                 map: map
             });
             markers.push(marker);
+
         }
 
         // Sets the map on all markers in the array.
@@ -184,6 +185,16 @@
 
         // Shows any markers currently in the array.
         function showMarkers() {
+
+            $.ajax({
+                url: "/Map/longlat/MapLocation",
+                type: "GET",
+                success: function (result) {
+                    $("divResult").html(result);
+                }
+            })
+
+
             setMapOnAll(map);
         }
 

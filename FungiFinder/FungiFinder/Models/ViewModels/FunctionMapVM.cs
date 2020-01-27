@@ -9,11 +9,11 @@ namespace FungiFinder.Models.ViewModels
 {
     public class FunctionMapVM
     {
-        //public int ID { get; set; }
-        //[Display(Name = "Ange ett namn för ditt svampställe:")]
+        [Required(ErrorMessage = "Vänligen namnge ditt svampställe")]
+        [Display(Name = "Svampställe:")]
         public string LocationName { get; set; }
-        public long Latitude { get; set; }
-        public long Longitude { get; set; }
+        public decimal? Latitude { get; set; }
+        public decimal? Longitude { get; set; }
 
 
     }
