@@ -94,12 +94,12 @@ namespace FungiFinder.Models
             return result.ImageUrl;
         }
 
-        internal async Task EditEmail(AccountEditEmailPartial VM)
+        internal async Task<IdentityResult> EditEmail(AccountEditEmailPartial VM)
         {
             var user = await userManager.GetUserAsync(accessor.HttpContext.User);
             user.Email = VM.Email;
 
-            await userManager.UpdateAsync(user);
+            return await userManager.UpdateAsync(user);
 
         }
 

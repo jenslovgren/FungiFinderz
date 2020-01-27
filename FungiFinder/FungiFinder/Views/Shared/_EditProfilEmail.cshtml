@@ -6,7 +6,8 @@
     <div>
         <form asp-action="EditEmail">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div id="emailErrorHere"></div>
+            <div id="emailErrorHere" class="text-danger"></div>
+            <div id="emailSuccessHere" class="text-success"></div>
 
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
@@ -33,10 +34,10 @@
             contentType: "application/json",
             data: JSON.stringify({ email: newEmail }),
             success: function (result) {
-                $("#emailHere").text(newEmail);
+                $("#emailHere").text(newEmail); $("#emailErrorHere").text(""); $("#emailSuccessHere").text("Du har bytt E-post");
             },
             error: function (result) {
-                $("#emailErrorHere").text(result.statusText)
+                $("#emailErrorHere").text(result.responseText);
             }
         })
     })
