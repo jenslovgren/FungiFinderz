@@ -88,6 +88,16 @@ function uploadFile(inputId) {
     })
 
 }
+let isActiveMush = true;
+function editFavMushroom() {
+    if (isActiveMush) {
+        $.ajax({
+            url: "profile/edit/favoritemushroom",
+            type:
+        })
+    }
+
+}
 
 
 

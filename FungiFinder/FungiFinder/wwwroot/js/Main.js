@@ -32,13 +32,20 @@ function getResult() {
             $("#searcher").show();
         },
         success: function (result) {
-            $("#resultHere").html(result)
+            $("#resultHere").html(result);
+            removePic();
         },
         complete: function () {
             $("#searcher").hide();
         }
     })
 }
+
+function removePic() {
+
+}
+
+
 
 
 
