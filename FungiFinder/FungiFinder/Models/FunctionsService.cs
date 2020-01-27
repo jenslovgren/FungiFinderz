@@ -89,7 +89,7 @@ namespace FungiFinder.Models
             AccountProfileVM vm = new AccountProfileVM();
 
 
-
+            
 
             vm.MapLocation = context.MapLocation
                 .Where(o => o.UserId == userManager
