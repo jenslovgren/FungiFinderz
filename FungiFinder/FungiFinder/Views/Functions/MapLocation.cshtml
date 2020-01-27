@@ -1,4 +1,5 @@
 ﻿@model FungiFinder.Models.ViewModels.FunctionMapVM
+@*@model FunctionMapVM[]*@
 
 @section styles{
     <style>
@@ -56,7 +57,7 @@
             <button onclick="deleteMarkers();" class="btn btn2-info btn-lg btn-block border">Ta Bort Markeringar</button>
         </div>
 
-        @*tillagt*@
+      
         <div class="form-group" style="color: white;">
             <span asp-validation-for="LocationName"></span>
             <label>Svampställets namn:</label>
@@ -124,8 +125,8 @@
                 addMarker(event.latLng);
             });
 
-            // Adds a marker at the center of the map.
         }
+            
 
         //Tillagt
         //let locationname = 'hej';
@@ -160,11 +161,14 @@
 
         // Adds a marker to the map and push to the array.
         function addMarker(location) {
+
+            
             var marker = new google.maps.Marker({
                 position: location,
                 map: map
             });
             markers.push(marker);
+
         }
 
         // Sets the map on all markers in the array.
@@ -181,6 +185,16 @@
 
         // Shows any markers currently in the array.
         function showMarkers() {
+
+            $.ajax({
+                url: "/Map/longlat/MapLocation",
+                type: "GET",
+                success: function (result) {
+                    $("divResult").html(result);
+                }
+            })
+
+
             setMapOnAll(map);
         }
 
