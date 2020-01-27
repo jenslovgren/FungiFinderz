@@ -34,15 +34,21 @@ namespace FungiFinder.Models
         static readonly string _imagesFolder = Path.Combine(_assetsPath, "Images");
         static readonly string _TsvFolder = Path.Combine(_assetsPath, "Tsv");
         static readonly string _uploadedImages = Path.Combine(_assetsPath, "Images/Uploads");
-        static readonly string _trainTagsTsv = Path.Combine(_TsvFolder, "tagsTest.tsv");
-        static readonly string _testTagsTsv = Path.Combine(_TsvFolder, "test-tagsTest.tsv");
+        static readonly string _trainTagsTsv = Path.Combine(_TsvFolder, "tags2.tsv");
+        static readonly string _testTagsTsv = Path.Combine(_TsvFolder, "test-tags.tsv");
         static string _predictSingleImage = Path.Combine(_imagesFolder, "startup.jpg");
         static readonly string _inceptionTensorFlowModel = Path.Combine(_assetsPath, "inception", "tensorflow_inception_graph.pb");
-
+        static ITransformer model;
         public FunctionMainResultPartialVM PredictImage(string urlInput)
         {
             MLContext mlContext = new MLContext();
-            ITransformer model = GenerateModel(mlContext);
+            if (model == null)
+            {
+                DataViewSchema temp;
+                model = mlContext.Model.Load("model.zip", out temp);
+                //model = GenerateModel(mlContext);
+            }
+               
             _predictSingleImage = Path.Combine(_uploadedImages, urlInput);
 
             var ret = ClassifySingleImage(mlContext, model);
@@ -123,15 +129,16 @@ namespace FungiFinder.Models
             .AppendCacheCheckpoint(mlContext);
 
             IDataView trainingData = mlContext.Data.LoadFromTextFile<ImageData>(path: _trainTagsTsv, hasHeader: false);
+        
+            ITransformer modelReturn = pipeline.Fit(trainingData);
+            mlContext.Model.Save(modelReturn, trainingData.Schema, "model.zip");
 
-            ITransformer model = pipeline.Fit(trainingData);
-
-            IDataView testData = mlContext.Data.LoadFromTextFile<ImageData>(path: _testTagsTsv, hasHeader: false);
-            IDataView predictions = model.Transform(testData);
+            //IDataView testData = mlContext.Data.LoadFromTextFile<ImageData>(path: _testTagsTsv, hasHeader: false);
+            //IDataView predictions = model.Transform(testData);
 
             // Create an IEnumerable for the predictions for displaying results
-            IEnumerable<ImagePrediction> imagePredictionData = mlContext.Data.CreateEnumerable<ImagePrediction>(predictions, true);
-            DisplayResults(imagePredictionData);
+            //IEnumerable<ImagePrediction> imagePredictionData = mlContext.Data.CreateEnumerable<ImagePrediction>(predictions, true);
+            //DisplayResults(imagePredictionData);
 
             //MulticlassClassificationMetrics metrics =
             //mlContext.MulticlassClassification.Evaluate(predictions,
@@ -141,7 +148,7 @@ namespace FungiFinder.Models
             ////Console.WriteLine($"LogLoss is: {metrics.LogLoss}");
             ////Console.WriteLine($"PerClassLogLoss is: {String.Join(" , ", metrics.PerClassLogLoss.Select(c => c.ToString()))}");
 
-            return model;
+            return modelReturn;
         }
         FunctionMainResultPartialVM ClassifySingleImage(MLContext mlContext, ITransformer model)
         {
@@ -162,15 +169,6 @@ namespace FungiFinder.Models
         private string ConvertFirstLetterToUpper(string stringToConvert)
         {
             return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(stringToConvert);
-        }
-
-        private void DisplayResults(IEnumerable<ImagePrediction> imagePredictionData)
-        {
-            //Console.WriteLine("=============== Training classification model ===============");
-            //foreach (ImagePrediction prediction in imagePredictionData)
-            //{
-            //    Console.WriteLine($"Image: {Path.GetFileName(prediction.ImagePath)} predicted as: {prediction.PredictedLabelValue} with score: {prediction.Score.Max()} ");
-            //}
         }
 
         private IEnumerable<ImageData> ReadFromTsv(string file, string folder)
