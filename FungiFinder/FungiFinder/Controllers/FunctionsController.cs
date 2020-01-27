@@ -75,10 +75,11 @@ namespace FungiFinder.Controllers
 
         [Route("Map")]
         [HttpGet]
-        public IActionResult MapLocation()
+        public async Task<IActionResult> MapLocation()
         {
+            var model = await service.GetUserLocations();
+            return View(model);
 
-            return View();
         }
 
         [Route("Map/longlat")]
@@ -103,13 +104,7 @@ namespace FungiFinder.Controllers
             //return Json();
         }
 
-        [Route("Map/{MapLocation}")]
-        [HttpGet]
-        public async Task<IActionResult> MapLocations()
-        {
-            var model = await service.GetUserLocations();
-            return Json(model);
-        }
+  
 
     }
 }
