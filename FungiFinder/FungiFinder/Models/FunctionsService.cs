@@ -32,6 +32,7 @@ namespace FungiFinder.Models
 
         static readonly string _assetsPath = Path.Combine(Environment.CurrentDirectory, "wwwroot");
         static readonly string _imagesFolder = Path.Combine(_assetsPath, "Images");
+        static readonly string _tsModel = Path.Combine(_assetsPath, "tensorflowModel");
         static readonly string _TsvFolder = Path.Combine(_assetsPath, "Tsv");
         static readonly string _uploadedImages = Path.Combine(_assetsPath, "Images/Uploads");
         static readonly string _trainTagsTsv = Path.Combine(_TsvFolder, "tags2.tsv");
@@ -45,7 +46,7 @@ namespace FungiFinder.Models
             if (model == null)
             {
                 DataViewSchema temp;
-                model = mlContext.Model.Load("model.zip", out temp);
+                model = mlContext.Model.Load(@"wwwroot\tensorflowModel\model.zip", out temp);
                 //model = GenerateModel(mlContext);
             }
                
