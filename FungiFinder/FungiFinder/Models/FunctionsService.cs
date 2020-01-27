@@ -127,6 +127,7 @@ namespace FungiFinder.Models
 
             IDataView testData = mlContext.Data.LoadFromTextFile<ImageData>(path: _testTagsTsv, hasHeader: false);
             IDataView predictions = model.Transform(testData);
+            
 
             // Create an IEnumerable for the predictions for displaying results
             IEnumerable<ImagePrediction> imagePredictionData = mlContext.Data.CreateEnumerable<ImagePrediction>(predictions, true);

@@ -12,6 +12,7 @@ namespace FungiFinder.Models.ViewModels
         [Required(ErrorMessage = "Vänligen ange e-mail")]
         [Display(Name = "E-Mail")]
         [DataType(DataType.EmailAddress)]
+        [EmailAddress(ErrorMessage = "Se till att din epost adress är rätt formaterad")]
         public string Email { get; set; }
     }
 }
