@@ -13,6 +13,9 @@ namespace FungiFinder.Models.ViewModels
         public string UrlMatchedMushroom { get; set; }
 
         public string Name { get; set; }
+        public string LatinName { get; set; }
+        public int Rating { get; set; }
+
 
 
 
