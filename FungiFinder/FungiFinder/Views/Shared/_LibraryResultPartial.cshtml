@@ -13,11 +13,8 @@
                     <h5 class="card-title">@shroom.Name</h5>
                     <h6 class="card-subtitle"> @shroom.LatinName</h6>
                     <br />
-                    <p class="card-text">@shroom.Info</p>
-                    <br />
                     @if (@shroom.Edible)
                     {
-                        <p>Svampen är ätbar och anses ha en smak på </p>
                         <div>
                             @for (int i = 0; i < 5; i++)
                             {
@@ -38,6 +35,8 @@
                         <p><img src="~/Images/Logos/PoisionIcon.png" style="height: 35px" />  Svampen är giftig!  </p>
 
                     }
+                    <br />
+                    <p class="card-text">@shroom.Info</p>
 
                 </div>
             </div>
