@@ -99,18 +99,9 @@ namespace FungiFinder.Models
 
         internal async Task SaveLocation(FunctionMapVM vm)
         {
-           
-
             var user = await userManager.GetUserAsync(accessor.HttpContext.User);
             context.MapLocation.Add(new MapLocation { UserId = user.Id, LocationName = vm.LocationName, Latitude = vm.Latitude, Longitude = vm.Longitude });
             context.SaveChanges();
-
-
-            
-
-
-
-
         }
 
         private ITransformer GenerateModel(MLContext mlContext)
@@ -135,8 +126,8 @@ namespace FungiFinder.Models
             
 
             // Create an IEnumerable for the predictions for displaying results
-            IEnumerable<ImagePrediction> imagePredictionData = mlContext.Data.CreateEnumerable<ImagePrediction>(predictions, true);
-            DisplayResults(imagePredictionData);
+            //IEnumerable<ImagePrediction> imagePredictionData = mlContext.Data.CreateEnumerable<ImagePrediction>(predictions, true);
+            //DisplayResults(imagePredictionData);
 
             //MulticlassClassificationMetrics metrics =
             //mlContext.MulticlassClassification.Evaluate(predictions,
