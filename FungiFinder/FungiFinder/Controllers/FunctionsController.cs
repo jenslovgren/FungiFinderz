@@ -80,8 +80,8 @@ namespace FungiFinder.Controllers
         [HttpGet]
         public async Task<IActionResult> MapLocation()
         {
-            //var model = await service.GetUserLocations();
-            return View();
+            var model = await service.GetUserLocations();
+            return View(model);
 
         }
 
@@ -95,25 +95,7 @@ namespace FungiFinder.Controllers
 
             await service.SaveLocation(vm);
 
-            //if (!result.Succeeded)
-            //{
-            //    //return BadRequest(result.Errors.First().Description);
-            //    return BadRequest();
-
-            //}
             return Ok();
-
-      
-            //return Json();
         }
-
-        //[Route("Map/{MapLocation}")]
-        //[HttpGet]
-        //public async Task<IActionResult> MapLocations()
-        //{
-        //    var model = await service.GetUserLocations();
-        //    return Json(model);
-        //}
-
     }
 }
