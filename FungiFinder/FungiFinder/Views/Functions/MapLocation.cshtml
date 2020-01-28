@@ -9,7 +9,7 @@
 @section styles{
     <style>
         /* Always set the map height explicitly to define the size of the div
-        * element that contains the map. hääääääääääääj */
+        * element that contains the map */
         #map {
             height: 650px;
             width: 840px;
@@ -70,11 +70,6 @@
                 <input type="text" id="nameLocation" value="" />
             </div>
         *@
-
-
-
-
-
     </div>
 </div>
 <br />
@@ -134,10 +129,6 @@
 
         }
 
-
-        //Tillagt
-        //let locationname = 'hej';
-
         function getCoordinates() {
 
             console.log(pos.lat);
@@ -169,15 +160,6 @@
         // Adds a marker to the map and push to the array.
         function addMarker(location) {
 
-            @*var myLatlng = new google.maps.LatLng(@Model.Latitude, @Model.Longitude);
-
-             var marker = new google.maps.Marker({
-                position: myLatlng,
-                map: map
-            });
-            markers.push(marker);*@
-
-            //orginal
             var marker = new google.maps.Marker({
                 position: location,
                 map: map
@@ -208,8 +190,6 @@
                     $("divResult").html(result);
                 }
             })
-
-
             setMapOnAll(map);
         }
 

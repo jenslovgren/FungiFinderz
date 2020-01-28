@@ -87,12 +87,13 @@ namespace FungiFinder.Models
             return resultList.ToArray();
         }
 
-        internal async Task<FunctionsMapLocationsVM[]> GetUserLocations()
+        internal async Task<FunctionMapVM[]> GetUserLocations()
         {
             var user = await userManager.GetUserAsync(accessor.HttpContext.User);
             var vm = context.MapLocation.Where(u => u.UserId == user.Id)
-                .Select(o => new FunctionsMapLocationsVM
+                .Select(o => new FunctionMapVM
                 {
+
                     Longitude = o.Longitude,
                     Latitude = o.Latitude,
 
