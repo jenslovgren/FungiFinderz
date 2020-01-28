@@ -9,6 +9,7 @@ namespace FungiFinder.Models.Entities
         public DateTime SearchDate { get; set; }
         public string UserId { get; set; }
         public string Mushroom { get; set; }
+        public string ImageUrl { get; set; }
 
         public virtual AspNetUsers User { get; set; }
     }
