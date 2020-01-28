@@ -1,4 +1,4 @@
-﻿@model FunctionMapVM[]
+﻿@model FunctionMapVM
 @*@model FunctionsMapLocationsVM[]*@
 
 @section styles{
@@ -55,11 +55,18 @@
         <div class="form-group">
             <button onclick="deleteMarkers();" class="btn btn2-info btn-lg btn-block border">Ta Bort Markeringar</button>
         </div>
-        @*<div class="form-group" style="color: white;">
+
+      
+        <div class="form-group" style="color: white;">
             <span asp-validation-for="LocationName"></span>
             <label>Svampställets namn:</label>
             <input type="text" id="nameLocation" value="" />
-        </div>*@
+        </div>
+
+
+
+
+
     </div>
 </div>
 <br />
@@ -112,8 +119,8 @@
             // This event listener will call addMarker() when the map is clicked.
             map.addListener('click', function (event) {
                 addMarker(event.latLng);
-                //console.log(event.latLng);
             });
+
         }
 
         function getCoordinates() {
@@ -164,10 +171,16 @@
 
         // Shows any markers currently in the array.
         function showMarkers() {
-            @foreach (var item in Model)
-            {
-                <text> addMarker({lat: @item.Latitude, lng: @item.Longitude})</text>
-            }
+
+            $.ajax({
+                url: "/Map/longlat/MapLocation",
+                type: "GET",
+                success: function (result) {
+                    $("divResult").html(result);
+                }
+            })
+
+
             setMapOnAll(map);
         }
 

@@ -80,8 +80,9 @@ namespace FungiFinder.Controllers
         [HttpGet]
         public async Task<IActionResult> MapLocation()
         {
-            var model = await service.GetUserLocations();
-            return View(model);
+            //var model = await service.GetUserLocations();
+            return View();
+
         }
 
         [Route("Map/longlat")]
