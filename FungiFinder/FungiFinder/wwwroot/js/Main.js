@@ -12,7 +12,10 @@
         processData: false,
         contentType: false,
         success: function (result) {
-            $("#result").html(result)
+            $("#result").html(result); $("#pictureErrorHere").text("");
+        },
+        error: function (result) {
+            $("#pictureErrorHere").text("Bilden måste vara i filformatet .jpeg");
         }
     })
 

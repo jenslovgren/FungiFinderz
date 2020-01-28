@@ -48,15 +48,11 @@ function alternativePicture() {
 
 function changeProfilePic(inputId) {
     let fileUpload = $("#" + inputId).get(0);
-    //console.log(fileUpload);
     let files = fileUpload.files;
-    //console.log(files);
     let formData = new FormData();
-    //console.log(formData);
    
   
     formData.append('profilePic', files[0]);
-    //console.log(formData);
     $.ajax({
         url: '/profile/changepicture',
         type: 'POST',
@@ -64,36 +60,29 @@ function changeProfilePic(inputId) {
         processData: false,
         contentType: false,
         success: function (result) {
-            console.log(result);
+            console.log("jaa");
+            $("#pictureErrorHere").text("");
             $("#profilePic").attr("src", "/Images/UserPics/" + result);
+        },
+        error: function (result) {
+            $("#pictureErrorHere").text("Bilden måste vara i filformatet .jpeg");
         }
     })
 }
 
-function uploadFile(inputId) {
-    let fileUpload = $("#" + inputId).get(0);
-    let files = fileUpload.files;
-    let formData = new FormData();
-    formData.append('file', files[0]);
 
-    $.ajax({
-        url: "profile/changepicture",
-        type: 'POST',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function (result) {
-            $("#profilePic").src("~/Images/UserPics/" + result);
-        }
-    })
 
-}
 let isActiveMush = true;
+
 function editFavMushroom() {
     if (isActiveMush) {
         $.ajax({
             url: "profile/edit/favoritemushroom",
-            type:
+            type: 'GET',
+            success: function (result) {
+
+            }
+
         })
     }
 

@@ -8,9 +8,8 @@
     <script src="~/js/Main.js"></script>
 }
 
-
 <br />
-<h4 class="row container-fluid align-self-center justify-content-center">Fungi Finder</h4>
+<h4 class="row container-fluid align-self-center justify-content-center text-center font-weight-bold">FUNGI FINDER</h4>
 <br />
 <div class="searcher row container-fluid align-self-center justify-content-center" id="searcher" style="display: none;">
     <img src="~/Images/Gifs/FungiSearchGif.gif" alt="Searching..." style="margin-left: 30px;" />
@@ -22,10 +21,11 @@
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div id="pictureErrorHere" class="text-danger"></div>
                 <div class="input-group mb-3">
                     <div class="custom-file">
                         <input asp-for="ImgToSearch" type="file" class="custom-file-input" onchange="uploadFile('picture')" id="picture">
-                        <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+                        <label class="custom-file-label" for="inputGroupFile02">Välj bild...</label>
                     </div>
                     @*<div class="input-group-append">
                             <button class="input-group-text" onclick="getResult()" id="">Sök</button>

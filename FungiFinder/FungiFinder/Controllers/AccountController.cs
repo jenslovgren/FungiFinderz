@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FungiFinder.Controllers
 {
     [Authorize]
-   
+
 
     public class AccountController : Controller
     {
@@ -121,7 +121,7 @@ namespace FungiFinder.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.First().Value.Errors.First().ErrorMessage);
 
-           var result = await service.EditEmail(VM);
+            var result = await service.EditEmail(VM);
             if (!result.Succeeded)
             {
                 return BadRequest(ModelState.First().Value.Errors.First().ErrorMessage);
@@ -130,14 +130,14 @@ namespace FungiFinder.Controllers
             return Ok();
         }
 
-       
+
 
 
         [Route("profile/edit/password")]
         [HttpGet]
         public IActionResult EditPassword()
         {
-         
+
             return PartialView("_EditProfilePassword");
         }
 
@@ -160,26 +160,27 @@ namespace FungiFinder.Controllers
             return Ok();
         }
 
-        
+
         [RequestSizeLimit(2097152)]
         [Route("profile/changepicture")]
         [HttpPost]
         public async Task<IActionResult> ChangeProfilePicture(IFormFile profilePic)
         {
-            if(profilePic?.Length > 0)
-            {
-                var filePath = Path.Combine(hostEnvironment.WebRootPath, "Images/UserPics", profilePic.FileName);
 
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
+            if (!Utils.CheckFileSignature(profilePic.OpenReadStream()))
+                return BadRequest("error");
+            
+                if (profilePic?.Length > 0)
                 {
-                    await profilePic.CopyToAsync(fileStream);
+                    var filePath = Path.Combine(hostEnvironment.WebRootPath, "Images/UserPics", profilePic.FileName);
+
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await profilePic.CopyToAsync(fileStream);
+                    }
                 }
-            }
-            await service.TryChangeProfilePic(profilePic.FileName);
-            return Ok(profilePic.FileName);
-        }
-
-
-
+                    await service.TryChangeProfilePic(profilePic.FileName);
+                    return Ok(profilePic.FileName);
+        }        
     }
 }
