@@ -8,6 +8,8 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+
+
 }
 
 @section styles{
@@ -46,6 +48,11 @@
                     <input asp-for="ConfirmPassword" class="form-control" />
                     <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                 </div>
+                    <label for="myCheck" style="color: white;">
+                        <input type="checkbox" required id="myCheck" name="myCheck"/> &nbsp;
+                        <b id="terms">Jag godkänner att FungiFinder ej ansvarar för vad jag äter för svamp</b>
+                    </label>
+                <br />
                 <div class="form-group">
                     <input type="submit" value="Registrera konto" class="btn btn-info btn-lg btn-block" />
                 </div>
@@ -55,8 +62,8 @@
 </div>
 
 @*<div class="container-fluid align-self-center">
-    <div class="row justify-content-center align-self-center">
-        <a asp-action="Index">Return to Index</a>
-    </div>
-</div>*@
+        <div class="row justify-content-center align-self-center">
+            <a asp-action="Index">Return to Index</a>
+        </div>
+    </div>*@
 
