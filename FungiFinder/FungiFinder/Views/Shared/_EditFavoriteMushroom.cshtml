@@ -1,2 +1,44 @@
 ﻿@model AccountEditFavoriteMushroomVM
 
+<hr />
+
+<div>
+    <div>
+        <form asp-action="EditFavoriteMushroom">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div id="mushroomErrorHere" class="text-danger"></div>
+            <div id="mushroomSuccessHere" class="text-success"></div>
+
+            <div class="form-group">
+                <label asp-for="FavoriteMushroom" class="control-label"></label>
+                <input asp-for="FavoriteMushroom" class="form-control" id="newMushroom" />
+                <span asp-validation-for="FavoriteMushroom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="button" id="btnToChangeFavMush" value="Spara" class="btn btn-info" />
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+<script>
+    $("#btnToChangeFavMush").click(function postNewMushJson() {
+        let newMushroom = $("#newMushroom").val();
+        console.log(newMushroom);
+        $.ajax({
+            url: "/profile/edit/favoritemushroom",
+            type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify({ favoritemushroom: newMushroom }),
+            success: function (result) {
+                $("#mushroomHere").text(newMushroom); $("#mushroomErrorHere").text(""); $("#mushroomSuccessHere").text("Du har bytt favoritsvamp");
+            },
+            error: function (result) {
+                $("#mushroomErrorHere").text(result.responseText);
+            }
+
+        })
+    });
+</script>
