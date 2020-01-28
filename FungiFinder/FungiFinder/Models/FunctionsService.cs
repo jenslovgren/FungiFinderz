@@ -157,17 +157,18 @@ namespace FungiFinder.Models
             // Make prediction function (input = ImageData, output = ImagePrediction)
             var predictor = mlContext.Model.CreatePredictionEngine<ImageData, ImagePrediction>(model);
             var prediction = predictor.Predict(imageData);
-            //var result = context.Mushrooms.Where(m => m.Name == prediction.PredictedLabelValue).FirstOrDefault();
-            var result = context.Mushrooms.SingleOrDefault(m => m.Name.Replace(" ", string.Empty).ToLower() == prediction.PredictedLabelValue.ToLower())/*.Select(m => new FunctionMainResultPartialVM { Name = m.Name, EdibleOrPosinous = m.Edible, ProcentResult = prediction.Score.Max() * 100, UrlMatchedMushroom = m.ImageUrl }*/;
-            context.LatestSearches.Add(new LatestSearches { Mushroom = ConvertFirstLetterToUpper(prediction.PredictedLabelValue), SearchDate = DateTime.Now, UserId = userManager.GetUserId(accessor.HttpContext.User) });
+            var result = context.Mushrooms.SingleOrDefault(m => m.Name.Replace(" ", string.Empty).ToLower() == prediction.PredictedLabelValue.ToLower());
+            context.LatestSearches.Add(new LatestSearches { Mushroom = ConvertFirstLetterToUpper(prediction.PredictedLabelValue), SearchDate = DateTime.Now, UserId = userManager.GetUserId(accessor.HttpContext.User), ImageUrl = result.ImageUrl });
             context.SaveChanges();
             return new FunctionMainResultPartialVM { Name = ConvertFirstLetterToUpper(result.Name), ProcentResult = prediction.Score.Max() * 100, Edible = result.Edible, UrlMatchedMushroom = result.ImageUrl, Info = result.Info, LatinName = result.LatinName, Rating = (int)result.Rating };
-            //Console.WriteLine($"Image: {Path.GetFileName(imageData.ImagePath)}                  predicted as: {prediction.PredictedLabelValue}                  with score: {prediction.Score.Max()} ");
         }
         private string ConvertFirstLetterToUpper(string stringToConvert)
         {
+           
             return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(stringToConvert);
         }
+
+      
 
         private IEnumerable<ImageData> ReadFromTsv(string file, string folder)
         {
@@ -178,7 +179,6 @@ namespace FungiFinder.Models
                 ImagePath = Path.Combine(folder, line[0])
             });
         }
-        //string _inceptionTensorFlowModel = Path.Combine(_assetsPath, "inception", "tensorflow_inception_graph.pb");
     }
 
 

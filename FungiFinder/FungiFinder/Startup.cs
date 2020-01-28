@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,11 +29,17 @@ namespace FungiFinder
         public void ConfigureServices(IServiceCollection services)
         {
             var constring = configuration.GetConnectionString("LiveConnection");
-            services.AddDbContext<MyIdentityContext>(o => o.UseSqlServer(constring));
-            services.AddDbContext<FungiFinderContext>(o => o.UseSqlServer(constring));
+            services.AddDbContext<MyIdentityContext>(o => o.UseSqlServer(constring, c => c.EnableRetryOnFailure()));
+            services.AddDbContext<FungiFinderContext>(o => o.UseSqlServer(constring, c => c.EnableRetryOnFailure()));
             services.AddTransient<AccountService>();
             services.AddTransient<FunctionsService>();
             services.AddHttpContextAccessor();
+
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
 
             //PasswordHasher
             services.AddIdentity<MyIdentityUser, IdentityRole>(o =>
@@ -44,6 +51,7 @@ namespace FungiFinder
                 .AddDefaultTokenProviders();
 
             services.AddControllersWithViews();
+           
 
             services.ConfigureApplicationCookie(o => o.LoginPath = "/index");
         }
@@ -64,6 +72,7 @@ namespace FungiFinder
             app.UseAuthentication();
             app.UseRouting();
             app.UseAuthorization();
+            app.UseCookiePolicy();
             app.UseEndpoints(endpoints => endpoints.MapControllers());
            
         }

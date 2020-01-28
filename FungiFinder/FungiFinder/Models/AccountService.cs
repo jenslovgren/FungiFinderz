@@ -79,9 +79,9 @@ namespace FungiFinder.Models
             vm.LatestSearches = context.LatestSearches
                 .Where(o => o.UserId == userManager
                 .GetUserId(accessor.HttpContext.User))
-                .Select(o => new LatestSearchesDetailsVM { Mushroom = o.Mushroom, SearchDate = o.SearchDate })
-                .OrderBy(o => o.SearchDate)
+                .OrderByDescending(o => o.SearchDate)
                 .Take(5)
+                .Select(o => new LatestSearchesDetailsVM { Mushroom = o.Mushroom, SearchDate = o.SearchDate , ImageUrl = o.ImageUrl})
                 .ToArray();
 
 
@@ -107,10 +107,7 @@ namespace FungiFinder.Models
         {
 
             var user = await userManager.GetUserAsync(accessor.HttpContext.User);
-            //var newPass = await userManager.ChangePasswordAsync(user, vm.Password, vm.NewPassword);
             var newPass = await userManager.ChangePasswordAsync(user, vm.Password, vm.NewPassword);
-
-
             await userManager.UpdateAsync(user);
 
             return newPass;
@@ -122,6 +119,14 @@ namespace FungiFinder.Models
             string userId = userManager.GetUserId(accessor.HttpContext.User);
             var user = await userManager.FindByIdAsync(userId);
             user.ProfileImageUrl = fileName;
+            await userManager.UpdateAsync(user);
+        }
+
+        internal async Task ChangeFavoriteMushroom(AccountEditFavoriteMushroomVM vm)
+        {
+            var user = await userManager.GetUserAsync(accessor.HttpContext.User);
+
+            user.FavoriteMushroom = vm.FavoriteMushroom;
             await userManager.UpdateAsync(user);
         }
     }

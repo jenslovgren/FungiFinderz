@@ -89,9 +89,12 @@ namespace FungiFinder.Controllers
         [HttpPost]
         public async Task<IActionResult> AddMapLocation([FromBody] FunctionMapVM vm)
         {
-            if (!ModelState.IsValid)
-                return View(vm);
+
+            //if (!ModelState.IsValid)
+            //    return View(vm);
+
             await service.SaveLocation(vm);
+
             return Ok();
         }
     }
