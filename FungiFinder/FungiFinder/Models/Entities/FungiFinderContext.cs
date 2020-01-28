@@ -134,6 +134,8 @@ namespace FungiFinder.Models.Entities
 
             modelBuilder.Entity<LatestSearches>(entity =>
             {
+                entity.Property(e => e.ImageUrl).HasMaxLength(450);
+
                 entity.Property(e => e.Mushroom)
                     .IsRequired()
                     .HasMaxLength(64);
