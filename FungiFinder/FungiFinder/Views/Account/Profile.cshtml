@@ -19,6 +19,7 @@
 }
 @section styles{
     <link href="~/css/Profile.css" rel="stylesheet" />
+    
     <style>
         #profileMenu {
             width: 100% !important;
@@ -108,16 +109,17 @@
                 <div class="tab-pane fade" id="latestSearches" role="tabpanel" aria-labelledby="profile-tab">
                     @foreach (var item in Model.LatestSearches)
                     {
-
+                        <hr />
                         <div class="row">
-                            <div class="col-md-6">
-                                <img class="img-thumbnail" src="~/Images/@item.ImageUrl" />
+                            <div class="col-md-8">
+                                <img class="img-thumbnail" src="~/Images/@item.ImageUrl" style="height: 50px;"/>
                             </div>
                             <div class="col-md-6">
                                 <label>@item.Mushroom</label>
+                                <p>@item.SearchDate</p>
                             </div>
                             <div class="col-md-6">
-                                <p>@item.SearchDate</p>
+                                @*<p>@item.SearchDate</p>*@
                             </div>
                         </div>
                     }

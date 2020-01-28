@@ -81,7 +81,7 @@ namespace FungiFinder.Models
                 .GetUserId(accessor.HttpContext.User))
                 .OrderByDescending(o => o.SearchDate)
                 .Take(5)
-                .Select(o => new LatestSearchesDetailsVM { Mushroom = o.Mushroom, SearchDate = o.SearchDate })
+                .Select(o => new LatestSearchesDetailsVM { Mushroom = o.Mushroom, SearchDate = o.SearchDate , ImageUrl = o.ImageUrl})
                 .ToArray();
 
 
