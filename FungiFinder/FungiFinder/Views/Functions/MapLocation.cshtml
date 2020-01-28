@@ -1,4 +1,4 @@
-﻿@model FunctionMapVM
+﻿@model FunctionMapVM[]
 @*@model FunctionsMapLocationsVM[]*@
 
 @section styles{
@@ -58,11 +58,11 @@
         </div>
 
       
-        <div class="form-group" style="color: white;">
+        @*<div class="form-group" style="color: white;">
             <span asp-validation-for="LocationName"></span>
             <label>Svampställets namn:</label>
             <input type="text" id="nameLocation" value="" />
-        </div>
+        </div>*@
 
 
 
@@ -78,7 +78,9 @@
 @section scripts{
     <script>
         var map, infoWindow;
-        var markers = [];
+        var markers = [
+             //['Title B', 59.407334,17.946617, 1]
+        ];
         var pos;
 
 
@@ -123,8 +125,10 @@
             // This event listener will call addMarker() when the map is clicked.
             map.addListener('click', function (event) {
                 addMarker(event.latLng);
+                //console.log(event.latLng);
             });
-
+            //Show markers
+            //addMarker({lat: 59.407334, lng:17.946617})
         }
             
 
@@ -194,14 +198,23 @@
         // Shows any markers currently in the array.
         function showMarkers() {
 
-            $.ajax({
-                url: "/Map/longlat/MapLocation",
-                type: "GET",
-                success: function (result) {
-                    $("divResult").html(result);
-                }
-            })
+            //$.ajax({
+            //    url: "/Map/longlat/MapLocation",
+            //    type: "GET",
+            //    success: function (result) {
+            //        $("divResult").html(result);
+            //    }
+            //})
+              //Show markers
+            //var savedMarkers = [
+            //    { lat: 59.407334, lng: 17.946617 },
+            //    { lat: 65.407334, lng: 23.946617 },
 
+            @foreach (var item in Model)
+            {
+                <text> addMarker({lat: @item.Latitude, lng: @item.Longitude})</text>
+            }
+            
 
             setMapOnAll(map);
         }

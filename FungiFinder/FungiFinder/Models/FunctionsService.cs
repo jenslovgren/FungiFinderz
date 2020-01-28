@@ -89,14 +89,16 @@ namespace FungiFinder.Models
             return resultList.ToArray();
         }
 
-        internal async Task<FunctionsMapLocationsVM[]> GetUserLocations()
+        internal async Task<FunctionMapVM[]> GetUserLocations()
         {
+            CultureInfo culture = new CultureInfo("en-US");
             var user = await userManager.GetUserAsync(accessor.HttpContext.User);
             var vm = context.MapLocation.Where(u => u.UserId == user.Id)
-                .Select(o => new FunctionsMapLocationsVM
+                .Select(o => new FunctionMapVM
                 {
-                    Longitude = o.Longitude,
-                    Latitude = o.Latitude,
+                    LocationName = o.LocationName,
+                    Longitude = o.Longitude.Value.ToString(culture),
+                    Latitude = o.Latitude.Value.ToString(culture),
 
                 }).ToArray();
 
@@ -107,7 +109,7 @@ namespace FungiFinder.Models
         internal async Task SaveLocation(FunctionMapVM vm)
         {
             var user = await userManager.GetUserAsync(accessor.HttpContext.User);
-            context.MapLocation.Add(new MapLocation { UserId = user.Id, LocationName = vm.LocationName, Latitude = vm.Latitude, Longitude = vm.Longitude });
+            context.MapLocation.Add(new MapLocation { UserId = user.Id, LocationName = vm.LocationName, Latitude = decimal.Parse(vm.Latitude), Longitude = decimal.Parse(vm.Longitude) });
             context.SaveChanges();
         }
 
