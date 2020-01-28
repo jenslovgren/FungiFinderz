@@ -1,6 +1,11 @@
 ﻿@model FunctionMapVM
 @*@model FunctionsMapLocationsVM[]*@
 
+@{
+    ViewBag.Title = "MapLocation";
+    ViewData["Title"] = "Fungi Maps";
+}
+
 @section styles{
     <style>
         /* Always set the map height explicitly to define the size of the div
@@ -57,12 +62,14 @@
             <button onclick="deleteMarkers();" class="btn btn2-info btn-lg btn-block border">Ta Bort Markeringar</button>
         </div>
 
-      
-        <div class="form-group" style="color: white;">
-            <span asp-validation-for="LocationName"></span>
-            <label>Svampställets namn:</label>
-            <input type="text" id="nameLocation" value="" />
-        </div>
+
+        @* Creates a textbox
+            <div class="form-group" style="color: white;">
+                <span asp-validation-for="LocationName"></span>
+                <label>Svampställets namn:</label>
+                <input type="text" id="nameLocation" value="" />
+            </div>
+        *@
 
 
 
@@ -126,7 +133,7 @@
             });
 
         }
-            
+
 
         //Tillagt
         //let locationname = 'hej';
