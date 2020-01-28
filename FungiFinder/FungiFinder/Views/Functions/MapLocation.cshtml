@@ -1,4 +1,4 @@
-﻿@model FungiFinder.Models.ViewModels.FunctionsMapLocationsVM[]
+﻿@model FunctionMapVM
 @*@model FunctionsMapLocationsVM[]*@
 
 @section styles{
@@ -59,7 +59,7 @@
 
       
         <div class="form-group" style="color: white;">
-            @*<span asp-validation-for="LocationName"></span>*@
+            <span asp-validation-for="LocationName"></span>
             <label>Svampställets namn:</label>
             <input type="text" id="nameLocation" value="" />
         </div>

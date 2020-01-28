@@ -51,6 +51,9 @@ namespace FungiFinder.Controllers
         [HttpPost]
         public async Task<IActionResult> FileUpload(IFormFile file)
         {
+            if (!Utils.CheckFileSignature(file.OpenReadStream()))
+                return BadRequest("error");
+
             if (file?.Length > 0)
             {
                 var filePath = Path.Combine(hostEnvironment.WebRootPath, "Images/Uploads", file.FileName);
@@ -77,8 +80,8 @@ namespace FungiFinder.Controllers
         [HttpGet]
         public async Task<IActionResult> MapLocation()
         {
-            var model = await service.GetUserLocations();
-            return View(model);
+            //var model = await service.GetUserLocations();
+            return View();
 
         }
 

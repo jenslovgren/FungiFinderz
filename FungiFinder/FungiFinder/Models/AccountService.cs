@@ -103,20 +103,6 @@ namespace FungiFinder.Models
 
         }
 
-        //internal async Task<IdentityResult> changePassword(string password, string newPassword)
-        //{
-
-        //    var user = await userManager.GetUserAsync(accessor.HttpContext.User);
-        //    //var newPass = await userManager.ChangePasswordAsync(user, vm.Password, vm.NewPassword);
-        //    var newPass = await userManager.ChangePasswordAsync(user, password, newPassword);
-
-
-        //    await userManager.UpdateAsync(user);
-
-        //    return newPass;
-
-        //}
-
         internal async Task<IdentityResult> ChangePassword(AccountEditPasswordPartialVM vm)
         {
 
