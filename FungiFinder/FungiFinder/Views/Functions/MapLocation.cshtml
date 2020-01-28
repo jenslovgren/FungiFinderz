@@ -1,4 +1,4 @@
-﻿@model FunctionMapVM
+﻿@model FunctionMapVM[]
 @*@model FunctionsMapLocationsVM[]*@
 
 @section styles{
@@ -15,6 +15,7 @@
             margin: 0;
             padding: 0;
         }
+
         #floating-panel {
             position: absolute;
             top: 10px;
@@ -56,12 +57,12 @@
             <button onclick="deleteMarkers();" class="btn btn2-info btn-lg btn-block border">Ta Bort Markeringar</button>
         </div>
 
-      
-        <div class="form-group" style="color: white;">
-            <span asp-validation-for="LocationName"></span>
-            <label>Svampställets namn:</label>
-            <input type="text" id="nameLocation" value="" />
-        </div>
+
+        @*<div class="form-group" style="color: white;">
+                <span asp-validation-for="LocationName"></span>
+                <label>Svampställets namn:</label>
+                <input type="text" id="nameLocation" value="" />
+            </div>*@
 
 
 
@@ -71,10 +72,15 @@
 </div>
 <br />
 
+
+
+
 @section scripts{
     <script>
         var map, infoWindow;
-        var markers = [];
+        var markers = [
+             //['Title B', 59.407334,17.946617, 1]
+        ];
         var pos;
 
 
@@ -119,11 +125,18 @@
             // This event listener will call addMarker() when the map is clicked.
             map.addListener('click', function (event) {
                 addMarker(event.latLng);
+                //console.log(event.latLng);
             });
-
+            //Show markers
+            //addMarker({lat: 59.407334, lng:17.946617})
         }
 
+
+        //Tillagt
+        //let locationname = 'hej';
+
         function getCoordinates() {
+
             console.log(pos.lat);
             console.log(pos.lng);
             nameLocation = $("#nameLocation").val();
@@ -133,6 +146,7 @@
                 type: "POST",
                 url: "/Map/longlat",
                 contentType: "application/json",
+                //dataType: 'json',
                 data: JSON.stringify({ locationName: nameLocation, latitude: pos.lat, longitude: pos.lng}),
 
                 success: function (response) {
@@ -144,17 +158,29 @@
                 error: function (response) {
                     alert(response.responseText);
                 }
+
             });
         }
 
 
         // Adds a marker to the map and push to the array.
         function addMarker(location) {
+
+            @*var myLatlng = new google.maps.LatLng(@Model.Latitude, @Model.Longitude);
+
+             var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map
+            });
+            markers.push(marker);*@
+
+            //orginal
             var marker = new google.maps.Marker({
                 position: location,
                 map: map
             });
             markers.push(marker);
+
         }
 
         // Sets the map on all markers in the array.
@@ -172,13 +198,22 @@
         // Shows any markers currently in the array.
         function showMarkers() {
 
-            $.ajax({
-                url: "/Map/longlat/MapLocation",
-                type: "GET",
-                success: function (result) {
-                    $("divResult").html(result);
-                }
-            })
+            //$.ajax({
+            //    url: "/Map/longlat/MapLocation",
+            //    type: "GET",
+            //    success: function (result) {
+            //        $("divResult").html(result);
+            //    }
+            //})
+              //Show markers
+            //var savedMarkers = [
+            //    { lat: 59.407334, lng: 17.946617 },
+            //    { lat: 65.407334, lng: 23.946617 },
+
+            @foreach (var item in Model)
+            {
+                <text> addMarker({lat: @item.Latitude, lng: @item.Longitude})</text>
+            }
 
 
             setMapOnAll(map);
@@ -189,7 +224,12 @@
             clearMarkers();
             markers = [];
         }
+
     </script>
+
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb6PsUEvawrKCwb3qG6myykc9ORaMX83c&callback=initMap"></script>
+
+
+
 }
 
