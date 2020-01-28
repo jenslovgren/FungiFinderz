@@ -13,6 +13,7 @@
         contentType: false,
         success: function (result) {
             $("#result").html(result); $("#pictureErrorHere").text("");
+            
         },
         error: function (result) {
             $("#pictureErrorHere").text("Bilden måste vara i filformatet .jpeg");
@@ -36,6 +37,7 @@ function getResult() {
         },
         success: function (result) {
             $("#resultHere").html(result);
+            window.scrollTo(0, 0);
             removePic();
         },
         complete: function () {
