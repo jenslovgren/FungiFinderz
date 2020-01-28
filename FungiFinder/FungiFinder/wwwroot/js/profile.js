@@ -26,6 +26,7 @@ function editPassword() {
     if (isActivePass) {
         $.ajax({
             url: '/profile/edit/password',
+            type: 'GET',
             success: function (result) {
                 $("#pwPartial").html(result)
             }
@@ -80,10 +81,18 @@ function editFavMushroom() {
             url: "profile/edit/favoritemushroom",
             type: 'GET',
             success: function (result) {
-
+                $("#favMushPartial").html(result);
             }
 
         })
+        isActiveMush = !isActiveMush;
+        $("#editFavMushroom").css("background-color", "#17a2b8");
+    }
+    else {
+        $("#favMushPartial").empty();
+        $("#editFavMushroom").css("background-color", "white");
+        isActiveMush = !isActiveMush;
+
     }
 
 }
