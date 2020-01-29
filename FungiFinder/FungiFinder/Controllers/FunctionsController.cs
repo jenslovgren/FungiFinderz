@@ -53,17 +53,14 @@ namespace FungiFinder.Controllers
         {
             if (!Utils.CheckFileSignature(file.OpenReadStream()))
                 return BadRequest("error");
-
             if (file?.Length > 0)
             {
                 var filePath = Path.Combine(hostEnvironment.WebRootPath, "Images/Uploads", file.FileName);
-
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
                     await file.CopyToAsync(fileStream);
                 }
             }
-
             return PartialView("_MainImagePartial", file.FileName);
         }
 

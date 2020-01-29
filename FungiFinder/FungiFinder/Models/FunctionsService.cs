@@ -181,17 +181,12 @@ namespace FungiFinder.Models
                 LatinName = result.LatinName,
                 Rating = tempRating
             };
-
-
-
         }
         private string ConvertFirstLetterToUpper(string stringToConvert)
         {
 
             return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(stringToConvert);
         }
-
-
 
         private IEnumerable<ImageData> ReadFromTsv(string file, string folder)
         {

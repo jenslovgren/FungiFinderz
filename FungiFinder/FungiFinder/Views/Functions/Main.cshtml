@@ -34,11 +34,7 @@
                         <input asp-for="ImgToSearch" type="file" class="custom-file-input" onchange="uploadFile('picture')" id="picture">
                         <label class="custom-file-label" for="inputGroupFile02">Välj bild...</label>
                     </div>
-                    @*<div class="input-group-append">
-                            <button class="input-group-text" onclick="getResult()" id="">Sök</button>
-                        </div>*@
                 </div>
-                @*<input id="picture" asp-for="ImgToSearch" type="file" onchange="uploadFile('picture')" class="btn btn-outline-dark" />*@
                 <div class="form-group row justify-content-center">
                     <input type="button" id="btn_search" onclick="getResult()" value="Sök" class="btn btn-info" />
                 </div>
