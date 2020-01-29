@@ -114,10 +114,10 @@
             }
 
             // This event listener will call addMarker() when the map is clicked.
-            map.addListener('click', function (event) {
-                addMarker(event.latLng);
-                //console.log(event.latLng);
-            });
+            //map.addListener('click', function (event) {
+            //    addMarker(event.latLng);
+            //    //console.log(event.latLng);
+            //});
         }
 
         function getCoordinates() {
@@ -165,12 +165,13 @@
 
 
         // Adds a marker to the map and push to the array.
-        function addMarker(location) {
+        function addMarker(lng, lat, locationName) {
+            var location = {lat: lat, lng: lng}
 
             var marker = new google.maps.Marker({
                 position: location,
                 map: map,
-                title: 'SVAMP'
+                label: locationName
             });
             markers.push(marker);
 
@@ -190,14 +191,14 @@
 
         // Shows any markers currently in the array.
         function showMarkers() {
-
             @foreach (var item in Model)
             {
-                <text> addMarker({lat: @item.Latitude, lng: @item.Longitude}),</text>
+                @*<text>addMarker({lat: @item.Latitude, lng: @item.Longitude}),</text>*@
+                <text>addMarker(@item.Longitude, @item.Latitude, '@item.LocationName'),</text>
             }
 
             setMapOnAll(map);
-            
+
         }
 
         //// Deletes all markers in the array by removing references to them.
