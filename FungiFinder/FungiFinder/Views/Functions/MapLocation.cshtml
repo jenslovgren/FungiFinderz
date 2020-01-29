@@ -45,8 +45,11 @@
 
 <div class="container-fluid align-self-center">
     <div class="row justify-content-center align-self-center">
+        <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3 h-100">
+            <input class="form-control my-0 py-1 align-content-center" type="text" id="locationName" placeholder="Namn på nya svampstället.." aria-label="Search" />
+        </div>
         <div class="form-group">
-            <button onclick="getCoordinates();" class="btn btn-info btn-lg btn-block border-dark">Spara Nuvaranda Svampställe</button>
+            <button onclick="getCor();" class="btn btn-info btn-lg btn-block border-dark">Spara Nuvaranda Svampställe</button>
         </div>
         <div class="form-group">
             <button onclick="clearMarkers();" class="btn btn-info btn-lg btn-block border-dark">Göm Svampställen</button>
@@ -89,9 +92,9 @@
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
                     };
-                    //infoWindow.setPosition(pos);
-                    ////infoWindow.setContent('Location found.');
-                    //infoWindow.open(map);
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent('Du är här.');
+                    infoWindow.open(map);
                     map.setCenter(pos);
                     map.setZoom(15);
                 }, function () {
@@ -148,6 +151,24 @@
                     alert(response.responseText);
                 }
 
+            });
+        }
+
+        function getCor() {
+            var locationName = $("#locationName").val();
+            console.log(locationName);
+            if (locationName == "" || locationName == null) {
+                searchQuery = "Jag var tydligen för lat för att namnge mitt nya svampställe.."
+            }
+            console.log(pos.lng);
+            console.log(pos.lat);
+
+            var url = `MapTest/${locationName},${pos.lng},${pos.lat}`
+            $.ajax({
+                url: url,
+                type: "POST",
+                //success: function () {
+                //}
             });
         }
 

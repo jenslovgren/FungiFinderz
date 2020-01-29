@@ -29,8 +29,8 @@ namespace FungiFinder
         public void ConfigureServices(IServiceCollection services)
         {
             var constring = configuration.GetConnectionString("LiveConnection");
-            services.AddDbContext<MyIdentityContext>(o => o.UseSqlServer(constring, c => c.EnableRetryOnFailure()));
-            services.AddDbContext<FungiFinderContext>(o => o.UseSqlServer(constring, c => c.EnableRetryOnFailure()));
+            services.AddDbContext<MyIdentityContext>(o => o.UseSqlServer(constring/*, c => c.EnableRetryOnFailure()*/));
+            services.AddDbContext<FungiFinderContext>(o => o.UseSqlServer(constring/*, c => c.EnableRetryOnFailure()*/));
             services.AddTransient<AccountService>();
             services.AddTransient<FunctionsService>();
             services.AddHttpContextAccessor();
