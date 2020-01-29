@@ -25,5 +25,7 @@ namespace FungiFinder.Models.ViewModels
         [Display(Name = "Lösenordsvalidering")]
         [Compare("Password", ErrorMessage = "Lösenorden matchar inte")]
         public string ConfirmPassword { get; set; }
+        [Range(typeof(bool), "true", "true", ErrorMessage = "Vänligen godkänn villkoren")]
+        public bool TermsAndConditions { get; set; }
     }
 }
