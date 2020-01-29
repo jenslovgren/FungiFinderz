@@ -104,14 +104,8 @@ namespace FungiFinder.Models
 
         }
 
-        internal async Task SaveLocation(FunctionMapVM vm)
-        {
-            var user = await userManager.GetUserAsync(accessor.HttpContext.User);
-            context.MapLocation.Add(new MapLocation { UserId = user.Id, LocationName = vm.LocationName, Latitude = decimal.Parse(vm.Latitude), Longitude = decimal.Parse(vm.Longitude) });
-            context.SaveChanges();
-        }
 
-        internal async Task SaveLocation2(string locationName, string lng, string lat)
+        internal async Task SaveLocation(string locationName, string lng, string lat)
         {
             var newLat = lat.Replace(".", ",");
             var decLat = decimal.Parse(newLat);
