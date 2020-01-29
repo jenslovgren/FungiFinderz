@@ -66,13 +66,13 @@ namespace FungiFinder
 
             app.UseStatusCodePagesWithRedirects("/error/http/{0}");
 
-
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseAuthentication();
+            app.UseCookiePolicy();
             app.UseRouting();
             app.UseAuthorization();
-            app.UseCookiePolicy();
             app.UseEndpoints(endpoints => endpoints.MapControllers());
            
         }
