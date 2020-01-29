@@ -82,13 +82,13 @@ namespace FungiFinder.Controllers
 
         }
 
-        [Route("MapTest/{locationName},{lng},{lat}")]
+        [Route("Map/{locationName},{lng},{lat}")]
         [HttpPost]
         public async Task<IActionResult> AddMapLocation(string locationName, string lng, string lat)
         {
             await service.SaveLocation(locationName, lng, lat);
 
-            return Ok();
+            return RedirectToAction(nameof(MapLocation));
         }
 
         //[Route("edit/locationname/{id}")]
