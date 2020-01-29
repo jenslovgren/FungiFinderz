@@ -44,18 +44,25 @@
 
 <div class="container-fluid align-self-center">
     <div class="row justify-content-center align-self-center">
-        <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3 h-100">
-            <input class="form-control my-0 py-1 align-content-center" type="text" id="locationName" placeholder="Namn på nya svampstället.." aria-label="Search" />
-        </div>
         <div class="form-group">
-            <button onclick="getCor();" class="btn btn-info btn-lg btn-block border-dark">Spara Nuvaranda Svampställe</button>
+            <input type="image" src="~/Images/Logos/TranspIcon.png" onclick="showMarkers()" alt="Submit" height="40">
+        </div>
+        <div class="form-group col-sm-2">
+            <input type="image" src="~/Images/Logos/TranspIconStop.png" onclick="clearMarkers()" alt="Submit" height="40">
+        </div>
+        @*<div class="form-group">
+            <button onclick="showMarkers();" class="btn btn-info btn-lg btn-block border-dark">Visa Svampställen</button>
         </div>
         <div class="form-group">
             <button onclick="clearMarkers();" class="btn btn-info btn-lg btn-block border-dark">Göm Svampställen</button>
+        </div>*@
+        <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-2 h-100">
+            <input class="form-control my-0 py-1 align-content-center" type="text" id="locationName" placeholder="Namn på nya svampstället.." aria-label="Search" />
         </div>
         <div class="form-group">
-            <button onclick="showMarkers();" class="btn btn-info btn-lg btn-block border-dark">Visa Svampställen</button>
+            <button onclick="getCor();" class="btn btn-info btn-lg btn-block border-dark">Spara Svampställe</button>
         </div>
+
     </div>
 </div>
 <br />
@@ -159,6 +166,15 @@
             $.ajax({
                 url: url,
                 type: "POST",
+                success: function (response) {
+                    alert('Svampställe sparat');
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
             });
         }
 
