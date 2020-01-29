@@ -68,7 +68,13 @@
         var map, infoWindow;
         var markers = [];
         var pos;
-        var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+
+        var image = {
+        url: '/Images/Logos/PinkMarker.png',
+        //size: new google.maps.Size(32, 38),
+        //scaledSize: new google.maps.Size(32, 38),
+        //labelOrigin: new google.maps.Point(9,1000)
+        };
 
 
         function initMap() {
@@ -136,7 +142,7 @@
 
         //    });
         //}
-
+        
         function getCor() {
             var locationName = $("#locationName").val();
             console.log(locationName);
@@ -171,7 +177,16 @@
             var marker = new google.maps.Marker({
                 position: location,
                 map: map,
-                label: locationName
+                icon: image,
+                labelClass: "labels",
+                label: {
+                    text: 'SVAMP',
+                    color: 'black',
+                    fontSize: '12px',
+                    x: '20000',
+                    y: '1000'
+                }
+                //label: locationName
             });
             markers.push(marker);
 
