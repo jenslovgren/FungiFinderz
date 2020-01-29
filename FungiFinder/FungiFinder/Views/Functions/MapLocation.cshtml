@@ -1,10 +1,9 @@
 ﻿@model FunctionMapVM[]
-@*@model FunctionsMapLocationsVM[]*@
 
 @section styles{
     <style>
         /* Always set the map height explicitly to define the size of the div
-        * element that contains the map. hääääääääääääj */
+        * element that contains the map.*/
         #map {
             height: 500px;
             width: 900px;
@@ -57,9 +56,6 @@
         <div class="form-group">
             <button onclick="showMarkers();" class="btn btn-info btn-lg btn-block border-dark">Visa Svampställen</button>
         </div>
-        @*<div class="form-group">
-            <button onclick="deleteMarkers();" class="btn btn-info btn-lg btn-block border-dark">Ta Bort Svampställen</button>
-        </div>*@
     </div>
 </div>
 <br />
@@ -112,40 +108,34 @@
                     'Error: Your browser doesn\'t support geolocation.');
                 infoWindow.open(map);
             }
-
-            // This event listener will call addMarker() when the map is clicked.
-            //map.addListener('click', function (event) {
-            //    addMarker(event.latLng);
-            //    //console.log(event.latLng);
-            //});
         }
 
-        function getCoordinates() {
+        //function getCoordinates() {
 
-            console.log(pos.lat);
-            console.log(pos.lng);
-            nameLocation = $("#nameLocation").val();
+        //    console.log(pos.lat);
+        //    console.log(pos.lng);
+        //    nameLocation = $("#nameLocation").val();
 
-            $.ajax({
+        //    $.ajax({
 
-                type: "POST",
-                url: "/Map/longlat",
-                contentType: "application/json",
-                //dataType: 'json',
-                data: JSON.stringify({ locationName: nameLocation, latitude: pos.lat, longitude: pos.lng}),
+        //        type: "POST",
+        //        url: "/Map/longlat",
+        //        contentType: "application/json",
+        //        //dataType: 'json',
+        //        data: JSON.stringify({ locationName: nameLocation, latitude: pos.lat, longitude: pos.lng}),
 
-                success: function (response) {
-                    alert(response.responseText = 'Svampställe sparat');
-                },
-                failure: function (response) {
-                    alert(response.responseText);
-                },
-                error: function (response) {
-                    alert(response.responseText);
-                }
+        //        success: function (response) {
+        //            alert('Svampställe sparat');
+        //        },
+        //        failure: function (response) {
+        //            alert(response.responseText);
+        //        },
+        //        error: function (response) {
+        //            alert(response.responseText);
+        //        }
 
-            });
-        }
+        //    });
+        //}
 
         function getCor() {
             var locationName = $("#locationName").val();
@@ -203,19 +193,12 @@
         function showMarkers() {
             @foreach (var item in Model)
             {
-                @*<text>addMarker({lat: @item.Latitude, lng: @item.Longitude}),</text>*@
                 <text>addMarker(@item.Longitude, @item.Latitude, '@item.LocationName'),</text>
             }
 
             setMapOnAll(map);
 
-        }
-
-        //// Deletes all markers in the array by removing references to them.
-        //function deleteMarkers() {
-        //    clearMarkers();
-        //    markers = [];
-        //}
+        } 
 
     </script>
 
