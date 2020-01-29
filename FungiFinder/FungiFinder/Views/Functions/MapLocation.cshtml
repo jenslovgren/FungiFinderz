@@ -87,7 +87,7 @@
 
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
-                        /*var*/ pos = {
+                        pos = {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
                     };
@@ -118,13 +118,7 @@
                 addMarker(event.latLng);
                 //console.log(event.latLng);
             });
-            //Show markers
-            //addMarker({lat: 59.407334, lng:17.946617})
         }
-
-
-        //Tillagt
-        //let locationname = 'hej';
 
         function getCoordinates() {
 
@@ -166,8 +160,6 @@
             $.ajax({
                 url: url,
                 type: "POST",
-                //success: function () {
-                //}
             });
         }
 
