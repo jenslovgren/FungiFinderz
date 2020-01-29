@@ -163,7 +163,16 @@
             var url = `Map/${locationName},${pos.lng},${pos.lat}`
             $.ajax({
                 url: url,
-                type: "POST"
+                type: "POST",
+                  success: function (response) {
+                    alert('Svampställe sparat');
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
             });
         }
 
