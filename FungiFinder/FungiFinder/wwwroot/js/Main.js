@@ -50,7 +50,11 @@ function removePic() {
 
 }
 
-
+$(document).ready(function () {
+    $("#btn_search").click(function () {
+        $("#warn").hide();
+    });
+});
 
 
 

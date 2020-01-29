@@ -6,7 +6,7 @@
         * element that contains the map.*/
         #map {
             height: 500px;
-            width: 900px;
+            width: 955px;
         }
         /* Optional: Makes the sample page fill the window. */
         html, body {
@@ -44,18 +44,23 @@
 
 <div class="container-fluid align-self-center">
     <div class="row justify-content-center align-self-center">
-        <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3 h-100">
-            <input class="form-control my-0 py-1 align-content-center" type="text" id="locationName" placeholder="Namn på nya svampstället.." aria-label="Search" />
+        <div class="col col-sm-1 col-md-2 col-lg-4 col-xl-4">
+            <input type="image" src="~/Images/Logos/TranspIcon.png" onclick="showMarkers()" alt="Submit" height="40">
+            <input type="image" src="~/Images/Logos/TranspIconStop.png" onclick="clearMarkers()" alt="Submit" height="40">
         </div>
-        <div class="form-group">
-            <button onclick="getCor();" class="btn btn-info btn-lg btn-block border-dark">Spara Nuvaranda Svampställe</button>
+        @*<div class="form-group">
+            <button onclick="showMarkers();" class="btn btn-info btn-lg btn-block border-dark">Visa Svampställen</button>
         </div>
         <div class="form-group">
             <button onclick="clearMarkers();" class="btn btn-info btn-lg btn-block border-dark">Göm Svampställen</button>
+        </div>*@
+        <div class="col col-xl-2">
+            <input class="form-control my-0 py-1 align-content-center" style="height: 45px" type="text" id="locationName" placeholder="Namn på svampstället.." aria-label="Search" />
         </div>
         <div class="form-group">
-            <button onclick="showMarkers();" class="btn btn-info btn-lg btn-block border-dark">Visa Svampställen</button>
+            <button onclick="getCor();" class="btn btn-info btn-lg btn-block border-dark">Lägg till svampställe</button>
         </div>
+
     </div>
 </div>
 <br />
@@ -68,12 +73,19 @@
         var map, infoWindow;
         var markers = [];
         var pos;
-        var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+
+        var image = {
+        url: '/Images/Logos/RedMarker.png',
+        //size: new google.maps.Size(32, 38),
+        //scaledSize: new google.maps.Size(32, 38),
+        //labelOrigin: new google.maps.Point(9,1000)
+        };
 
 
         function initMap() {
 
             map = new google.maps.Map(document.getElementById('map'), {
+                streetViewControl: false,
                 center: { lat: 62.0236528, lng: 15.119680 },
                 zoom: 6,
             });
@@ -108,6 +120,8 @@
                     'Error: Your browser doesn\'t support geolocation.');
                 infoWindow.open(map);
             }
+
+            var yourLocation = {lat: pos.lat,lng: pos.lng};
         }
 
         //function getCoordinates() {
@@ -136,7 +150,7 @@
 
         //    });
         //}
-
+        
         function getCor() {
             var locationName = $("#locationName").val();
             console.log(locationName);
@@ -150,30 +164,36 @@
             $.ajax({
                 url: url,
                 type: "POST",
+                success: function (response) {
+                    alert('Svampställe sparat');
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
             });
         }
 
-
-        //TESTING
-        var contentString = 'svampizar';
-          var infowindow = new google.maps.InfoWindow({
-        content: contentString
-         });
-
-        marker.addListener('click', function () {
-            infowindow.open(map, marker);
-        });
-
         // Adds a marker to the map and push to the array.
         function addMarker(lng, lat, locationName) {
-            var location = {lat: lat, lng: lng}
+            var location = { lat: lat, lng: lng }
+
+            var infowindow = new google.maps.InfoWindow({
+            content: locationName
+            });
 
             var marker = new google.maps.Marker({
                 position: location,
                 map: map,
-                label: locationName
+                icon: image
             });
             markers.push(marker);
+
+            marker.addListener('click', function() {
+            infowindow.open(map, marker);
+             });
 
         }
 
@@ -191,6 +211,8 @@
 
         // Shows any markers currently in the array.
         function showMarkers() {
+            clearMarkers();
+            markers = [];
             @foreach (var item in Model)
             {
                 <text>addMarker(@item.Longitude, @item.Latitude, '@item.LocationName'),</text>
