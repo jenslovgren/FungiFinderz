@@ -108,6 +108,8 @@
     font-weight: 600;
     color: #0062cc;
 }
-body{
+body {
     background-image: url('../Images/BackgroundPic/FungiBackgroundAll.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }

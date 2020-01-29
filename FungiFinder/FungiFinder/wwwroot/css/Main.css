@@ -7,6 +7,8 @@
     margin: auto;
   
 }
-body{
+body {
     background-image: url('../Images/BackgroundPic/FungiBackgroundAll.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
