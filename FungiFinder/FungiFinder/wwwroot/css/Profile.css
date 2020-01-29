@@ -13,6 +13,7 @@
 .profile-img img {
     width: 70%;
     height: 100%;
+    border-radius: 10px;
 }
 
 .profile-img .file {
@@ -109,7 +110,7 @@
     color: #0062cc;
 }
 body {
-    background-image: url('../Images/BackgroundPic/FungiBackground854.2.jpg');
+    background-image: url('../Images/BackgroundPic/FungiBackground1026.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
 }

@@ -118,7 +118,7 @@ namespace FungiFinder.Models
             context.SaveChanges();
         }
 
-        private ITransformer GenerateModel(MLContext mlContext)
+        private void GenerateModel(MLContext mlContext)
         {
             IEstimator<ITransformer> pipeline = mlContext.Transforms.LoadImages(outputColumnName: "input", imageFolder: _imagesFolder, inputColumnName: nameof(ImageData.ImagePath))
             // The image transforms transform the images into the model's expected format.
@@ -135,33 +135,17 @@ namespace FungiFinder.Models
         
             ITransformer modelReturn = pipeline.Fit(trainingData);
             mlContext.Model.Save(modelReturn, trainingData.Schema, @"wwwroot\tensorflowModel\model.zip");
-
-            //IDataView testData = mlContext.Data.LoadFromTextFile<ImageData>(path: _testTagsTsv, hasHeader: false);
-            //IDataView predictions = model.Transform(testData);
-
-            // Create an IEnumerable for the predictions for displaying results
-            //IEnumerable<ImagePrediction> imagePredictionData = mlContext.Data.CreateEnumerable<ImagePrediction>(predictions, true);
-            //DisplayResults(imagePredictionData);
-
-            //MulticlassClassificationMetrics metrics =
-            //mlContext.MulticlassClassification.Evaluate(predictions,
-            //labelColumnName: "LabelKey",
-            //predictedLabelColumnName: "PredictedLabel");
-            ////Console.WriteLine("=============== Classification metrics ===============");
-            ////Console.WriteLine($"LogLoss is: {metrics.LogLoss}");
-            ////Console.WriteLine($"PerClassLogLoss is: {String.Join(" , ", metrics.PerClassLogLoss.Select(c => c.ToString()))}");
-
-            return modelReturn;
         }
+
         FunctionMainResultPartialVM ClassifySingleImage(MLContext mlContext, ITransformer model)
         {
             var imageData = new ImageData()
             {
                 ImagePath = _predictSingleImage
             };
-            // Make prediction function (input = ImageData, output = ImagePrediction)
             var predictor = mlContext.Model.CreatePredictionEngine<ImageData, ImagePrediction>(model);
             var prediction = predictor.Predict(imageData);
+
             var result = context.Mushrooms.SingleOrDefault(m => m.Name.Replace(" ", string.Empty).ToLower() == prediction.PredictedLabelValue.ToLower());
             context.LatestSearches.Add(new LatestSearches { Mushroom = ConvertFirstLetterToUpper(prediction.PredictedLabelValue), SearchDate = DateTime.Now, UserId = userManager.GetUserId(accessor.HttpContext.User), ImageUrl = result.ImageUrl });
             context.SaveChanges();
@@ -170,7 +154,6 @@ namespace FungiFinder.Models
                 tempRating = 0;
             else
                 tempRating = (int)result.Rating;
-
             return new FunctionMainResultPartialVM
             {
                 Name = ConvertFirstLetterToUpper(result.Name),
@@ -181,17 +164,12 @@ namespace FungiFinder.Models
                 LatinName = result.LatinName,
                 Rating = tempRating
             };
-
-
-
         }
         private string ConvertFirstLetterToUpper(string stringToConvert)
         {
 
             return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(stringToConvert);
         }
-
-
 
         private IEnumerable<ImageData> ReadFromTsv(string file, string folder)
         {

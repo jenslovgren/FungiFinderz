@@ -75,7 +75,7 @@
         var pos;
 
         var image = {
-        url: '/Images/Logos/PinkMarker.png',
+        url: '/Images/Logos/RedMarker.png',
         //size: new google.maps.Size(32, 38),
         //scaledSize: new google.maps.Size(32, 38),
         //labelOrigin: new google.maps.Point(9,1000)
@@ -160,7 +160,7 @@
             console.log(pos.lng);
             console.log(pos.lat);
 
-            var url = `MapTest/${locationName},${pos.lng},${pos.lat}`
+            var url = `Map/${locationName},${pos.lng},${pos.lat}`
             $.ajax({
                 url: url,
                 type: "POST",

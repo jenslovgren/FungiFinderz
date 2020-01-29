@@ -160,7 +160,6 @@ namespace FungiFinder.Controllers
             return Ok();
         }
 
-
         [RequestSizeLimit(2097152)]
         [Route("profile/changepicture")]
         [HttpPost]

@@ -16,7 +16,7 @@
             
         },
         error: function (result) {
-            $("#pictureErrorHere").text("Bilden måste vara i filformatet .jpeg");
+            $("#pictureErrorHere").text("Bilden måste vara i filformatet .jpg");
         }
     })
 

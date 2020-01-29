@@ -17,7 +17,7 @@
 
 <div class="container main" style="background-color: white; padding-bottom: 200px;">
     <h3 class="row container-fluid align-self-center justify-content-center text-center font-weight-bold">FUNGI FINDER</h3>
-    <p class="row text-center justify-content-center align-self-center" id="warn">OBS: Ät inte svamp vars sökresultat är en matsvamp om du inte själv säkert vet att det är en matsvamp</p>
+    <p class="row text-center justify-content-center align-self-center" id="warn">OBS! Ät inte svamp vars sökresultat är en matsvamp om du inte själv säkert vet att det är en matsvamp.</p>
     <br />
     <div class="searcher row container-fluid align-self-center justify-content-center" id="searcher" style="display: none;">
         <img src="~/Images/Gifs/FungiSearchGif.gif" alt="Searching..." style="margin-left: 30px;" />
@@ -34,11 +34,7 @@
                         <input asp-for="ImgToSearch" type="file" class="custom-file-input" onchange="uploadFile('picture')" id="picture">
                         <label class="custom-file-label" for="inputGroupFile02">Välj bild...</label>
                     </div>
-                    @*<div class="input-group-append">
-                            <button class="input-group-text" onclick="getResult()" id="">Sök</button>
-                        </div>*@
                 </div>
-                @*<input id="picture" asp-for="ImgToSearch" type="file" onchange="uploadFile('picture')" class="btn btn-outline-dark" />*@
                 <div class="form-group row justify-content-center">
                     <input type="button" id="btn_search" onclick="getResult()" value="Sök" class="btn btn-info" />
                 </div>
