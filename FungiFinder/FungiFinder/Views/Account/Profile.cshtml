@@ -45,7 +45,6 @@
             <div class="dropdown-item-text" id="emailPartial"></div>
             <div class="dropdown-header"></div>
             <div class="dropdown-item-text" id="favMushPartial"></div>
-            <div class="dropdown-item-text" id="profilePicPartial"></div>
         </div>
     </div>
 </div>
@@ -57,11 +56,11 @@
         <div class="col-md-4 col-sm-4">
             <div class="profile-img">
                 <img id="profilePic" src="~/Images/UserPics/@Model.UrlProfilePicture" />
-                @*<div class="file btn btn-lg btn-primary">
+                <div class="file btn btn-lg btn-primary">
                     Byt Profilbild
                     <input type="file" id="picture" onchange="changeProfilePic('picture')"/>
                 </div>
-                <div id="pictureErrorHere" class="text-danger"></div>*@
+                <div id="pictureErrorHere" class="text-danger"></div>
             </div>
         </div>
 
@@ -86,7 +85,8 @@
         
     </div>
     <div class="row">
-       
+   
+       <div class="col-md-4"></div>
         <div class="col-md-8 col-sm-8">
             <div class="tab-content profile-tab" id="myTabContent">
                 <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="home-tab">
