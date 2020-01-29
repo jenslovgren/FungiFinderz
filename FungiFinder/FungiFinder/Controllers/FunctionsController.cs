@@ -78,17 +78,17 @@ namespace FungiFinder.Controllers
 
         [Route("Map")]
         [HttpGet]
-        public IActionResult MapLocation()
+        public async Task<IActionResult> MapLocation()
         {
             var model = await service.GetUserLocations();
             return View(model);
 
         }
 
-        [Route("Map/longlat")]
-        [HttpPost]
-        public async Task<IActionResult> AddMapLocation([FromBody] FunctionMapVM vm)
-        {
+        //[Route("Map/longlat")]
+        //[HttpPost]
+        //public async Task<IActionResult> AddMapLocation([FromBody] FunctionMapVM vm)
+        //{
 
         //    //if (!ModelState.IsValid)
         //    //    return View(vm);
