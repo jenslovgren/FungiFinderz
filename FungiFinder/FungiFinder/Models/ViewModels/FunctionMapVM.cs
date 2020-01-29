@@ -14,7 +14,7 @@ namespace FungiFinder.Models.ViewModels
         public string LocationName { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
-
+        //Test
 
     }
 }

@@ -35,7 +35,7 @@ namespace FungiFinder.Controllers
         [Route("library")]
         public IActionResult Library()
         {
-            return View();
+            return View();  
         }
 
         [HttpGet]
