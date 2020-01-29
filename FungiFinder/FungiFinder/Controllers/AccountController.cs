@@ -159,13 +159,6 @@ namespace FungiFinder.Controllers
 
             return Ok();
         }
-        [Route("profile/changepicture")]
-        [HttpGet]
-        public IActionResult ChangeProfilePicture()
-        {
-            return PartialView("_EditProfilePicturePartial");
-        }
-
 
         [RequestSizeLimit(2097152)]
         [Route("profile/changepicture")]
