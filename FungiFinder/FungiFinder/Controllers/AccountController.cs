@@ -194,7 +194,11 @@ namespace FungiFinder.Controllers
         [HttpPost]
         public async Task<IActionResult> EditFavoriteMushroom([FromBody] AccountEditFavoriteMushroomVM vm)
         {
-            await service.ChangeFavoriteMushroom(vm);
+            var result = await service.ChangeFavoriteMushroom(vm);
+            if (!result.Succeeded)
+            {
+                return BadRequest();
+            }
             return Ok();
         }
     }

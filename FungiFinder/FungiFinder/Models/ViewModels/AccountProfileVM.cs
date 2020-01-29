@@ -12,10 +12,11 @@ namespace FungiFinder.Models.ViewModels
         public string UrlProfilePicture { get; set; }
         public string Username { get; set; }
         [DataType(DataType.EmailAddress)]
+        [Display(Name = "E-Post")]
         public string Email { get; set; }
         public string MushroomLookAlike { get; set; }
+        [Display(Name = "Favorit Svamp")]
         public string FavouriteMushroom { get; set; }
-        //public string PreviousSearches { get; set; }
         public LatestSearchesDetailsVM[] LatestSearches { get; set; }
 
 
