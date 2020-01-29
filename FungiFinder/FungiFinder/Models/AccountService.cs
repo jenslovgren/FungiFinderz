@@ -90,9 +90,9 @@ namespace FungiFinder.Models
             vm.Locations = context.MapLocation
               .Where(o => o.UserId == userManager
               .GetUserId(accessor.HttpContext.User))
-              .OrderByDescending(o => o.LocationName)
+              .OrderBy(o => o.LocationName)
               .Take(5)
-              .Select(o => new FunctionMapVM { LocationName = o.LocationName, Latitude = o.Latitude.ToString(), Longitude = o.Longitude.ToString() })
+              .Select(o => new FunctionMapVM { LocationName = o.LocationName, Latitude = o.Latitude.ToString(), Longitude = o.Longitude.ToString(), Id = o.Id })
               .ToArray();
 
 

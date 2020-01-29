@@ -90,5 +90,12 @@ namespace FungiFinder.Controllers
 
             return Ok();
         }
+
+        //[Route("edit/locationname/{id}")]
+        //[HttpPost]
+        //public async Task<IActionResult> ChangeLocationName(int id)
+        //{
+        //    service.TryChangeLocationName(id);
+        //}
     }
 }

@@ -87,6 +87,13 @@ namespace FungiFinder.Models
             return resultList.ToArray();
         }
 
+        internal async Task TryChangeLocationName(int id)
+        {
+            var user = await userManager.GetUserAsync(accessor.HttpContext.User);
+            var location = context.MapLocation.Find(id);
+            //location.LocationName
+        }
+
         internal async Task<FunctionMapVM[]> GetUserLocations()
         {
             CultureInfo culture = new CultureInfo("en-US");
