@@ -1,10 +1,9 @@
 ﻿@model FunctionMapVM[]
-@*@model FunctionsMapLocationsVM[]*@
 
 @section styles{
     <style>
         /* Always set the map height explicitly to define the size of the div
-        * element that contains the map. hääääääääääääj */
+        * element that contains the map.*/
         #map {
             height: 500px;
             width: 900px;
@@ -45,21 +44,25 @@
 
 <div class="container-fluid align-self-center">
     <div class="row justify-content-center align-self-center">
-        <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3 h-100">
-            <input class="form-control my-0 py-1 align-content-center" type="text" id="locationName" placeholder="Namn på nya svampstället.." aria-label="Search" />
-        </div>
         <div class="form-group">
-            <button onclick="getCor();" class="btn btn-info btn-lg btn-block border-dark">Spara Nuvaranda Svampställe</button>
+            <input type="image" src="~/Images/Logos/TranspIcon.png" onclick="showMarkers()" alt="Submit" height="40">
+        </div>
+        <div class="form-group col-sm-2">
+            <input type="image" src="~/Images/Logos/TranspIconStop.png" onclick="clearMarkers()" alt="Submit" height="40">
+        </div>
+        @*<div class="form-group">
+            <button onclick="showMarkers();" class="btn btn-info btn-lg btn-block border-dark">Visa Svampställen</button>
         </div>
         <div class="form-group">
             <button onclick="clearMarkers();" class="btn btn-info btn-lg btn-block border-dark">Göm Svampställen</button>
+        </div>*@
+        <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-2 h-100">
+            <input class="form-control my-0 py-1 align-content-center" type="text" id="locationName" placeholder="Namn på nya svampstället.." aria-label="Search" />
         </div>
         <div class="form-group">
-            <button onclick="showMarkers();" class="btn btn-info btn-lg btn-block border-dark">Visa Svampställen</button>
+            <button onclick="getCor();" class="btn btn-info btn-lg btn-block border-dark">Spara Svampställe</button>
         </div>
-        @*<div class="form-group">
-            <button onclick="deleteMarkers();" class="btn btn-info btn-lg btn-block border-dark">Ta Bort Svampställen</button>
-        </div>*@
+
     </div>
 </div>
 <br />
@@ -72,12 +75,19 @@
         var map, infoWindow;
         var markers = [];
         var pos;
-        var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+
+        var image = {
+        url: '/Images/Logos/PinkMarker.png',
+        //size: new google.maps.Size(32, 38),
+        //scaledSize: new google.maps.Size(32, 38),
+        //labelOrigin: new google.maps.Point(9,1000)
+        };
 
 
         function initMap() {
 
             map = new google.maps.Map(document.getElementById('map'), {
+                streetViewControl: false,
                 center: { lat: 62.0236528, lng: 15.119680 },
                 zoom: 6,
             });
@@ -113,40 +123,36 @@
                 infoWindow.open(map);
             }
 
-            // This event listener will call addMarker() when the map is clicked.
-            map.addListener('click', function (event) {
-                addMarker(event.latLng);
-                //console.log(event.latLng);
-            });
+            var yourLocation = {lat: pos.lat,lng: pos.lng};
         }
 
-        function getCoordinates() {
+        //function getCoordinates() {
 
-            console.log(pos.lat);
-            console.log(pos.lng);
-            nameLocation = $("#nameLocation").val();
+        //    console.log(pos.lat);
+        //    console.log(pos.lng);
+        //    nameLocation = $("#nameLocation").val();
 
-            $.ajax({
+        //    $.ajax({
 
-                type: "POST",
-                url: "/Map/longlat",
-                contentType: "application/json",
-                //dataType: 'json',
-                data: JSON.stringify({ locationName: nameLocation, latitude: pos.lat, longitude: pos.lng}),
+        //        type: "POST",
+        //        url: "/Map/longlat",
+        //        contentType: "application/json",
+        //        //dataType: 'json',
+        //        data: JSON.stringify({ locationName: nameLocation, latitude: pos.lat, longitude: pos.lng}),
 
-                success: function (response) {
-                    alert('Svampställe sparat');
-                },
-                failure: function (response) {
-                    alert(response.responseText);
-                },
-                error: function (response) {
-                    alert(response.responseText);
-                }
+        //        success: function (response) {
+        //            alert('Svampställe sparat');
+        //        },
+        //        failure: function (response) {
+        //            alert(response.responseText);
+        //        },
+        //        error: function (response) {
+        //            alert(response.responseText);
+        //        }
 
-            });
-        }
-
+        //    });
+        //}
+        
         function getCor() {
             var locationName = $("#locationName").val();
             console.log(locationName);
@@ -160,19 +166,36 @@
             $.ajax({
                 url: url,
                 type: "POST",
+                success: function (response) {
+                    alert('Svampställe sparat');
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
             });
         }
 
-
         // Adds a marker to the map and push to the array.
-        function addMarker(location) {
+        function addMarker(lng, lat, locationName) {
+            var location = { lat: lat, lng: lng }
+
+            var infowindow = new google.maps.InfoWindow({
+            content: locationName
+            });
 
             var marker = new google.maps.Marker({
                 position: location,
                 map: map,
-                title: 'SVAMP'
+                icon: image
             });
             markers.push(marker);
+
+            marker.addListener('click', function() {
+            infowindow.open(map, marker);
+             });
 
         }
 
@@ -190,21 +213,14 @@
 
         // Shows any markers currently in the array.
         function showMarkers() {
-
             @foreach (var item in Model)
             {
-                <text> addMarker({lat: @item.Latitude, lng: @item.Longitude}),</text>
+                <text>addMarker(@item.Longitude, @item.Latitude, '@item.LocationName'),</text>
             }
 
             setMapOnAll(map);
-            
-        }
 
-        //// Deletes all markers in the array by removing references to them.
-        //function deleteMarkers() {
-        //    clearMarkers();
-        //    markers = [];
-        //}
+        } 
 
     </script>
 

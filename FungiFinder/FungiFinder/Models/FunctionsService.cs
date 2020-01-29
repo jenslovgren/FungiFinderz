@@ -106,14 +106,8 @@ namespace FungiFinder.Models
 
         }
 
-        internal async Task SaveLocation(FunctionMapVM vm)
-        {
-            var user = await userManager.GetUserAsync(accessor.HttpContext.User);
-            context.MapLocation.Add(new MapLocation { UserId = user.Id, LocationName = vm.LocationName, Latitude = decimal.Parse(vm.Latitude), Longitude = decimal.Parse(vm.Longitude) });
-            context.SaveChanges();
-        }
 
-        internal async Task SaveLocation2(string locationName, string lng, string lat)
+        internal async Task SaveLocation(string locationName, string lng, string lat)
         {
             var newLat = lat.Replace(".", ",");
             var decLat = decimal.Parse(newLat);
@@ -171,15 +165,33 @@ namespace FungiFinder.Models
             var result = context.Mushrooms.SingleOrDefault(m => m.Name.Replace(" ", string.Empty).ToLower() == prediction.PredictedLabelValue.ToLower());
             context.LatestSearches.Add(new LatestSearches { Mushroom = ConvertFirstLetterToUpper(prediction.PredictedLabelValue), SearchDate = DateTime.Now, UserId = userManager.GetUserId(accessor.HttpContext.User), ImageUrl = result.ImageUrl });
             context.SaveChanges();
-            return new FunctionMainResultPartialVM { Name = ConvertFirstLetterToUpper(result.Name), ProcentResult = prediction.Score.Max() * 100, Edible = result.Edible, UrlMatchedMushroom = result.ImageUrl, Info = result.Info, LatinName = result.LatinName, Rating = (int)result.Rating };
+            int tempRating;
+            if (!result.Edible)
+                tempRating = 0;
+            else
+                tempRating = (int)result.Rating;
+
+            return new FunctionMainResultPartialVM
+            {
+                Name = ConvertFirstLetterToUpper(result.Name),
+                ProcentResult = prediction.Score.Max() * 100,
+                Edible = result.Edible,
+                UrlMatchedMushroom = result.ImageUrl,
+                Info = result.Info,
+                LatinName = result.LatinName,
+                Rating = tempRating
+            };
+
+
+
         }
         private string ConvertFirstLetterToUpper(string stringToConvert)
         {
-           
+
             return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(stringToConvert);
         }
 
-      
+
 
         private IEnumerable<ImageData> ReadFromTsv(string file, string folder)
         {
