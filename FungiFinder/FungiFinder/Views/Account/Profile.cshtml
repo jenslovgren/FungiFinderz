@@ -37,8 +37,7 @@
         <div class="dropdown-menu" id="profileMenu" style="min-width: 11rem;">
             <button type="button" class="dropdown-item" id="editEmail" onclick="editEmail()">Ändra e-post</button>
             <button type="button" class="dropdown-item" id="editPassword" onclick="editPassword()">Ändra lösenord</button>
-            <button type="button" class="dropdown-item" id="editProfilePic" onclick="editProfilePic()">Ändra profilbild</button>
-            <button type="button" class="dropdown-item" id="editFavMushroom" onclick="editFavMushroom()">Ändra favoritsvamp</button>
+            <button type="button" class="dropdown-item" id="editFavMushroom" onclick="editFavMushroom()" style="">Ändra favoritsvamp</button>
             <div class="dropdown-header"></div>
             <div class="dropdown-item-text" id="pwPartial"></div>
             <div class="dropdown-header"></div>
@@ -58,7 +57,7 @@
                 <img id="profilePic" src="~/Images/UserPics/@Model.UrlProfilePicture" />
                 <div class="file btn btn-lg btn-primary">
                     Byt Profilbild
-                    <input type="file" id="picture" onchange="changeProfilePic('picture')"/>
+                    <input type="file" id="picture" onchange="changeProfilePic('picture')" />
                 </div>
                 <div id="pictureErrorHere" class="text-danger"></div>
             </div>
@@ -66,27 +65,30 @@
 
         <div class="col-md-6 col-sm-6">
             <div class="profile-head">
-             
+
                 <h6>
                     @Model.Username
                 </h6>
 
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="true">Info</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#latestSearches" role="tab" aria-controls="latestSearches" aria-selected="false">Senaste sökningar</a>
-                        </li>
-                    </ul>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="true">Info</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#latestSearches" role="tab" aria-controls="latestSearches" aria-selected="false">Senaste sökningar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="location-tab" data-toggle="tab" href="#locations" role="tab" aria-controls="locations" aria-selected="false">Svampställen</a>
+                    </li>
+                </ul>
 
             </div>
         </div>
-        
+
     </div>
     <div class="row">
-   
-       <div class="col-md-4"></div>
+
+        <div class="col-md-4"></div>
         <div class="col-md-8 col-sm-8">
             <div class="tab-content profile-tab" id="myTabContent">
                 <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="home-tab">
@@ -127,8 +129,42 @@
                     }
 
                 </div>
+
+                @*testing*@
+                <div class="tab-pane fade" id="locations" role="tabpanel" aria-labelledby="location-tab">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label class="control-label">Bytt namn på dina svampställen:</label>
+                        </div>
+                    </div>
+
+                    @foreach (var item in Model.Locations)
+                    {
+                        <hr />
+                        <div class="row">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>@item.LocationName</label>
+                                </div>
+                                <div class="col-md-6">
+                                    @*<label asp-for="@item.LocationName" class="control-label"></label>*@
+                                    <input asp-for="@item.LocationName" class="form-control" />
+                                    <span asp-validation-for="@item.LocationName" class="text-danger"></span>
+                                    <input type="submit" value="Save" class="btn btn-primary" />
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                    <div class="form-group">
+                    </div>
+
+
+                    @*slut test*@
+
+                </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
