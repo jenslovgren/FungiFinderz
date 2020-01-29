@@ -9,11 +9,29 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
 
-
+    <script>
+        var defaultRangeValidator = $.validator.methods.range;
+        $.validator.methods.range = function (value, element, param) {
+            if (element.type === 'checkbox') {
+                return element.checked;
+            } else {
+                return defaultRangeValidator.call(this, value, element, param);
+            }
+        }
+    </script>
 }
 
 @section styles{
     <link href="~/css/PicStyles.css" rel="stylesheet" />
+    <style type="text/css">
+        .field-validation-error {
+            color: #ff0000;
+            display: block;
+        }
+        #checkBox {
+            vertical-align: bottom;
+        }
+    </style>
 }
 
 <br />
@@ -48,10 +66,13 @@
                     <input asp-for="ConfirmPassword" class="form-control" />
                     <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                 </div>
-                    <label for="myCheck" style="color: white;">
-                        <input type="checkbox" required id="myCheck" name="myCheck"/> &nbsp;
-                        <b id="terms">Jag godkänner att FungiFinder ej ansvarar för vad jag äter för svamp</b>
+                <div class="terms" style="color: white;">
+                    <label id="checkBox">
+                        @Html.CheckBoxFor(x => x.TermsAndConditions)
+                        <b style="color: white;">Jag godkänner att FungiFinder ej ansvarar för vad jag äter för svamp</b>
                     </label>
+                    @Html.ValidationMessageFor(x => x.TermsAndConditions)
+                </div>
                 <br />
                 <div class="form-group">
                     <input type="submit" value="Registrera konto" class="btn btn-info btn-lg btn-block" />
