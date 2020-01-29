@@ -111,6 +111,17 @@ namespace FungiFinder.Models
             context.SaveChanges();
         }
 
+        internal async Task SaveLocation2(string locationName, string lng, string lat)
+        {
+            var newLat = lat.Replace(".", ",");
+            var decLat = decimal.Parse(newLat);
+            var newLng = lng.Replace(".", ",");
+            var decLng = decimal.Parse(newLng);
+            var user = await userManager.GetUserAsync(accessor.HttpContext.User);
+            context.MapLocation.Add(new MapLocation { UserId = user.Id, LocationName = locationName, Latitude = decLat, Longitude = decLng });
+            context.SaveChanges();
+        }
+
         private ITransformer GenerateModel(MLContext mlContext)
         {
             IEstimator<ITransformer> pipeline = mlContext.Transforms.LoadImages(outputColumnName: "input", imageFolder: _imagesFolder, inputColumnName: nameof(ImageData.ImagePath))
