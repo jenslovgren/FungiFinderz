@@ -19,6 +19,7 @@
 }
 @section styles{
     <link href="~/css/Profile.css" rel="stylesheet" />
+    
     <style>
         #profileMenu {
             width: 100% !important;
@@ -28,25 +29,26 @@
 }
 
 @*<h4>@User.Identity.Name's profil</h4>*@
-<hr />
 <div class="float-right" style="padding-right: 50px;" name="settings">
     <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             Inställningar
         </button>
-        <div class="dropdown-menu" id="profileMenu" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-menu" id="profileMenu" aria-labelledby="dropdownMenuButton" style="min-width: 11rem;">
             <button type="button" class="dropdown-item" id="editPassword" onclick="editPassword()">Ändra lösenord</button>
             <button type="button" class="dropdown-item" id="editEmail" onclick="editEmail()">Ändra E-post</button>
-            @*<button type="button" class="dropdown-item" id="editFavMushroom" onclick="editFavMushroom()" style=""></button>*@
+            <button type="button" class="dropdown-item" id="editFavMushroom" onclick="editFavMushroom()" style="">Ändra favoritsvamp</button>
             <div class="dropdown-header"></div>
             <div class="dropdown-item-text" id="pwPartial"></div>
+            <div class="dropdown-header"></div>
             <div class="dropdown-item-text" id="emailPartial"></div>
+            <div class="dropdown-header"></div>
             <div class="dropdown-item-text" id="favMushPartial"></div>
         </div>
     </div>
 </div>
 
-<div class="container emp-profile" style="border: solid 2px black; padding-bottom: 200px;">
+<div class="container emp-profile" style="padding-bottom: 200px;">
 
     <div class="row">
         <div class="col-md-4">
@@ -98,7 +100,7 @@
                             <label asp-for="FavouriteMushroom"></label>
                         </div>
                         <div class="col-md-6">
-                            <p>@Model.FavouriteMushroom</p>
+                            <p id="mushroomHere">@Model.FavouriteMushroom</p>
                         </div>
                     </div>
 
@@ -106,65 +108,21 @@
                 <div class="tab-pane fade" id="latestSearches" role="tabpanel" aria-labelledby="profile-tab">
                     @foreach (var item in Model.LatestSearches)
                     {
-
+                        <hr />
                         <div class="row">
-                            <div class="col-md-6">
-                                <img class="img-thumbnail" src="~/Images/@item.ImageUrl" />
+                            <div class="col-md-8">
+                                <img class="img-thumbnail" src="~/Images/@item.ImageUrl" style="height: 50px;"/>
                             </div>
                             <div class="col-md-6">
                                 <label>@item.Mushroom</label>
+                                <p>@item.SearchDate</p>
                             </div>
                             <div class="col-md-6">
-                                <p>@item.SearchDate</p>
+                                @*<p>@item.SearchDate</p>*@
                             </div>
                         </div>
                     }
-                    @*<div class="row">
-                            <div class="col-md-6">
-                                <label>Experience</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>Expert</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Hourly Rate</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>10$/hr</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Total Projects</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>230</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>English Level</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>Expert</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Availability</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>6 months</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label>Your Bio</label><br />
-                                <p>Your detail description</p>
-                            </div>
-                        </div>*@
+                   
                 </div>
             </div>
         </div>

@@ -3,24 +3,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
-    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">*@
     <link href="~/bootstrap-4.4.1-dist/css/bootstrap.css" rel="stylesheet" />
     <link href="~/bootstrap-4.4.1-dist/css/bootstrap-grid.css" rel="stylesheet" />
 
 
-    @*<link href="~/css/PicStyles.css" rel="stylesheet" />*@
 
 
 
 
 
-    @*<meta name="viewport" content="width=device-width" />*@
     <title>@ViewBag.Title</title>
     <link rel="icon" href="@Url.Content("~/Images/Favicon/FungiFavicon.ico")" />
     @RenderSection("styles", false)
 
 </head>
-<body>
+<body style="background-color: gray;">
     @if (User.Identity.IsAuthenticated)
     {
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: teal">

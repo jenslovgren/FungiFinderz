@@ -181,6 +181,25 @@ namespace FungiFinder.Controllers
                 }
                     await service.TryChangeProfilePic(profilePic.FileName);
                     return Ok(profilePic.FileName);
-        }        
+        }   
+
+        [Route("profile/edit/favoritemushroom")]
+        [HttpGet]
+        public IActionResult EditFavoriteMushroom()
+        {
+            return PartialView("_EditFavoriteMushroom");
+        }
+
+        [Route("profile/edit/favoritemushroom")]
+        [HttpPost]
+        public async Task<IActionResult> EditFavoriteMushroom([FromBody] AccountEditFavoriteMushroomVM vm)
+        {
+            var result = await service.ChangeFavoriteMushroom(vm);
+            if (!result.Succeeded)
+            {
+                return BadRequest();
+            }
+            return Ok();
+        }
     }
 }

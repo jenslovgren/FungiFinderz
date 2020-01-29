@@ -1,18 +1,13 @@
-﻿@model FunctionMapVM
+﻿@model FunctionMapVM[]
 @*@model FunctionsMapLocationsVM[]*@
-
-@{
-    ViewBag.Title = "MapLocation";
-    ViewData["Title"] = "Fungi Maps";
-}
 
 @section styles{
     <style>
         /* Always set the map height explicitly to define the size of the div
         * element that contains the map. hääääääääääääj */
         #map {
-            height: 650px;
-            width: 840px;
+            height: 500px;
+            width: 900px;
         }
         /* Optional: Makes the sample page fill the window. */
         html, body {
@@ -35,13 +30,14 @@
             padding-left: 10px;
         }
     </style>
+    <link href="~/css/MapLocation.css" rel="stylesheet" />
 }
 <br />
 <br />
 
 <div class="container-fluid align-self-center">
     <div class="row justify-content-center align-self-center">
-        <div id="map" class="row justify-content-center align-self-center"></div>
+        <div id="map" class="row justify-content-center align-self-center img-thumbnail"></div>
     </div>
 </div>
 
@@ -49,32 +45,21 @@
 
 <div class="container-fluid align-self-center">
     <div class="row justify-content-center align-self-center">
-        <div class="form-group">
-            <button onclick="getCoordinates();" class="btn btn2-info btn-lg btn-block border">Spara Nuvaranda Position</button>
+        <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3 h-100">
+            <input class="form-control my-0 py-1 align-content-center" type="text" id="locationName" placeholder="Namn på nya svampstället.." aria-label="Search" />
         </div>
         <div class="form-group">
-            <button onclick="clearMarkers();" class="btn btn2-info btn-lg btn-block border">Göm Markeringar</button>
+            <button onclick="getCor();" class="btn btn-info btn-lg btn-block border-dark">Spara Nuvaranda Svampställe</button>
         </div>
         <div class="form-group">
-            <button onclick="showMarkers();" class="btn btn2-info btn-lg btn-block border">Visa Markeringar</button>
+            <button onclick="clearMarkers();" class="btn btn-info btn-lg btn-block border-dark">Göm Svampställen</button>
         </div>
         <div class="form-group">
-            <button onclick="deleteMarkers();" class="btn btn2-info btn-lg btn-block border">Ta Bort Markeringar</button>
+            <button onclick="showMarkers();" class="btn btn-info btn-lg btn-block border-dark">Visa Svampställen</button>
         </div>
-
-
-        @* Creates a textbox
-            <div class="form-group" style="color: white;">
-                <span asp-validation-for="LocationName"></span>
-                <label>Svampställets namn:</label>
-                <input type="text" id="nameLocation" value="" />
-            </div>
-        *@
-
-
-
-
-
+        <div class="form-group">
+            <button onclick="deleteMarkers();" class="btn btn-info btn-lg btn-block border-dark">Ta Bort Svampställen</button>
+        </div>
     </div>
 </div>
 <br />
@@ -85,7 +70,9 @@
 @section scripts{
     <script>
         var map, infoWindow;
-        var markers = [];
+        var markers = [
+             //['Title B', 59.407334,17.946617, 1]
+        ];
         var pos;
 
 
@@ -106,7 +93,7 @@
                         lng: position.coords.longitude
                     };
                     infoWindow.setPosition(pos);
-                    infoWindow.setContent('Location found.');
+                    infoWindow.setContent('Du är här.');
                     infoWindow.open(map);
                     map.setCenter(pos);
                     map.setZoom(15);
@@ -130,8 +117,10 @@
             // This event listener will call addMarker() when the map is clicked.
             map.addListener('click', function (event) {
                 addMarker(event.latLng);
+                //console.log(event.latLng);
             });
-
+            //Show markers
+            //addMarker({lat: 59.407334, lng:17.946617})
         }
 
 
@@ -162,6 +151,24 @@
                     alert(response.responseText);
                 }
 
+            });
+        }
+
+        function getCor() {
+            var locationName = $("#locationName").val();
+            console.log(locationName);
+            if (locationName == "" || locationName == null) {
+                searchQuery = "Jag var tydligen för lat för att namnge mitt nya svampställe.."
+            }
+            console.log(pos.lng);
+            console.log(pos.lat);
+
+            var url = `MapTest/${locationName},${pos.lng},${pos.lat}`
+            $.ajax({
+                url: url,
+                type: "POST",
+                //success: function () {
+                //}
             });
         }
 
@@ -201,13 +208,22 @@
         // Shows any markers currently in the array.
         function showMarkers() {
 
-            $.ajax({
-                url: "/Map/longlat/MapLocation",
-                type: "GET",
-                success: function (result) {
-                    $("divResult").html(result);
-                }
-            })
+            //$.ajax({
+            //    url: "/Map/longlat/MapLocation",
+            //    type: "GET",
+            //    success: function (result) {
+            //        $("divResult").html(result);
+            //    }
+            //})
+              //Show markers
+            //var savedMarkers = [
+            //    { lat: 59.407334, lng: 17.946617 },
+            //    { lat: 65.407334, lng: 23.946617 },
+
+            @foreach (var item in Model)
+            {
+                <text> addMarker({lat: @item.Latitude, lng: @item.Longitude})</text>
+            }
 
 
             setMapOnAll(map);

@@ -8,14 +8,19 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
     <script src="~/js/Main.js"></script>
 }
+@section styles{
+    <link href="~/css/Main.css" rel="stylesheet" />
+}
+<div id="scrollHere"></div>
+<br />
+<br />
 
-<br />
-<h4 class="row container-fluid align-self-center justify-content-center text-center font-weight-bold">FUNGI FINDER</h4>
-<br />
-<div class="searcher row container-fluid align-self-center justify-content-center" id="searcher" style="display: none;">
-    <img src="~/Images/Gifs/FungiSearchGif.gif" alt="Searching..." style="margin-left: 30px;" />
-</div>
-<div class="container-fluid align-self-center">
+<div class="container main" style="background-color: white; padding-bottom: 200px;">
+    <h4 class="row container-fluid align-self-center justify-content-center text-center font-weight-bold">FUNGI FINDER</h4>
+    <br />
+    <div class="searcher row container-fluid align-self-center justify-content-center" id="searcher" style="display: none;">
+        <img src="~/Images/Gifs/FungiSearchGif.gif" alt="Searching..." style="margin-left: 30px;" />
+    </div>
     <div class="justify-content-center align-self-center">
         <div id="resultHere"></div>
         <div class="border-0" id="result"></div>
@@ -34,7 +39,7 @@
                 </div>
                 @*<input id="picture" asp-for="ImgToSearch" type="file" onchange="uploadFile('picture')" class="btn btn-outline-dark" />*@
                 <div class="form-group row justify-content-center">
-                    <input type="button" id="btn_search" onclick="getResult()" value="Sök" class="btn btn-outline-dark" />
+                    <input type="button" id="btn_search" onclick="getResult()" value="Sök" class="btn btn-info" />
                 </div>
             </div>
         </div>

@@ -87,14 +87,16 @@ namespace FungiFinder.Models
             return resultList.ToArray();
         }
 
-        internal async Task<FunctionsMapLocationsVM[]> GetUserLocations()
+        internal async Task<FunctionMapVM[]> GetUserLocations()
         {
+            CultureInfo culture = new CultureInfo("en-US");
             var user = await userManager.GetUserAsync(accessor.HttpContext.User);
             var vm = context.MapLocation.Where(u => u.UserId == user.Id)
-                .Select(o => new FunctionsMapLocationsVM
+                .Select(o => new FunctionMapVM
                 {
-                    Longitude = o.Longitude,
-                    Latitude = o.Latitude,
+                    LocationName = o.LocationName,
+                    Longitude = o.Longitude.Value.ToString(culture),
+                    Latitude = o.Latitude.Value.ToString(culture),
 
                 }).ToArray();
 
@@ -105,7 +107,18 @@ namespace FungiFinder.Models
         internal async Task SaveLocation(FunctionMapVM vm)
         {
             var user = await userManager.GetUserAsync(accessor.HttpContext.User);
-            context.MapLocation.Add(new MapLocation { UserId = user.Id, LocationName = vm.LocationName, Latitude = vm.Latitude, Longitude = vm.Longitude });
+            context.MapLocation.Add(new MapLocation { UserId = user.Id, LocationName = vm.LocationName, Latitude = decimal.Parse(vm.Latitude), Longitude = decimal.Parse(vm.Longitude) });
+            context.SaveChanges();
+        }
+
+        internal async Task SaveLocation2(string locationName, string lng, string lat)
+        {
+            var newLat = lat.Replace(".", ",");
+            var decLat = decimal.Parse(newLat);
+            var newLng = lng.Replace(".", ",");
+            var decLng = decimal.Parse(newLng);
+            var user = await userManager.GetUserAsync(accessor.HttpContext.User);
+            context.MapLocation.Add(new MapLocation { UserId = user.Id, LocationName = locationName, Latitude = decLat, Longitude = decLng });
             context.SaveChanges();
         }
 
@@ -155,26 +168,18 @@ namespace FungiFinder.Models
             // Make prediction function (input = ImageData, output = ImagePrediction)
             var predictor = mlContext.Model.CreatePredictionEngine<ImageData, ImagePrediction>(model);
             var prediction = predictor.Predict(imageData);
-            //var result = context.Mushrooms.Where(m => m.Name == prediction.PredictedLabelValue).FirstOrDefault();
-            var result = context.Mushrooms.SingleOrDefault(m => m.Name.Replace(" ", string.Empty).ToLower() == prediction.PredictedLabelValue.ToLower())/*.Select(m => new FunctionMainResultPartialVM { Name = m.Name, EdibleOrPosinous = m.Edible, ProcentResult = prediction.Score.Max() * 100, UrlMatchedMushroom = m.ImageUrl }*/;
-            context.LatestSearches.Add(new LatestSearches { Mushroom = ConvertFirstLetterToUpper(prediction.PredictedLabelValue), SearchDate = DateTime.Now, UserId = userManager.GetUserId(accessor.HttpContext.User) });
+            var result = context.Mushrooms.SingleOrDefault(m => m.Name.Replace(" ", string.Empty).ToLower() == prediction.PredictedLabelValue.ToLower());
+            context.LatestSearches.Add(new LatestSearches { Mushroom = ConvertFirstLetterToUpper(prediction.PredictedLabelValue), SearchDate = DateTime.Now, UserId = userManager.GetUserId(accessor.HttpContext.User), ImageUrl = result.ImageUrl });
             context.SaveChanges();
             return new FunctionMainResultPartialVM { Name = ConvertFirstLetterToUpper(result.Name), ProcentResult = prediction.Score.Max() * 100, Edible = result.Edible, UrlMatchedMushroom = result.ImageUrl, Info = result.Info, LatinName = result.LatinName, Rating = (int)result.Rating };
-            //Console.WriteLine($"Image: {Path.GetFileName(imageData.ImagePath)}                  predicted as: {prediction.PredictedLabelValue}                  with score: {prediction.Score.Max()} ");
         }
         private string ConvertFirstLetterToUpper(string stringToConvert)
         {
+           
             return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(stringToConvert);
         }
 
-        private void DisplayResults(IEnumerable<ImagePrediction> imagePredictionData)
-        {
-            //Console.WriteLine("=============== Training classification model ===============");
-            //foreach (ImagePrediction prediction in imagePredictionData)
-            //{
-            //    Console.WriteLine($"Image: {Path.GetFileName(prediction.ImagePath)} predicted as: {prediction.PredictedLabelValue} with score: {prediction.Score.Max()} ");
-            //}
-        }
+      
 
         private IEnumerable<ImageData> ReadFromTsv(string file, string folder)
         {
@@ -185,7 +190,6 @@ namespace FungiFinder.Models
                 ImagePath = Path.Combine(folder, line[0])
             });
         }
-        //string _inceptionTensorFlowModel = Path.Combine(_assetsPath, "inception", "tensorflow_inception_graph.pb");
     }
 
 
