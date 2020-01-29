@@ -71,6 +71,22 @@ function changeProfilePic(inputId) {
     })
 }
 
+let isActiveProfilePic = true;
+function editProfilePic() {
+    console.log("tja");
+    if (isActiveProfilePic) {
+        $.ajax({
+            url: '/profile/changepicture',
+            type: 'GET',
+            success: function (result) {
+                $("#profilePicPartial").html(result);
+            }
+            
+        })
+        isActiveProfilePic = !isActiveProfilePic
+    }
+}
+
 
 
 let isActiveMush = true;

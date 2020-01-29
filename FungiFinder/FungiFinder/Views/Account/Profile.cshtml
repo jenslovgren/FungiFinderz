@@ -8,9 +8,8 @@
 }
 
 @section scripts{
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
     <script src="~/js/profile.js"></script>
-    <script src="~/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
     <script>
         $('#profileMenu').on("click.bs.dropdown", function (e) {
             e.stopPropagation();
@@ -31,11 +30,11 @@
 
 @*<h4>@User.Identity.Name's profil</h4>*@
 <div class="float-right" style="padding-right: 50px;" name="settings">
-    <div class="dropdown">
-        <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <div class="btn-group">
+        <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
             Inställningar
         </button>
-        <div class="dropdown-menu" id="profileMenu" aria-labelledby="dropdownMenuButton" style="min-width: 11rem;">
+        <div class="dropdown-menu" id="profileMenu" style="min-width: 11rem;">
             <button type="button" class="dropdown-item" id="editEmail" onclick="editEmail()">Ändra e-post</button>
             <button type="button" class="dropdown-item" id="editPassword" onclick="editPassword()">Ändra lösenord</button>
             <button type="button" class="dropdown-item" id="editFavMushroom" onclick="editFavMushroom()" style="">Ändra favoritsvamp</button>
@@ -49,50 +48,45 @@
     </div>
 </div>
 
+
 <div class="container emp-profile" style="padding-bottom: 200px;">
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-4">
             <div class="profile-img">
                 <img id="profilePic" src="~/Images/UserPics/@Model.UrlProfilePicture" />
                 <div class="file btn btn-lg btn-primary">
-                    Change Photo
-                    <input type="file" id="picture" onchange="changeProfilePic('picture')" />
+                    Byt Profilbild
+                    <input type="file" id="picture" onchange="changeProfilePic('picture')"/>
                 </div>
                 <div id="pictureErrorHere" class="text-danger"></div>
             </div>
         </div>
-        <div class="col-md-6">
+
+        <div class="col-md-6 col-sm-6">
             <div class="profile-head">
-                <h5>
-                </h5>
+             
                 <h6>
                     @Model.Username
                 </h6>
 
-                <ul class="nav nav-tabs" id="myTab" role="tabpanel">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#about" role="tab" aria-controls="home" aria-selected="true">Info</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#latestSearches" role="tab" aria-controls="profile" aria-selected="false">Senaste sökningar</a>
-                    </li>
-                    @*Testing*@
-                    <li class="nav-item">
-                        <a class="nav-link" id="locations-tab" data-toggle="tab" href="#locations" role="tab" aria-controls="locations" aria-selected="false">Locations</a>
-                    </li>
-                    @*end testing*@
-                </ul>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="true">Info</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#latestSearches" role="tab" aria-controls="latestSearches" aria-selected="false">Senaste sökningar</a>
+                        </li>
+                    </ul>
 
             </div>
         </div>
+        
     </div>
     <div class="row">
-        <div class="col-md-4">
-            <div class="profile-work">
-            </div>
-        </div>
-        <div class="col-md-8">
+   
+       <div class="col-md-4"></div>
+        <div class="col-md-8 col-sm-8">
             <div class="tab-content profile-tab" id="myTabContent">
                 <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="home-tab">
                     <div class="row">
@@ -113,6 +107,7 @@
                     </div>
 
                 </div>
+                <div class="col-md-2"></div>
                 <div class="tab-pane fade" id="latestSearches" role="tabpanel" aria-labelledby="profile-tab">
                     @foreach (var item in Model.LatestSearches)
                     {
@@ -126,7 +121,6 @@
                                 <p>@item.SearchDate</p>
                             </div>
                             <div class="col-md-6">
-                                @*<p>@item.SearchDate</p>*@
                             </div>
                         </div>
                     }
