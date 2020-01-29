@@ -9,10 +9,10 @@ namespace FungiFinder.Models.ViewModels
 {
     public class AccountEditEmailPartial
     {
-        [Required(ErrorMessage = "Vänligen ange e-mail")]
-        [Display(Name = "E-Mail")]
+        [Required(ErrorMessage = "Vänligen ange e-post")]
+        [Display(Name = "E-post")]
         [DataType(DataType.EmailAddress)]
-        [EmailAddress(ErrorMessage = "Se till att din epost adress är rätt formaterad")]
+        [EmailAddress(ErrorMessage = "Se till att din e-postadress är rätt formaterad")]
         public string Email { get; set; }
     }
 }

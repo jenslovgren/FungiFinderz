@@ -13,7 +13,7 @@ namespace FungiFinder.Models.ViewModels
         [Display(Name = "Användarnamn")]
         public string UserName { get; set; }
         [Required(ErrorMessage = "Vänligen ange e-mail")]
-        [Display(Name = "E-Mail")]
+        [Display(Name = "E-post")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [Required(ErrorMessage = "Vänligen ange lösenord")]
