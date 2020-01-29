@@ -78,42 +78,36 @@ namespace FungiFinder.Controllers
 
         [Route("Map")]
         [HttpGet]
-        public async Task<IActionResult> MapLocation()
+        public IActionResult MapLocation()
         {
             //var model = await service.GetUserLocations();
+            //return Json(model);
             return View();
 
         }
 
         [Route("Map/longlat")]
         [HttpPost]
-        public async Task<IActionResult> AddMapLocation([FromBody] FunctionMapVM vm)
+        public async Task<IActionResult> MapLocation([FromBody] FunctionMapVM vm)
         {
 
             if (!ModelState.IsValid)
                 return View(vm);
 
-            await service.SaveLocation(vm);
+            /*var result =*/ await service.SaveLocation(vm);
 
             //if (!result.Succeeded)
             //{
-            //    //return BadRequest(result.Errors.First().Description);
-            //    return BadRequest();
+            //    return BadRequest(result.Errors.First().Description);
 
             //}
-            return Ok();
+            return View();
 
-      
-            //return Json();
+
+            //return Json(vm);
         }
 
-        //[Route("Map/{MapLocation}")]
-        //[HttpGet]
-        //public async Task<IActionResult> MapLocations()
-        //{
-        //    var model = await service.GetUserLocations();
-        //    return Json(model);
-        //}
+
 
     }
 }

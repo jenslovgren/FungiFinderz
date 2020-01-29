@@ -14,6 +14,8 @@ namespace FungiFinder.Models.ViewModels
         public string LocationName { get; set; }
         public decimal? Latitude { get; set; }
         public decimal? Longitude { get; set; }
+        //public FunctionMapVM[] MapLocation { get; set; }
+
 
 
     }
