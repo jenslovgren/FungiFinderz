@@ -88,7 +88,7 @@ namespace FungiFinder.Controllers
         {
             await service.SaveLocation(locationName, lng, lat);
 
-            return Ok();
+            return RedirectToAction(nameof(MapLocation));
         }
     }
 }
