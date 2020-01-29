@@ -12,7 +12,7 @@ namespace FungiFinder.Models.ViewModels
 
         [Required(ErrorMessage = "Vänligen ange gammalt lösenord")]
         [DataType(DataType.Password)]
-        [Display(Name = "Lösenord")]
+        [Display(Name = "Ange gammalt lösenord")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Vänligen ange nytt lösenord")]

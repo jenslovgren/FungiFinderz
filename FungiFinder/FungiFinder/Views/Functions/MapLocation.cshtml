@@ -57,9 +57,9 @@
         <div class="form-group">
             <button onclick="showMarkers();" class="btn btn-info btn-lg btn-block border-dark">Visa Svampställen</button>
         </div>
-        <div class="form-group">
+        @*<div class="form-group">
             <button onclick="deleteMarkers();" class="btn btn-info btn-lg btn-block border-dark">Ta Bort Svampställen</button>
-        </div>
+        </div>*@
     </div>
 </div>
 <br />
@@ -70,10 +70,9 @@
 @section scripts{
     <script>
         var map, infoWindow;
-        var markers = [
-             //['Title B', 59.407334,17.946617, 1]
-        ];
+        var markers = [];
         var pos;
+        var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
 
 
         function initMap() {
@@ -88,7 +87,7 @@
 
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
-                        /*var*/ pos = {
+                        pos = {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
                     };
@@ -115,17 +114,11 @@
             }
 
             // This event listener will call addMarker() when the map is clicked.
-            map.addListener('click', function (event) {
-                //addMarker(event.latLng);
-                //console.log(event.latLng);
-            });
-            //Show markers
-            //addMarker({lat: 59.407334, lng:17.946617})
+            //map.addListener('click', function (event) {
+            //    addMarker(event.latLng);
+            //    //console.log(event.latLng);
+            //});
         }
-
-
-        //Tillagt
-        //let locationname = 'hej';
 
         function getCoordinates() {
 
@@ -167,8 +160,6 @@
             $.ajax({
                 url: url,
                 type: "POST",
-                //success: function () {
-                //}
             });
         }
 
@@ -184,21 +175,13 @@
         });
 
         // Adds a marker to the map and push to the array.
-        function addMarker(location) {
+        function addMarker(lng, lat, locationName) {
+            var location = {lat: lat, lng: lng}
 
-            @*var myLatlng = new google.maps.LatLng(@Model.Latitude, @Model.Longitude);
-
-             var marker = new google.maps.Marker({
-                position: myLatlng,
-                map: map
-            });
-            markers.push(marker);*@
-
-            //orginal
             var marker = new google.maps.Marker({
                 position: location,
                 map: map,
-                label: 
+                label: locationName
             });
             markers.push(marker);
 
@@ -218,34 +201,21 @@
 
         // Shows any markers currently in the array.
         function showMarkers() {
-
-            //$.ajax({
-            //    url: "/Map/longlat/MapLocation",
-            //    type: "GET",
-            //    success: function (result) {
-            //        $("divResult").html(result);
-            //    }
-            //})
-              //Show markers
-            //var savedMarkers = [
-            //    { lat: 59.407334, lng: 17.946617 },
-            //    { lat: 65.407334, lng: 23.946617 },
-
             @foreach (var item in Model)
             {
-
-                <text> addMarker({name: @item.LocationName, lat: @item.Latitude, lng: @item.Longitude}),</text>
+                @*<text>addMarker({lat: @item.Latitude, lng: @item.Longitude}),</text>*@
+                <text>addMarker(@item.Longitude, @item.Latitude, '@item.LocationName'),</text>
             }
 
             setMapOnAll(map);
 
         }
 
-        // Deletes all markers in the array by removing references to them.
-        function deleteMarkers() {
-            clearMarkers();
-            markers = [];
-        }
+        //// Deletes all markers in the array by removing references to them.
+        //function deleteMarkers() {
+        //    clearMarkers();
+        //    markers = [];
+        //}
 
     </script>
 
