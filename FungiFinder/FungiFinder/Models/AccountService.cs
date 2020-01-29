@@ -69,7 +69,8 @@ namespace FungiFinder.Models
             {
                 UrlProfilePicture = user.ProfileImageUrl,
                 Username = user.UserName,
-                Email = user.Email
+                Email = user.Email,
+                FavouriteMushroom = user.FavoriteMushroom,
                
 
             };
@@ -122,12 +123,14 @@ namespace FungiFinder.Models
             await userManager.UpdateAsync(user);
         }
 
-        internal async Task ChangeFavoriteMushroom(AccountEditFavoriteMushroomVM vm)
+        internal async Task<IdentityResult> ChangeFavoriteMushroom(AccountEditFavoriteMushroomVM vm)
         {
             var user = await userManager.GetUserAsync(accessor.HttpContext.User);
 
             user.FavoriteMushroom = vm.FavoriteMushroom;
-            await userManager.UpdateAsync(user);
+            var result = await userManager.UpdateAsync(user);
+
+            return result;
         }
     }
 }

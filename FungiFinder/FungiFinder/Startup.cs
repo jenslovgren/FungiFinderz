@@ -29,8 +29,8 @@ namespace FungiFinder
         public void ConfigureServices(IServiceCollection services)
         {
             var constring = configuration.GetConnectionString("LiveConnection");
-            services.AddDbContext<MyIdentityContext>(o => o.UseSqlServer(constring, c => c.EnableRetryOnFailure()));
-            services.AddDbContext<FungiFinderContext>(o => o.UseSqlServer(constring, c => c.EnableRetryOnFailure()));
+            services.AddDbContext<MyIdentityContext>(o => o.UseSqlServer(constring/*, c => c.EnableRetryOnFailure()*/));
+            services.AddDbContext<FungiFinderContext>(o => o.UseSqlServer(constring/*, c => c.EnableRetryOnFailure()*/));
             services.AddTransient<AccountService>();
             services.AddTransient<FunctionsService>();
             services.AddHttpContextAccessor();
@@ -66,13 +66,13 @@ namespace FungiFinder
 
             app.UseStatusCodePagesWithRedirects("/error/http/{0}");
 
-
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseAuthentication();
+            app.UseCookiePolicy();
             app.UseRouting();
             app.UseAuthorization();
-            app.UseCookiePolicy();
             app.UseEndpoints(endpoints => endpoints.MapControllers());
            
         }
