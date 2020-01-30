@@ -9,6 +9,6 @@ namespace FungiFinder.Models.ViewModels
     public class EditLocationNameVM
     {
         public int Id { get; set; }
-        public string LocationName { get; set; }
+        public string NewLocationName { get; set; }
     }
 }

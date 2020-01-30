@@ -150,18 +150,20 @@
                             {
                                 <tr id="@($"trToRemove{item.Id}")">
                                     <td>
-                                        <p>@item.LocationName</p>
+                                        <p id="@($"paraToEdit{item.Id}")">@item.LocationName</p>
                                     </td>
                                     <td>
                                         <input class="form-control" type="text" id="@item.Id" value="@item.LocationName"/>
                                     </td>
                                     <td>
-                                        <form>
+                                        <form asp-action="EditLocationName">
                                             <input class="btn btn-info" type="button" value="Spara" onclick="changeLocationName('@item.Id')" />
                                         </form>
                                     </td>
                                     <td>
-                                        <input class="btn btn-danger" type="button" value="X" onclick="deleteLocation('@item.Id', @($"trToRemove{item.Id}")" />
+                                        <form asp-action="DeleteLocation">
+                                            <input class="btn btn-danger" type="button" value="X" onclick="deleteLocation('@item.Id', @($"trToRemove{item.Id}")" />
+                                        </form>
                                     </td>
                                 </tr>
 

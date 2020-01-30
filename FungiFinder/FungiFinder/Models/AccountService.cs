@@ -142,15 +142,23 @@ namespace FungiFinder.Models
             return result;
         }
 
-        internal async Task TrýEditLocationName(EditLocationNameVM vm)
+        internal void TryEditLocationName(string locationName, int id)
         {
-            var location = context.MapLocation.Find(vm.Id);
+            var location = context.MapLocation.SingleOrDefault(o => o.Id == id);
 
-            location.LocationName = vm.LocationName;
-
+            location.LocationName = locationName;
+            context.MapLocation.Update(location);
             context.SaveChanges();
 
 
+        }
+
+        internal void TryDeleteLocation(int id)
+        {
+            var location = context.MapLocation.SingleOrDefault(o => o.Id == id);
+
+            context.Remove(location);
+            context.SaveChanges();
         }
     }
 }
