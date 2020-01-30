@@ -130,14 +130,16 @@ function changeLocationName(itemId) {
     });
 }
 
-function deleteLocation(itemId, trToDeleteID) {
+function deleteLocation(itemId, trToDeleteId) {
+    console.log("test");
+    console.log(trToDeleteId);
     $.ajax({
         url: `/profile/deletelocation/${itemId}`,
         type: 'POST',
         success: function (result) {
-            $("#" + trToDeleteID).empty();
+            $("#" + trToDeleteId).remove();
         }
-    })
+    });
 }
 
 
