@@ -46,8 +46,6 @@ function getResult() {
     })
 }
 
-
-
 $(document).ready(function () {
     $("#btn_search").click(function () {
         $("#warn").hide();
