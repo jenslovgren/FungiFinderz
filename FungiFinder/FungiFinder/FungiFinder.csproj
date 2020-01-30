@@ -2717,7 +2717,7 @@
   <ItemGroup>
     <Folder Include="wwwroot\Images\Gifs\" />
     <Folder Include="wwwroot\Images\Uploads\" />
-    <Folder Include="wwwroot\tensorflowModel\" />
+    <Folder Include="wwwroot\tensorflowModel\backup\" />
   </ItemGroup>
 
 </Project>
