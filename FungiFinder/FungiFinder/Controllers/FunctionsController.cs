@@ -51,8 +51,9 @@ namespace FungiFinder.Controllers
         [HttpPost]
         public async Task<IActionResult> FileUpload(IFormFile file)
         {
-            if (!Utils.CheckFileSignature(file.OpenReadStream()))
+            if (!service.CheckFileSignature(file.OpenReadStream()))
                 return BadRequest("error");
+
             if (file?.Length > 0)
             {
                 var filePath = Path.Combine(hostEnvironment.WebRootPath, "Images/Uploads", file.FileName);
@@ -82,13 +83,20 @@ namespace FungiFinder.Controllers
 
         }
 
-        [Route("MapTest/{locationName},{lng},{lat}")]
+        [Route("Map/{locationName},{lng},{lat}")]
         [HttpPost]
         public async Task<IActionResult> AddMapLocation(string locationName, string lng, string lat)
         {
             await service.SaveLocation(locationName, lng, lat);
 
-            return Ok();
+            return RedirectToAction(nameof(MapLocation));
         }
+
+        //[Route("edit/locationname/{id}")]
+        //[HttpPost]
+        //public async Task<IActionResult> ChangeLocationName(int id)
+        //{
+        //    service.TryChangeLocationName(id);
+        //}
     }
 }

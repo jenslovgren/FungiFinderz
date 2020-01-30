@@ -86,6 +86,37 @@ namespace FungiFinder.Models
 
             return resultList.ToArray();
         }
+        public bool CheckFileSignature(Stream stream)
+        {
+            Dictionary<string, List<byte[]>> _fileSignature = new Dictionary<string, List<byte[]>>
+            {
+                { ".jpeg", new List<byte[]>
+                    {
+                        new byte[] { 0xFF, 0xD8, 0xFF, 0xE0 },
+                        new byte[] { 0xFF, 0xD8, 0xFF, 0xE2 },
+                        new byte[] { 0xFF, 0xD8, 0xFF, 0xE3 },
+                        new byte[] { 0xFF, 0xD8, 0xFF, 0xE1 },
+                        new byte[] { 0xFF, 0xD8, 0xFF, 0xE8 },
+                    }
+                },
+            };
+
+            using (var reader = new BinaryReader(stream))
+            {
+                var signatures = _fileSignature[".jpeg"];
+                var headerBytes = reader.ReadBytes(signatures.Max(m => m.Length));
+
+                return signatures.Any(signature =>
+                    headerBytes.Take(signature.Length).SequenceEqual(signature));
+            }
+        }
+
+        internal async Task TryChangeLocationName(int id)
+        {
+            var user = await userManager.GetUserAsync(accessor.HttpContext.User);
+            var location = context.MapLocation.Find(id);
+            //location.LocationName
+        }
 
         internal async Task<FunctionMapVM[]> GetUserLocations()
         {
@@ -118,14 +149,19 @@ namespace FungiFinder.Models
 
         private void GenerateModel(MLContext mlContext)
         {
-            IEstimator<ITransformer> pipeline = mlContext.Transforms.LoadImages(outputColumnName: "input", imageFolder: _imagesFolder, inputColumnName: nameof(ImageData.ImagePath))
-            // The image transforms transform the images into the model's expected format.
-            .Append(mlContext.Transforms.ResizeImages(outputColumnName: "input", imageWidth: InceptionSettings.ImageWidth, imageHeight: InceptionSettings.ImageHeight, inputColumnName: "input"))
-            .Append(mlContext.Transforms.ExtractPixels(outputColumnName: "input", interleavePixelColors: InceptionSettings.ChannelsLast, offsetImage: InceptionSettings.Mean))
+            IEstimator<ITransformer> pipeline = mlContext.Transforms.LoadImages(outputColumnName: "input",
+                imageFolder: _imagesFolder, inputColumnName: nameof(ImageData.ImagePath))
 
-            .Append(mlContext.Model.LoadTensorFlowModel(_inceptionTensorFlowModel).ScoreTensorFlowModel(outputColumnNames: new[] { "softmax2_pre_activation" }, inputColumnNames: new[] { "input" }, addBatchDimensionInput: true))
+            .Append(mlContext.Transforms.ResizeImages(outputColumnName: "input", imageWidth: InceptionSettings.ImageWidth, 
+            imageHeight: InceptionSettings.ImageHeight, inputColumnName: "input"))
+            .Append(mlContext.Transforms.ExtractPixels(outputColumnName: "input", interleavePixelColors: 
+            InceptionSettings.ChannelsLast, offsetImage: InceptionSettings.Mean))
+
+            .Append(mlContext.Model.LoadTensorFlowModel(_inceptionTensorFlowModel).ScoreTensorFlowModel(outputColumnNames: 
+            new[] { "softmax2_pre_activation" }, inputColumnNames: new[] { "input" }, addBatchDimensionInput: true))
             .Append(mlContext.Transforms.Conversion.MapValueToKey(outputColumnName: "LabelKey", inputColumnName: "Label"))
-            .Append(mlContext.MulticlassClassification.Trainers.LbfgsMaximumEntropy(labelColumnName: "LabelKey", featureColumnName: "softmax2_pre_activation"))
+            .Append(mlContext.MulticlassClassification.Trainers.LbfgsMaximumEntropy(labelColumnName: "LabelKey",
+            featureColumnName: "softmax2_pre_activation"))
             .Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabelValue", "PredictedLabel"))
             .AppendCacheCheckpoint(mlContext);
 
@@ -145,8 +181,10 @@ namespace FungiFinder.Models
             var predictor = mlContext.Model.CreatePredictionEngine<ImageData, ImagePrediction>(model);
             var prediction = predictor.Predict(imageData);
 
-            var result = context.Mushrooms.SingleOrDefault(m => m.Name.Replace(" ", string.Empty).ToLower() == prediction.PredictedLabelValue.ToLower());
-            context.LatestSearches.Add(new LatestSearches { Mushroom = ConvertFirstLetterToUpper(prediction.PredictedLabelValue), SearchDate = DateTime.Now, UserId = userManager.GetUserId(accessor.HttpContext.User), ImageUrl = result.ImageUrl });
+            var result = context.Mushrooms.SingleOrDefault(m => m.Name.Replace(" ", string.Empty).ToLower() 
+            == prediction.PredictedLabelValue.ToLower());
+            context.LatestSearches.Add(new LatestSearches { Mushroom = ConvertFirstLetterToUpper(prediction.PredictedLabelValue),
+                SearchDate = DateTime.Now, UserId = userManager.GetUserId(accessor.HttpContext.User), ImageUrl = result.ImageUrl });
             context.SaveChanges();
             int tempRating;
             if (!result.Edible)
