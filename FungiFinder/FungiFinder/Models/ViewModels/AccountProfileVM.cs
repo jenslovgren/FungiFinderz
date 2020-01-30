@@ -19,6 +19,9 @@ namespace FungiFinder.Models.ViewModels
         public string FavouriteMushroom { get; set; }
         public LatestSearchesDetailsVM[] LatestSearches { get; set; }
 
+        //Test
+        public FunctionMapVM[] Locations { get; set; }
+
 
 
     }

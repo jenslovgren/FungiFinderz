@@ -35,7 +35,7 @@ namespace FungiFinder.Controllers
         [Route("library")]
         public IActionResult Library()
         {
-            return View();
+            return View();  
         }
 
         [HttpGet]
@@ -57,13 +57,11 @@ namespace FungiFinder.Controllers
             if (file?.Length > 0)
             {
                 var filePath = Path.Combine(hostEnvironment.WebRootPath, "Images/Uploads", file.FileName);
-
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
                     await file.CopyToAsync(fileStream);
                 }
             }
-
             return PartialView("_MainImagePartial", file.FileName);
         }
 
@@ -85,13 +83,20 @@ namespace FungiFinder.Controllers
 
         }
 
-        [Route("MapTest/{locationName},{lng},{lat}")]
+        [Route("Map/{locationName}/{lng}/{lat}")]
         [HttpPost]
-        public async Task<IActionResult> AddMapLocation(string locationName, string lng, string lat)
+        public async Task<IActionResult> AddMapLocation(string locationName, decimal lng, decimal lat)
         {
             await service.SaveLocation(locationName, lng, lat);
 
-            return Ok();
+            return RedirectToAction(nameof(MapLocation));
         }
+
+        //[Route("edit/locationname/{id}")]
+        //[HttpPost]
+        //public async Task<IActionResult> ChangeLocationName(int id)
+        //{
+        //    service.TryChangeLocationName(id);
+        //}
     }
 }

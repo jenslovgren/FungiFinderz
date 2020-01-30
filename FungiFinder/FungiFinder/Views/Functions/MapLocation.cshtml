@@ -121,7 +121,7 @@
                 infoWindow.open(map);
             }
 
-            var yourLocation = {lat: pos.lat,lng: pos.lng};
+            showMarkers()
         }
 
         //function getCoordinates() {
@@ -155,16 +155,16 @@
             var locationName = $("#locationName").val();
             console.log(locationName);
             if (locationName == "" || locationName == null) {
-                searchQuery = "Jag var tydligen för lat för att namnge mitt nya svampställe.."
+                searchQuery = "Svampställe.."
             }
             console.log(pos.lng);
             console.log(pos.lat);
 
-            var url = `MapTest/${locationName},${pos.lng},${pos.lat}`
+            var url = `/Map/${locationName}/${pos.lng}/${pos.lat}`
             $.ajax({
                 url: url,
                 type: "POST",
-                success: function (response) {
+                  success: function (response) {
                     alert('Svampställe sparat');
                 },
                 failure: function (response) {

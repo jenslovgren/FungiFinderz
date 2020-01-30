@@ -76,6 +76,7 @@ namespace FungiFinder.Models
             };
 
             
+            
 
             vm.LatestSearches = context.LatestSearches
                 .Where(o => o.UserId == userManager
@@ -84,6 +85,15 @@ namespace FungiFinder.Models
                 .Take(5)
                 .Select(o => new LatestSearchesDetailsVM { Mushroom = o.Mushroom, SearchDate = o.SearchDate , ImageUrl = o.ImageUrl})
                 .ToArray();
+
+            //påbörjat för att visa locations i profil..
+            vm.Locations = context.MapLocation
+              .Where(o => o.UserId == userManager
+              .GetUserId(accessor.HttpContext.User))
+              .OrderBy(o => o.LocationName)
+              .Take(5)
+              .Select(o => new FunctionMapVM { LocationName = o.LocationName, Latitude = o.Latitude.ToString(), Longitude = o.Longitude.ToString(), Id = o.Id })
+              .ToArray();
 
 
             return vm;
@@ -132,5 +142,6 @@ namespace FungiFinder.Models
 
             return result;
         }
+
     }
 }
