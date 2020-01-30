@@ -27,7 +27,7 @@ namespace FungiFinder.Models
             //Hejsan från Jens
             this.context = context;
             this.userManager = userManager;
-            this.accessor = accessor; // hej
+            this.accessor = accessor; 
         }
 
         static readonly string _assetsPath = Path.Combine(Environment.CurrentDirectory, "wwwroot");
@@ -35,7 +35,7 @@ namespace FungiFinder.Models
         static readonly string _tsModel = Path.Combine(_assetsPath, "tensorflowModel");
         static readonly string _TsvFolder = Path.Combine(_assetsPath, "Tsv");
         static readonly string _uploadedImages = Path.Combine(_assetsPath, "Images/Uploads");
-        static readonly string _trainTagsTsv = Path.Combine(_TsvFolder, "tags2.tsv");
+        static readonly string _trainTagsTsv = Path.Combine(_TsvFolder, "tags3.tsv");
         static readonly string _testTagsTsv = Path.Combine(_TsvFolder, "test-tags.tsv");
         static string _predictSingleImage = Path.Combine(_imagesFolder, "startup.jpg");
         static readonly string _inceptionTensorFlowModel = Path.Combine(_assetsPath, "inception", "tensorflow_inception_graph.pb");
@@ -47,7 +47,8 @@ namespace FungiFinder.Models
             {
                 DataViewSchema temp;
                 model = mlContext.Model.Load(@"wwwroot\tensorflowModel\model.zip", out temp);
-                //model = GenerateModel(mlContext);
+
+                //GenerateModel(mlContext);
             }
                
             _predictSingleImage = Path.Combine(_uploadedImages, urlInput);
@@ -90,12 +91,6 @@ namespace FungiFinder.Models
         }
         
 
-        internal async Task TryChangeLocationName(int id)
-        {
-            var user = await userManager.GetUserAsync(accessor.HttpContext.User);
-            var location = context.MapLocation.Find(id);
-            //location.LocationName
-        }
 
         internal async Task<FunctionMapVM[]> GetUserLocations()
         {
