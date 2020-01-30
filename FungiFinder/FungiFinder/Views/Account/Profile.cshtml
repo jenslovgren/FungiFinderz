@@ -134,29 +134,54 @@
                 <div class="tab-pane fade" id="locations" role="tabpanel" aria-labelledby="location-tab">
                     <div class="row">
                         <div class="col-md-8">
-                            <label class="control-label">Bytt namn på dina svampställen:</label>
+                            @*<label class="control-label"></label>*@
                         </div>
                     </div>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    Byt namn på dina svampställen:
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Locations)
+                            {
+                                <tr id="@($"trToRemove{item.Id}")">
+                                    <td>
+                                        <p>@item.LocationName</p>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="text" id="@item.Id" />
+                                    </td>
+                                    <td>
+                                        <input class="btn btn-info" type="button" value="Spara" onclick="changeLocationName('@item.Id')"/>
+                                    </td>
+                                    <td>
+                                        <input class="btn btn-danger" type="button" value="X" onclick="deleteLocation('@item.Id', @($"trToRemove{item.Id}")" />
+                                    </td>
+                                </tr>
 
-                    @foreach (var item in Model.Locations)
-                    {
-                        <hr />
-                        <div class="row">
+                                @*<hr />*@
+                                @*<div class="row">*@
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>@item.LocationName</label>
-                                </div>
-                                <div class="col-md-6">
-                                    @*<label asp-for="@item.LocationName" class="control-label"></label>*@
-                                    <input asp-for="@item.LocationName" class="form-control" />
+                                @*<div class="row">*@
+                                @*<div class="col-md-6">*@
+                                @*<label>@item.LocationName</label>*@
+                                @*</div>*@
+                                @*<div class="col-md-6">*@
+                                @*<label asp-for="@item.LocationName" class="control-label"></label>*@
+                                @*<input asp-for="@item.LocationName" class="form-control" />
                                     <span asp-validation-for="@item.LocationName" class="text-danger"></span>
-                                    <input type="submit" value="Save" class="btn btn-primary" />
-                                </div>
-                            </div>
+                                    <input type="submit" value="Save" class="btn btn-primary" />*@
+                                @*</div>*@
+                                @*</div>*@
 
-                        </div>
-                    }
+                                @*</div>*@
+                            }
+                        </tbody>
+                    </table>
                     <div class="form-group">
                     </div>
 
@@ -168,3 +193,4 @@
         </div>
 
     </div>
+</div>
