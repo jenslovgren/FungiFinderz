@@ -148,12 +148,13 @@
                         <tbody>
                             @foreach (var item in Model.Locations)
                             {
+                            
                                 <tr id="@($"trToRemove{item.Id}")">
                                     <td>
                                         <p id="@($"paraToEdit{item.Id}")">@item.LocationName</p>
                                     </td>
                                     <td>
-                                        <input class="form-control" type="text" id="@item.Id" value="@item.LocationName"/>
+                                        <input class="form-control" type="text" id="@item.Id" value="@item.LocationName" />
                                     </td>
                                     <td>
                                         <form asp-action="EditLocationName">
@@ -162,10 +163,11 @@
                                     </td>
                                     <td>
                                         <form asp-action="DeleteLocation">
-                                            <input class="btn btn-danger" type="button" value="X" onclick="deleteLocation('@item.Id', @($"trToRemove{item.Id}")" />
+                                            <input class="btn btn-danger" type="button" value="X" onclick="deleteLocation('@item.Id', '@($"trToRemove{item.Id}")')" />
                                         </form>
                                     </td>
                                 </tr>
+                            
 
                                 @*<hr />*@
                                 @*<div class="row">*@
