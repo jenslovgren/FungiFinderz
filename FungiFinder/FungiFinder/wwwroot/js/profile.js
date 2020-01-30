@@ -113,5 +113,11 @@ function editFavMushroom() {
 
 }
 
+function changeLocationName(itemId) {
+    $.ajax({
+        url: ""
+    })
+}
+
 
 

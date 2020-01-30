@@ -12,6 +12,7 @@
     @RenderSection("styles", false)
 
 </head>
+
 <body style="background-color: gray;">
     @if (User.Identity.IsAuthenticated)
     {
@@ -55,6 +56,7 @@
             </div>
         </nav>
     }
+    <partial name="_CookieConsentPartial" />
     <div>
         @RenderBody()
     </div>
