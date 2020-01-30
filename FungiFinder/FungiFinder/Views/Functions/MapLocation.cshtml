@@ -160,7 +160,7 @@
             console.log(pos.lng);
             console.log(pos.lat);
 
-            var url = `Map/${locationName},${pos.lng},${pos.lat}`
+            var url = `/Map/${locationName}/${pos.lng}/${pos.lat}`
             $.ajax({
                 url: url,
                 type: "POST",
