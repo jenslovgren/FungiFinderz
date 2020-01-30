@@ -86,7 +86,6 @@ namespace FungiFinder.Models
                 .Select(o => new LatestSearchesDetailsVM { Mushroom = o.Mushroom, SearchDate = o.SearchDate , ImageUrl = o.ImageUrl})
                 .ToArray();
 
-            //påbörjat för att visa locations i profil..
             vm.Locations = context.MapLocation
               .Where(o => o.UserId == userManager
               .GetUserId(accessor.HttpContext.User))
@@ -143,5 +142,23 @@ namespace FungiFinder.Models
             return result;
         }
 
+        internal void TryEditLocationName(string locationName, int id)
+        {
+            var location = context.MapLocation.SingleOrDefault(o => o.Id == id);
+
+            location.LocationName = locationName;
+            context.MapLocation.Update(location);
+            context.SaveChanges();
+
+
+        }
+
+        internal void TryDeleteLocation(int id)
+        {
+            var location = context.MapLocation.SingleOrDefault(o => o.Id == id);
+
+            context.Remove(location);
+            context.SaveChanges();
+        }
     }
 }

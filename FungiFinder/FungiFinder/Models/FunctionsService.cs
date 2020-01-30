@@ -88,7 +88,7 @@ namespace FungiFinder.Models
 
             return resultList.ToArray();
         }
-       
+        
 
         internal async Task TryChangeLocationName(int id)
         {

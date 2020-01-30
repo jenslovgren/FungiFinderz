@@ -23,19 +23,20 @@ namespace FungiFinder.Controllers
             this.hostEnvironment = hostEnvironment;
             this.service = service;
         }
+
         [HttpGet]
         [Route("main")]
         public IActionResult Main()
         {
             return View();
         }
-       
+
 
         [HttpGet]
         [Route("library")]
         public IActionResult Library()
         {
-            return View();  
+            return View();
         }
 
         [HttpGet]
@@ -47,11 +48,12 @@ namespace FungiFinder.Controllers
             return PartialView("_LibraryResultPartial", viewModels);
         }
 
+        [RequestSizeLimit(5242880)]
         [Route("Image/File")]
         [HttpPost]
         public async Task<IActionResult> FileUpload(IFormFile file)
         {
-            if (!Utils.CheckFileSignature(file.OpenReadStream()))
+            if (!file.ContentType.Contains("image"))
                 return BadRequest("error");
 
             if (file?.Length > 0)
@@ -69,7 +71,9 @@ namespace FungiFinder.Controllers
         [HttpGet]
         public IActionResult GetResultPartial(string shroomToFind)
         {
+
             var result = service.PredictImage(shroomToFind);
+
 
             return PartialView("_MainResultPartial", result);
         }

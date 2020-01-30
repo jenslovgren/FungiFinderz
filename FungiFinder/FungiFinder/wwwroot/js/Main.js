@@ -1,7 +1,6 @@
 ﻿function uploadFile(inputId) {
     let fileUpload = $("#" + inputId).get(0);
     let files = fileUpload.files;
-    console.log(files);
     let formData = new FormData();
     formData.append('file', files[0]);
 
@@ -16,7 +15,7 @@
             
         },
         error: function (result) {
-            $("#pictureErrorHere").text("Bilden måste vara i filformatet .jpg");
+            $("#pictureErrorHere").text("Filen måste vara en bild");
         }
     })
 
@@ -38,16 +37,13 @@ function getResult() {
         success: function (result) {
             $("#resultHere").html(result);
             window.scrollTo(0, 0);
-            removePic();
+            
         },
         complete: function () {
             $("#searcher").hide();
-        }
+        },
+        
     })
-}
-
-function removePic() {
-
 }
 
 $(document).ready(function () {
