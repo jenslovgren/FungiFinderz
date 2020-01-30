@@ -166,21 +166,31 @@ namespace FungiFinder.Controllers
         public async Task<IActionResult> ChangeProfilePicture(IFormFile profilePic)
         {
 
-            if (!Utils.CheckFileSignature(profilePic.OpenReadStream()))
-                return BadRequest("error");
             
-                if (profilePic?.Length > 0)
-                {
-                    var filePath = Path.Combine(hostEnvironment.WebRootPath, "Images/UserPics", profilePic.FileName);
 
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await profilePic.CopyToAsync(fileStream);
-                    }
+
+            if (profilePic?.Length > 0)
+            {
+                var filePath = Path.Combine(hostEnvironment.WebRootPath, "Images/UserPics", profilePic.FileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await profilePic.CopyToAsync(fileStream);
                 }
-                    await service.TryChangeProfilePic(profilePic.FileName);
-                    return Ok(profilePic.FileName);
-        }   
+            }
+            try
+            {
+                await service.TryChangeProfilePic(profilePic.FileName);
+            }
+            catch
+            {
+                return BadRequest("error");
+            }
+
+            return Ok(profilePic.FileName);
+
+
+        }
 
         [Route("profile/edit/favoritemushroom")]
         [HttpGet]
@@ -198,6 +208,15 @@ namespace FungiFinder.Controllers
             {
                 return BadRequest();
             }
+            return Ok();
+        }
+
+        [Route("profile/edit/locationname")]
+        [HttpPost]
+        public async Task<IActionResult> EditLocationName([FromBody] EditLocationNameVM vm)
+        {
+            await service.TrýEditLocationName(vm);
+
             return Ok();
         }
     }

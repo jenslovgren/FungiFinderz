@@ -1,7 +1,6 @@
 ﻿function uploadFile(inputId) {
     let fileUpload = $("#" + inputId).get(0);
     let files = fileUpload.files;
-    console.log(files);
     let formData = new FormData();
     formData.append('file', files[0]);
 
@@ -38,11 +37,12 @@ function getResult() {
         success: function (result) {
             $("#resultHere").html(result);
             window.scrollTo(0, 0);
-            removePic();
+            
         },
         complete: function () {
             $("#searcher").hide();
-        }
+        },
+        
     })
 }
 

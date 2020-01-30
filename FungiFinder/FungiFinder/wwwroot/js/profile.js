@@ -114,8 +114,17 @@ function editFavMushroom() {
 }
 
 function changeLocationName(itemId) {
+    console.log("ej");
+    let newName = $("#" + itemId).val();
     $.ajax({
-        url: ""
+        url: "/profile/edit/locationname",
+        type: 'POST',
+        contentType: "application/json",
+        data: JSON.stringify({ locationname: newName, id: itemId }),
+        success: function (result) {
+
+        }
+
     })
 }
 

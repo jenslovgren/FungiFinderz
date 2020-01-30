@@ -34,7 +34,7 @@
         <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
             Inställningar
         </button>
-        <div class="dropdown-menu" id="profileMenu" style="min-width: 11rem;">
+        <div class="dropdown-menu" id="profileMenu" style="min-width: 11rem; background-color: rgb(255, 255, 255, 0.75);">
             <button type="button" class="dropdown-item" id="editEmail" onclick="editEmail()">Ändra e-post</button>
             <button type="button" class="dropdown-item" id="editPassword" onclick="editPassword()">Ändra lösenord</button>
             <button type="button" class="dropdown-item" id="editFavMushroom" onclick="editFavMushroom()" style="">Ändra favoritsvamp</button>
@@ -49,7 +49,7 @@
 </div>
 
 
-<div class="container emp-profile" style="padding-bottom: 200px;">
+<div class="container emp-profile" style="padding-bottom: 150px; background-color: rgb(255, 255, 255, 0.75)">
 
     <div class="row">
         <div class="col-md-4 col-sm-4">
@@ -153,10 +153,12 @@
                                         <p>@item.LocationName</p>
                                     </td>
                                     <td>
-                                        <input class="form-control" type="text" id="@item.Id" />
+                                        <input class="form-control" type="text" id="@item.Id" value="@item.LocationName"/>
                                     </td>
                                     <td>
-                                        <input class="btn btn-info" type="button" value="Spara" onclick="changeLocationName('@item.Id')"/>
+                                        <form>
+                                            <input class="btn btn-info" type="button" value="Spara" onclick="changeLocationName('@item.Id')" />
+                                        </form>
                                     </td>
                                     <td>
                                         <input class="btn btn-danger" type="button" value="X" onclick="deleteLocation('@item.Id', @($"trToRemove{item.Id}")" />
