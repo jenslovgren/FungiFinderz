@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using FungiFinder.Models;
@@ -68,7 +69,9 @@ namespace FungiFinder
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            var cultureInfo = new CultureInfo("en-US");
+            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
             app.UseAuthentication();
             app.UseCookiePolicy();
             app.UseRouting();

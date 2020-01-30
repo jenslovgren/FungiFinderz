@@ -92,9 +92,9 @@ namespace FungiFinder.Controllers
 
         }
 
-        [Route("Map/{locationName},{lng},{lat}")]
+        [Route("Map/{locationName}/{lng}/{lat}")]
         [HttpPost]
-        public async Task<IActionResult> AddMapLocation(string locationName, string lng, string lat)
+        public async Task<IActionResult> AddMapLocation(string locationName, decimal lng, decimal lat)
         {
             await service.SaveLocation(locationName, lng, lat);
 

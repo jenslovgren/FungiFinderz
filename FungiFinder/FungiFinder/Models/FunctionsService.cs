@@ -113,27 +113,29 @@ namespace FungiFinder.Models
         }
 
 
-        internal async Task SaveLocation(string locationName, string lng, string lat)
+        internal async Task SaveLocation(string locationName, decimal lng, decimal lat)
         {
-            var newLat = lat.Replace(".", ",");
-            var decLat = decimal.Parse(newLat);
-            var newLng = lng.Replace(".", ",");
-            var decLng = decimal.Parse(newLng);
+
             var user = await userManager.GetUserAsync(accessor.HttpContext.User);
-            context.MapLocation.Add(new MapLocation { UserId = user.Id, LocationName = locationName, Latitude = decLat, Longitude = decLng });
+            context.MapLocation.Add(new MapLocation { UserId = user.Id, LocationName = locationName, Latitude = lat, Longitude = lng });
             context.SaveChanges();
         }
 
         private void GenerateModel(MLContext mlContext)
         {
-            IEstimator<ITransformer> pipeline = mlContext.Transforms.LoadImages(outputColumnName: "input", imageFolder: _imagesFolder, inputColumnName: nameof(ImageData.ImagePath))
-            // The image transforms transform the images into the model's expected format.
-            .Append(mlContext.Transforms.ResizeImages(outputColumnName: "input", imageWidth: InceptionSettings.ImageWidth, imageHeight: InceptionSettings.ImageHeight, inputColumnName: "input"))
-            .Append(mlContext.Transforms.ExtractPixels(outputColumnName: "input", interleavePixelColors: InceptionSettings.ChannelsLast, offsetImage: InceptionSettings.Mean))
+            IEstimator<ITransformer> pipeline = mlContext.Transforms.LoadImages(outputColumnName: "input",
+                imageFolder: _imagesFolder, inputColumnName: nameof(ImageData.ImagePath))
 
-            .Append(mlContext.Model.LoadTensorFlowModel(_inceptionTensorFlowModel).ScoreTensorFlowModel(outputColumnNames: new[] { "softmax2_pre_activation" }, inputColumnNames: new[] { "input" }, addBatchDimensionInput: true))
+            .Append(mlContext.Transforms.ResizeImages(outputColumnName: "input", imageWidth: InceptionSettings.ImageWidth, 
+            imageHeight: InceptionSettings.ImageHeight, inputColumnName: "input"))
+            .Append(mlContext.Transforms.ExtractPixels(outputColumnName: "input", interleavePixelColors: 
+            InceptionSettings.ChannelsLast, offsetImage: InceptionSettings.Mean))
+
+            .Append(mlContext.Model.LoadTensorFlowModel(_inceptionTensorFlowModel).ScoreTensorFlowModel(outputColumnNames: 
+            new[] { "softmax2_pre_activation" }, inputColumnNames: new[] { "input" }, addBatchDimensionInput: true))
             .Append(mlContext.Transforms.Conversion.MapValueToKey(outputColumnName: "LabelKey", inputColumnName: "Label"))
-            .Append(mlContext.MulticlassClassification.Trainers.LbfgsMaximumEntropy(labelColumnName: "LabelKey", featureColumnName: "softmax2_pre_activation"))
+            .Append(mlContext.MulticlassClassification.Trainers.LbfgsMaximumEntropy(labelColumnName: "LabelKey",
+            featureColumnName: "softmax2_pre_activation"))
             .Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabelValue", "PredictedLabel"))
             .AppendCacheCheckpoint(mlContext);
 
@@ -153,8 +155,10 @@ namespace FungiFinder.Models
             var predictor = mlContext.Model.CreatePredictionEngine<ImageData, ImagePrediction>(model);
             var prediction = predictor.Predict(imageData);
 
-            var result = context.Mushrooms.SingleOrDefault(m => m.Name.Replace(" ", string.Empty).ToLower() == prediction.PredictedLabelValue.ToLower());
-            context.LatestSearches.Add(new LatestSearches { Mushroom = ConvertFirstLetterToUpper(prediction.PredictedLabelValue), SearchDate = DateTime.Now, UserId = userManager.GetUserId(accessor.HttpContext.User), ImageUrl = result.ImageUrl });
+            var result = context.Mushrooms.SingleOrDefault(m => m.Name.Replace(" ", string.Empty).ToLower() 
+            == prediction.PredictedLabelValue.ToLower());
+            context.LatestSearches.Add(new LatestSearches { Mushroom = ConvertFirstLetterToUpper(prediction.PredictedLabelValue),
+                SearchDate = DateTime.Now, UserId = userManager.GetUserId(accessor.HttpContext.User), ImageUrl = result.ImageUrl });
             context.SaveChanges();
             int tempRating;
             if (!result.Edible)

@@ -155,12 +155,12 @@
             var locationName = $("#locationName").val();
             console.log(locationName);
             if (locationName == "" || locationName == null) {
-                searchQuery = "Jag var tydligen för lat för att namnge mitt nya svampställe.."
+                searchQuery = "Svampställe.."
             }
             console.log(pos.lng);
             console.log(pos.lat);
 
-            var url = `Map/${locationName},${pos.lng},${pos.lat}`
+            var url = `/Map/${locationName}/${pos.lng}/${pos.lat}`
             $.ajax({
                 url: url,
                 type: "POST",
