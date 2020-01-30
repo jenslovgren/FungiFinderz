@@ -211,11 +211,19 @@ namespace FungiFinder.Controllers
             return Ok();
         }
 
-        [Route("profile/edit/locationname")]
+        [Route("profile/edit/locationname/{locationName}/{id}")]
         [HttpPost]
-        public async Task<IActionResult> EditLocationName([FromBody] EditLocationNameVM vm)
+        public IActionResult EditLocationName(string locationName, int id)
         {
-            await service.TrýEditLocationName(vm);
+            service.TryEditLocationName(locationName, id);
+
+            return Ok();
+        }
+        [Route("/profile/deletelocation/{id}")]
+        [HttpPost]
+        public IActionResult DeleteLocation(int id)
+        {
+            service.TryDeleteLocation(id);
 
             return Ok();
         }

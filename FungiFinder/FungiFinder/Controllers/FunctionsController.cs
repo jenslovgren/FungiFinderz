@@ -53,7 +53,8 @@ namespace FungiFinder.Controllers
         [HttpPost]
         public async Task<IActionResult> FileUpload(IFormFile file)
         {
-
+            if (!file.ContentType.Contains("image"))
+                return BadRequest("error");
 
             if (file?.Length > 0)
             {
@@ -70,15 +71,9 @@ namespace FungiFinder.Controllers
         [HttpGet]
         public IActionResult GetResultPartial(string shroomToFind)
         {
-            FunctionMainResultPartialVM result;
-            try
-            {
-                result = service.PredictImage(shroomToFind);
-            }
-            catch
-            {
-                return BadRequest();
-            }
+
+            var result = service.PredictImage(shroomToFind);
+
 
             return PartialView("_MainResultPartial", result);
         }

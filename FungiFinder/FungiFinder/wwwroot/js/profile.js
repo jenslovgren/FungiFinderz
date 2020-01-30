@@ -115,16 +115,28 @@ function editFavMushroom() {
 
 function changeLocationName(itemId) {
     console.log("ej");
+    let id = itemId;
+    console.log(id);
     let newName = $("#" + itemId).val();
+    console.log(newName);
     $.ajax({
-        url: "/profile/edit/locationname",
+        url: `/profile/edit/locationname/${newName}/${id}`,
         type: 'POST',
-        contentType: "application/json",
-        data: JSON.stringify({ locationname: newName, id: itemId }),
         success: function (result) {
-
+            $("#" + itemId).attr("value", newName);
+            $("#paraToEdit" + itemId).text(newName); 
         }
 
+    });
+}
+
+function deleteLocation(itemId, trToDeleteID) {
+    $.ajax({
+        url: `/profile/deletelocation/${itemId}`,
+        type: 'POST',
+        success: function (result) {
+            $("#" + trToDeleteID).empty();
+        }
     })
 }
 
