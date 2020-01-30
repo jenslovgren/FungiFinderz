@@ -153,10 +153,12 @@
                                         <p>@item.LocationName</p>
                                     </td>
                                     <td>
-                                        <input class="form-control" type="text" id="@item.Id" />
+                                        <input class="form-control" type="text" id="@item.Id" value="@item.LocationName"/>
                                     </td>
                                     <td>
-                                        <input class="btn btn-info" type="button" value="Spara" onclick="changeLocationName('@item.Id')"/>
+                                        <form>
+                                            <input class="btn btn-info" type="button" value="Spara" onclick="changeLocationName('@item.Id')" />
+                                        </form>
                                     </td>
                                     <td>
                                         <input class="btn btn-danger" type="button" value="X" onclick="deleteLocation('@item.Id', @($"trToRemove{item.Id}")" />
