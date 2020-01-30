@@ -51,8 +51,9 @@ namespace FungiFinder.Controllers
         [HttpPost]
         public async Task<IActionResult> FileUpload(IFormFile file)
         {
-            if (!Utils.CheckFileSignature(file.OpenReadStream()))
+            if (!service.CheckFileSignature(file.OpenReadStream()))
                 return BadRequest("error");
+
             if (file?.Length > 0)
             {
                 var filePath = Path.Combine(hostEnvironment.WebRootPath, "Images/Uploads", file.FileName);
