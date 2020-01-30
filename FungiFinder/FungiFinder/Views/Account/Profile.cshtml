@@ -137,26 +137,25 @@
                             <label class="control-label">Bytt namn på dina svampställen:</label>
                         </div>
                     </div>
-
+                    <table>
                     @foreach (var item in Model.Locations)
                     {
-                        <hr />
-                        <div class="row">
+                        <tr>
+                            <td>
+                                <p>@item.LocationName</p>
+                            </td>
+                            <td>
+                                <input type="text" name="name" value="" />
+                            </td>
+                            <td>
+                                <input type="button" value="Ändra namn"/>
+                            </td>
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>@item.LocationName</label>
-                                </div>
-                                <div class="col-md-6">
-                                    @*<label asp-for="@item.LocationName" class="control-label"></label>*@
-                                    <input asp-for="@item.LocationName" class="form-control" />
-                                    <span asp-validation-for="@item.LocationName" class="text-danger"></span>
-                                    <input type="submit" value="Save" class="btn btn-primary" />
-                                </div>
-                            </div>
+     
 
-                        </div>
+                        </tr>
                     }
+                    </table>
                     <div class="form-group">
                     </div>
 
