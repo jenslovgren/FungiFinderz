@@ -152,7 +152,6 @@ namespace FungiFinder.Controllers
             if (!result.Succeeded)
             {
                 return BadRequest(result.Errors.First().Description);
-                //return BadRequest();
 
             }
 

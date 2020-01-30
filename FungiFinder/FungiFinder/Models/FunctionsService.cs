@@ -26,7 +26,7 @@ namespace FungiFinder.Models
         {
             this.context = context;
             this.userManager = userManager;
-            this.accessor = accessor; // hej
+            this.accessor = accessor; 
         }
 
         static readonly string _assetsPath = Path.Combine(Environment.CurrentDirectory, "wwwroot");
@@ -88,12 +88,6 @@ namespace FungiFinder.Models
         }
         
 
-        internal async Task TryChangeLocationName(int id)
-        {
-            var user = await userManager.GetUserAsync(accessor.HttpContext.User);
-            var location = context.MapLocation.Find(id);
-            //location.LocationName
-        }
 
         internal async Task<FunctionMapVM[]> GetUserLocations()
         {

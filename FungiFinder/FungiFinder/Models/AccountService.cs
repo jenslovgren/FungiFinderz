@@ -48,19 +48,6 @@ namespace FungiFinder.Models
             await signInManager.SignOutAsync();
         }
 
-        //internal async Task<IdentityResult> TryEditProfile(AccountProfileVM vm)
-        //{
-
-        //    var user = await userManager.GetUserAsync(accessor.HttpContext.User);
-        //    //var newPass = await userManager.ChangePasswordAsync(user, vm.Password, vm.NewPassword);
-        //    user.Email = vm.Email;
-
-        //    user.FavoriteMushroom = vm.FavouriteMushroom;
-        //    await userManager.UpdateAsync(user);
-
-        //    return newPass;
-
-        //}
 
         internal async Task<AccountProfileVM> GetProfileData()
         {

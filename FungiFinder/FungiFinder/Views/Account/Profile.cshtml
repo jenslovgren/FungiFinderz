@@ -27,14 +27,12 @@
         }
     </style>
 }
-
-@*<h4>@User.Identity.Name's profil</h4>*@
 <div class="float-right" style="padding-right: 50px;" name="settings">
     <div class="btn-group">
         <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
             Inställningar
         </button>
-        <div class="dropdown-menu" id="profileMenu" style="min-width: 11rem; background-color: rgb(255, 255, 255, 0.75);">
+        <div class="dropdown-menu" id="profileMenu" style="min-width: 11rem; background-color:white;">
             <button type="button" class="dropdown-item" id="editEmail" onclick="editEmail()">Ändra e-post</button>
             <button type="button" class="dropdown-item" id="editPassword" onclick="editPassword()">Ändra lösenord</button>
             <button type="button" class="dropdown-item" id="editFavMushroom" onclick="editFavMushroom()" style="">Ändra favoritsvamp</button>
@@ -47,10 +45,7 @@
         </div>
     </div>
 </div>
-
-
-<div class="container emp-profile" style="padding-bottom: 150px; background-color: rgb(255, 255, 255, 0.75)">
-
+<div class="container emp-profile" style="padding-bottom: 150px; background-color: rgba(255, 255, 255, 0.75)">
     <div class="row">
         <div class="col-md-4 col-sm-4">
             <div class="profile-img">
@@ -62,16 +57,13 @@
                 <div id="pictureErrorHere" class="text-danger"></div>
             </div>
         </div>
-
         <div class="col-md-6 col-sm-6">
             <div class="profile-head">
-
                 <h6>
                     @Model.Username
                 </h6>
-
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
+                    <li class="nav-item" style="background-color: none;">
                         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="true">Info</a>
                     </li>
                     <li class="nav-item">
@@ -81,13 +73,10 @@
                         <a class="nav-link" id="location-tab" data-toggle="tab" href="#locations" role="tab" aria-controls="locations" aria-selected="false">Svampställen</a>
                     </li>
                 </ul>
-
             </div>
         </div>
-
     </div>
     <div class="row">
-
         <div class="col-md-4"></div>
         <div class="col-md-8 col-sm-8">
             <div class="tab-content profile-tab" id="myTabContent">
@@ -108,7 +97,6 @@
                             <p id="mushroomHere">@Model.FavouriteMushroom</p>
                         </div>
                     </div>
-
                 </div>
                 <div class="col-md-2"></div>
                 <div class="tab-pane fade" id="latestSearches" role="tabpanel" aria-labelledby="profile-tab">
@@ -127,73 +115,48 @@
                             </div>
                         </div>
                     }
-
                 </div>
-
-                @*testing*@
                 <div class="tab-pane fade" id="locations" role="tabpanel" aria-labelledby="location-tab">
                     <div class="row">
                         <div class="col-md-8">
-                            @*<label class="control-label"></label>*@
                         </div>
                     </div>
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">
-                                    Byt namn på dina svampställen:
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.Locations)
-                            {
-                            
-                                <tr id="@($"trToRemove{item.Id}")">
-                                    <td>
-                                        <p id="@($"paraToEdit{item.Id}")">@item.LocationName</p>
-                                    </td>
-                                    <td>
-                                        <input class="form-control" type="text" id="@item.Id" value="@item.LocationName" />
-                                    </td>
-                                    <td>
-                                        <form asp-action="EditLocationName">
-                                            <input class="btn btn-info" type="button" value="Spara" onclick="changeLocationName('@item.Id')" />
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form asp-action="DeleteLocation">
-                                            <input class="btn btn-danger" type="button" value="X" onclick="deleteLocation('@item.Id', '@($"trToRemove{item.Id}")')" />
-                                        </form>
-                                    </td>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">
+                                        Byt namn på dina svampställen:
+                                    </th>
                                 </tr>
-                            
-
-                                @*<hr />*@
-                                @*<div class="row">*@
-
-                                @*<div class="row">*@
-                                @*<div class="col-md-6">*@
-                                @*<label>@item.LocationName</label>*@
-                                @*</div>*@
-                                @*<div class="col-md-6">*@
-                                @*<label asp-for="@item.LocationName" class="control-label"></label>*@
-                                @*<input asp-for="@item.LocationName" class="form-control" />
-                                    <span asp-validation-for="@item.LocationName" class="text-danger"></span>
-                                    <input type="submit" value="Save" class="btn btn-primary" />*@
-                                @*</div>*@
-                                @*</div>*@
-
-                                @*</div>*@
-                            }
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Locations)
+                                {
+                                    <tr id="@($"trToRemove{item.Id}")">
+                                        <td>
+                                            <p id="@($"paraToEdit{item.Id}")">@item.LocationName</p>
+                                        </td>
+                                        <td>
+                                            <input class="form-control" type="text" id="@item.Id" value="@item.LocationName" />
+                                        </td>
+                                        <td>
+                                            <form asp-action="EditLocationName">
+                                                <input class="btn btn-info" type="button" value="Spara" onclick="changeLocationName('@item.Id')" />
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form asp-action="DeleteLocation">
+                                                <input class="btn btn-danger" type="button" value="X" onclick="deleteLocation('@item.Id', '@($"trToRemove{item.Id}")')" />
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="form-group">
                     </div>
-
-
-                    @*slut test*@
-
                 </div>
             </div>
         </div>

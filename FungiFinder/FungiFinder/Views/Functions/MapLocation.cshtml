@@ -1,5 +1,8 @@
 ﻿@model FunctionMapVM[]
 
+@{ 
+    ViewBag.Title = "Svampställen";
+}
 @section styles{
     <style>
         /* Always set the map height explicitly to define the size of the div
@@ -164,8 +167,9 @@
             $.ajax({
                 url: url,
                 type: "POST",
-                  success: function (response) {
+                success: function (response) {
                     alert('Svampställe sparat');
+                    location.reload();
                 },
                 failure: function (response) {
                     alert(response.responseText);
@@ -174,7 +178,7 @@
                     alert(response.responseText);
                 }
             });
-            initMap()
+           
         }
 
         // Adds a marker to the map and push to the array.
