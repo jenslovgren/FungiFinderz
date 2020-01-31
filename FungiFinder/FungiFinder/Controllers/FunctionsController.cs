@@ -48,13 +48,13 @@ namespace FungiFinder.Controllers
             return PartialView("_LibraryResultPartial", viewModels);
         }
 
-        [RequestSizeLimit(5242880)]
+        [RequestSizeLimit(1048576)]
         [Route("Image/File")]
         [HttpPost]
         public async Task<IActionResult> FileUpload(IFormFile file)
         {
-            if (!file.ContentType.Contains("image"))
-                return BadRequest("error");
+            //if (!file.ContentType.Contains("image"))
+            //    return BadRequest("error");
 
             if (file?.Length > 0)
             {
